@@ -4,4 +4,7 @@ class User < ApplicationRecord
 
   validates :email, :first_name, :last_name, :birthday, presence: true
   validates :email, uniqueness: true
+
+  has_many :posts,
+    dependent: :destroy
 end
