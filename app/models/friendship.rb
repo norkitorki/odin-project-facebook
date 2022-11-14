@@ -1,8 +1,8 @@
 class Friendship < ApplicationRecord
-  after_create :create_inverse, 
-    unless: [ :inverse_exists?, :inverse_is_user? ]
-  after_destroy :destroy_inverse, 
-    if: :inverse_exists?
+  after_create :create_inverse, unless: :inverse_exists?
+  after_destroy :destroy_inverse, if: :inverse_exists?
+
+  validate :inverse_is_not_user
 
   belongs_to :user
   belongs_to :friend, class_name: 'User'
@@ -21,11 +21,11 @@ class Friendship < ApplicationRecord
     self.class.exists?(inverse_options)
   end
 
-  def inverse_is_user?
-    user == friend
-  end
-
   def inverse_options
     { user_id: friend_id, friend_id: user_id }
+  end
+
+  def inverse_is_not_user
+    errors.add(:friend, 'cannot be user') if user == friend
   end
 end
