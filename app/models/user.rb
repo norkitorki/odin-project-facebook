@@ -5,6 +5,10 @@ class User < ApplicationRecord
   validates :email, :first_name, :last_name, :birthday, presence: true
   validates :email, uniqueness: true
 
+  has_many :friendships
+  has_many :friends, through: :friendships,
+    dependent: :destroy
+
   has_many :posts,
     dependent: :destroy
 
