@@ -12,6 +12,10 @@ class User < ApplicationRecord
   has_many :friend_requests,
     dependent: :destroy
 
+  has_many :pending_friend_requests,
+    class_name: 'FriendRequest',
+    foreign_key: :candidate_id
+
   has_many :posts,
     dependent: :destroy
 
