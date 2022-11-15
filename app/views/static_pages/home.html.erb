@@ -1,2 +1,17 @@
 <h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+
+<% @users.each do |user| %>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <p><%= user.first_name %> <%= user.last_name %></p>
+
+    <% if current_user != user && !current_user.friends.exists?(user.id) %>
+      <%= form_with(model: @friend_request, url: friend_requests_create_path) do |f| %>
+        <%= f.hidden_field :candidate_id, value: user.id %>
+
+        <div class="field">
+          <%= f.submit 'Send Friend request' %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
