@@ -2,7 +2,6 @@ class StaticPagesController < ApplicationController
   before_action :authenticate_user!
 
   def home
-    @users = User.all
-    @friend_request = current_user.friend_requests.new
+    @posts = (current_user.posts + current_user.friends.includes(:posts).map(&:posts).to_a.flatten).sort_by { |p| p.updated_at }.reverse
   end
 end

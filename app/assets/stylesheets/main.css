@@ -1,0 +1,7 @@
+.alert, .notice {
+  width: max-content;
+}
+
+.field {
+  width: min(400px, 100vw);
+}
