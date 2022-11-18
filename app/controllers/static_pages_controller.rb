@@ -2,6 +2,7 @@ class StaticPagesController < ApplicationController
   before_action :authenticate_user!
 
   def home
-    @posts = (current_user.posts + current_user.friends.includes(:posts).map(&:posts).to_a.flatten).sort_by { |p| p.updated_at }.reverse
+    ids = current_user.friends.ids << current_user.id
+    @posts = Post.where(user_id: ids).includes(:comments, :likes, :user).order(updated_at: :desc)
   end
 end
