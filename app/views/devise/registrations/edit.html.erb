@@ -37,7 +37,7 @@
     </div>
   <% end %>
 
-  <p class="has-text-bold is-size-4 py-2">Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "button is-danger" %></p>
+  <p class="is-size-4 py-2">Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "button is-danger" %></p>
 
   <%= link_to "Back", :back, class: "is-link is-size-5" %>
 </div>
