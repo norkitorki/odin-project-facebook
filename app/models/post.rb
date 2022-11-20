@@ -8,4 +8,8 @@ class Post < ApplicationRecord
 
   has_many :likes, as: :likeable,
   dependent: :destroy
+
+  def edited?
+    created_at < updated_at
+  end
 end
