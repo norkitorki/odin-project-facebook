@@ -1,0 +1,42 @@
+<div class="columns is-centered is-flex-direction-column is-align-items-center">
+  <% comments.each do |comment| %>
+    <div class="column is-one-third">
+      <article class="media">
+        <figure class="media-left">
+          <p class="image is-48x48">
+            <img src="https://bulma.io/images/placeholders/128x128.png">
+          </p>
+        </figure>
+        <div class="media-content">
+          <%= turbo_frame_tag comment do %>
+            <div class="content">
+              <p>
+                <strong><%= comment.user.first_name %> <%= comment.user.last_name %></strong>
+                <%= comment.likes.count %> Likes
+                <br>
+                <%= comment.body %>
+              </p>
+            </div>
+            <nav class="level is-mobile">
+              <div class="level-left">
+                <% if current_user == comment.user %>
+                  <%= link_to 'Edit', edit_comment_path(comment), class: 'is-info' %> ·
+                  <%= link_to 'Delete', comment, data: { turbo_method: :delete }, class: 'is-danger' %> ·
+                <% else %>
+                  <%= link_to 'Like', @post, class: 'level-item' %> ·
+                <% end %>
+                <%= link_to 'Reply', @post, class: 'level-item' %>
+                · <time>
+                    <%= distance_of_time_in_words(Time.now, comment.created_at) %> ago
+                    <% if comment.edited? %>
+                      <span class="is-size-7">(edited <%= distance_of_time_in_words(Time.now, comment.updated_at) %> ago)</span>
+                    <% end %>
+                  </time>
+              </div>
+            </nav>
+          <% end %>
+        </div>
+      </article>
+    </div>
+  <% end %>
+</div>

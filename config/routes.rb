@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'static_pages/home'
 
   resources :posts, except: :index
+  resources :comments, except: %i[ index show new ]
 
   devise_for :users, controllers: {
     registrations: 'users/registrations',

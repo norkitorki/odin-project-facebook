@@ -1,0 +1,13 @@
+<h1 class="title">Edit Comment</h1>
+
+<%= turbo_frame_tag @comment do %>
+  <%= form_with(model: @comment) do |f| %>
+    <div class="field">
+      <%= f.label :body, class: 'is-size-5 has-text-weight-bold' %>
+      <%= f.text_area :body, class: 'textarea is-info' %>
+    </div>
+    <div class="action">
+      <%= f.submit 'Save', class: 'button is-primary' %>
+    </div>
+  <% end %>
+<% end %>
