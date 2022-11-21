@@ -40,7 +40,7 @@
             <% end %>
           </div>
         </div>
-        <%= link_to "#{post.comments.size} Comments", '/' %>
+        <%= link_to "#{post.comments.size} Comments", post %>
       </div>
       <footer class="card-footer">
         <% if controller_name == 'static_pages' %>
