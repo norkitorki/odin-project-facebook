@@ -1,2 +1,9 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<div class="columns is-centered">
+  <div class="column is-half">
+    <%= render @post %>
+  </div>
+</div>
+
+<%= render 'comments/form', comment: @comment %>
+
+<%= render 'comments/comments', comments: @comments %>
