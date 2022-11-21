@@ -1,2 +1,14 @@
-<h1>Posts#edit</h1>
-<p>Find me in app/views/posts/edit.html.erb</p>
+<h1 class="title is-size-2">Edit Post</h1>
+
+<%= turbo_frame_tag @post do %>
+  <%= form_with(model: @post) do |f| %>
+    <div class="field">
+      <%= f.label :content, class: 'is-size-5 has-text-weight-bold' %>
+      <%= f.text_area :content, class: 'textarea' %>
+    </div>
+
+    <div class="action">
+      <%= f.submit 'Save', class: 'button is-primary' %>
+    </div>
+  <% end %>
+<% end %>
