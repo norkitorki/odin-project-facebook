@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :posts, except: :index
   resources :comments, except: %i[ index show new ]
+  resources :likes, only: %i[ create destroy ]
 
   devise_for :users, controllers: {
     registrations: 'users/registrations',
