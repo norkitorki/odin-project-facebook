@@ -4,7 +4,8 @@ class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :commentable, polymorphic: true
 
-  has_many :likes, as: :likeable
+  has_many :likes, as: :likeable,
+    dependent: :destroy
 
   def edited?
     created_at < updated_at
