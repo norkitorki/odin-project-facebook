@@ -12,4 +12,8 @@ class Post < ApplicationRecord
   def edited?
     created_at < updated_at
   end
+
+  def liked_by?(user)
+    likes.exists?(user_id: user.id)
+  end
 end
