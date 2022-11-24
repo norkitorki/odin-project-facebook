@@ -1,0 +1,48 @@
+<div class="column is-one-third">
+  <article class="media">
+    <figure class="media-left">
+      <p class="image is-48x48">
+        <img src="https://bulma.io/images/placeholders/128x128.png">
+      </p>
+    </figure>
+    <div class="media-content">
+      <%= turbo_frame_tag comment do %>
+        <div class="content">
+          <p>
+            <strong><%= comment.user.first_name %> <%= comment.user.last_name %></strong>
+            <%= comment.likes.length %> Likes
+            <br>
+            <%= comment.body %>
+          </p>
+        </div>
+        <nav class="level is-mobile">
+          <div class="level-left">
+            <% if current_user == comment.user %>
+              <%= link_to 'Edit', edit_comment_path(comment), class: 'is-info' %> ·
+              <%= link_to 'Delete', comment, data: { turbo_method: :delete }, class: 'is-danger' %> ·
+            <% else %>
+              <% if like.new_record? %>
+                <%= form_with(model: like) do |f| %>
+                  <%= f.hidden_field :likeable_type, value: comment.class.to_s %>
+                  <%= f.hidden_field :likeable_id, value: comment.id %>
+                  <%= f.submit 'Like', class: 'button is-small is-info is-rounded' %>
+                <% end %>
+              <% else %>
+                <%= form_with(model: like, method: :delete) do |f| %>
+                  <%= f.submit 'Unlike', class: 'button is-small is-danger is-rounded' %>
+                <% end %> ·
+              <% end %>
+            <% end %>
+            <%= link_to 'Reply', @post, class: 'level-item' %>
+            · <time>
+                <%= distance_of_time_in_words(Time.now, comment.created_at) %> ago
+                <% if comment.edited? %>
+                  <span class="is-size-7">(edited <%= distance_of_time_in_words(Time.now, comment.updated_at) %> ago)</span>
+                <% end %>
+              </time>
+          </div>
+        </nav>
+      <% end %>
+    </div>
+  </article>
+</div>
