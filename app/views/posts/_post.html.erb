@@ -15,6 +15,40 @@
           <% end %>
         </time>
       </div>
+      <div class="media-right">
+        <div class="dropdown is-hoverable">
+          <div class="dropdown-trigger">
+            <button class="button">...</button>
+          </div>
+          <div class="dropdown-menu">
+            <div class="dropdown-content">
+              <div>
+                <% if like.new_record? %>
+                  <%= form_with(model: like) do |f| %>
+                    <%= f.hidden_field :likeable_type, value: post.class.to_s %>
+                    <%= f.hidden_field :likeable_id, value: post.id %>
+                    <%= f.submit 'Like', class: 'dropdown-submit button dropdown-item has-text-left' %>
+                  <% end %>
+                <% else %>
+                  <%= form_with(model: like, method: :delete) do |f| %>
+                    <%= f.submit 'Unlike', class: 'dropdown-submit button dropdown-item has-text-left' %>
+                  <% end %>
+                <% end %>
+              </div>
+              <%= link_to 'Share', '#', class: 'dropdown-item' %>
+              <% if current_user == post.user %>
+                <hr class="dropdown-divider">
+                <%= link_to 'Edit', edit_post_path(post), class: 'dropdown-item' %>
+                <div>
+                  <%= form_with(model: post, method: :delete) do |f| %>
+                    <%= f.submit 'Delete', class: 'dropdown-submit button dropdown-item has-text-left' %>
+                  <% end %>
+                </div>
+              <% end %> 
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="content">
       <%= turbo_frame_tag post do %>
