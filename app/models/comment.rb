@@ -1,4 +1,6 @@
 class Comment < ApplicationRecord
+  include LikesHelper
+
   validates :body, presence: true
 
   belongs_to :user
