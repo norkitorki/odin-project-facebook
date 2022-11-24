@@ -6,10 +6,10 @@
   <% end %>
 <% end %>
 
-<div class="columns is-multiline is-2 is-variable">
+<article class="columns is-multiline is-1 is-variable">
   <% @posts.each do |post| %>
     <div class="column is-one-third-tablet is-one-quarter-desktop">
       <%= render post, like: post.find_or_initialize_like(current_user) %>
     </div>
   <% end %>
-</div>
+</article>
