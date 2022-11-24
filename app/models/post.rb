@@ -1,4 +1,6 @@
 class Post < ApplicationRecord
+include LikesHelper
+
   belongs_to :user
 
   validates :content, presence: true
@@ -11,13 +13,5 @@ class Post < ApplicationRecord
 
   def edited?
     created_at < updated_at
-  end
-
-  def liked_by?(user)
-    likes.exists?(user_id: user.id)
-  end
-
-  def find_or_initialize_like(user)
-    likes.find_or_initialize_by(user_id: user.id)
   end
 end
