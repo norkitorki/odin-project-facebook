@@ -54,8 +54,8 @@
       <%= turbo_frame_tag post do %>
         <p class="post-content"><%= post.content %></p>
         <% if current_user == post.user %>
-          <%= link_to 'Edit', edit_post_path(post), class: 'button is-info' %>
-          <%= link_to 'Delete', post, data: { turbo_method: :delete }, class: ' button is-danger' %>
+          <%= link_to 'Edit', edit_post_path(post), class: 'button is-info is-small is-rounded' %>
+          <%= link_to 'Delete', post, data: { turbo_method: :delete }, class: ' button is-danger is-small is-rounded' %>
         <% end %>
       <% end %>
         <div class="columns is-justify-content-space-between is-align-items-center mt-2">
