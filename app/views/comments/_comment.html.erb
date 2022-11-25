@@ -22,14 +22,12 @@
               <%= link_to 'Delete', comment, data: { turbo_method: :delete }, class: 'is-danger' %> ·
             <% else %>
               <% if like.new_record? %>
-                <%= form_with(model: like) do |f| %>
-                  <%= f.hidden_field :likeable_type, value: comment.class.to_s %>
-                  <%= f.hidden_field :likeable_id, value: comment.id %>
-                  <%= f.submit 'Like', class: 'button is-small is-info is-rounded' %>
+                <%= form_with(model: like, url: likes_path(likeable: { likeable_type: 'Comment', likeable_id: comment.id }, path: request.path)) do |f| %>
+                  <%= f.submit 'Like', class: 'button is-small' %>
                 <% end %>
               <% else %>
-                <%= form_with(model: like, method: :delete) do |f| %>
-                  <%= f.submit 'Unlike', class: 'button is-small is-danger is-rounded' %>
+                <%= form_with(model: like, url: like_path(like, path: request.path), method: :delete) do |f| %>
+                  <%= f.submit 'Unlike', class: 'button is-small' %>
                 <% end %> ·
               <% end %>
             <% end %>
