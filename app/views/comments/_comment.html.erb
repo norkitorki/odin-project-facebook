@@ -10,7 +10,7 @@
         <div class="content">
           <p>
             <strong><%= comment.user.first_name %> <%= comment.user.last_name %></strong>
-            <%= comment.likes.length %> Likes
+            <span class="is-size-5 has-text-danger">♥</span> <%= comment.likes.count %>
             <br>
             <%= comment.body %>
           </p>
