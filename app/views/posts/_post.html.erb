@@ -24,13 +24,11 @@
             <div class="dropdown-content">
               <div>
                 <% if like.new_record? %>
-                  <%= form_with(model: like) do |f| %>
-                    <%= f.hidden_field :likeable_type, value: post.class.to_s %>
-                    <%= f.hidden_field :likeable_id, value: post.id %>
+                  <%= form_with(url: likes_path(likeable: { likeable_type: 'Post', likeable_id: post.id }, path: request.path)) do |f| %>
                     <%= f.submit 'Like', class: 'dropdown-submit button dropdown-item has-text-left' %>
                   <% end %>
                 <% else %>
-                  <%= form_with(model: like, method: :delete) do |f| %>
+                  <%= form_with(url: like_path(like, path: request.path), method: :delete) do |f| %>
                     <%= f.submit 'Unlike', class: 'dropdown-submit button dropdown-item has-text-left' %>
                   <% end %>
                 <% end %>
@@ -60,10 +58,10 @@
       <% end %>
         <div class="columns is-justify-content-space-between is-align-items-center mt-2">
           <div class="column pb-0">
-            <%= link_to "#{post.comments.length} Comments", post %>
+            <%= link_to "#{post.comments.count} Comments", post %>
           </div>
           <div class="column pb-0 has-text-right">
-            <i><%= post.likes.length %> people liked this post</i>
+            <i><%= pluralize(post.likes.count, 'person') %> <span class="is-size-4 has-text-danger">♥</span> this post</i>
           </div>
         </div>
       </div>
