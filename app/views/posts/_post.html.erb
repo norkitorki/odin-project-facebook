@@ -22,17 +22,19 @@
           </div>
           <div class="dropdown-menu">
             <div class="dropdown-content">
-              <div>
-                <% if like.new_record? %>
-                  <%= form_with(url: likes_path(likeable: { likeable_type: 'Post', likeable_id: post.id }, path: request.path)) do |f| %>
-                    <%= f.submit 'Like', class: 'dropdown-submit button dropdown-item has-text-left' %>
+              <% if current_user != post.user %>
+                <div>
+                  <% if like.new_record? %>
+                    <%= form_with(url: likes_path(likeable: { likeable_type: 'Post', likeable_id: post.id }, path: request.path)) do |f| %>
+                      <%= f.submit 'Like', class: 'dropdown-submit button dropdown-item has-text-left' %>
+                    <% end %>
+                  <% else %>
+                    <%= form_with(url: like_path(like, path: request.path), method: :delete) do |f| %>
+                      <%= f.submit 'Unlike', class: 'dropdown-submit button dropdown-item has-text-left' %>
+                    <% end %>
                   <% end %>
-                <% else %>
-                  <%= form_with(url: like_path(like, path: request.path), method: :delete) do |f| %>
-                    <%= f.submit 'Unlike', class: 'dropdown-submit button dropdown-item has-text-left' %>
-                  <% end %>
-                <% end %>
-              </div>
+                </div>
+              <% end %>
               <%= link_to 'Share', '#', class: 'dropdown-item' %>
               <% if current_user == post.user %>
                 <hr class="dropdown-divider">
