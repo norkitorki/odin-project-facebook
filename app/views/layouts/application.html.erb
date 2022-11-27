@@ -36,11 +36,11 @@
       </div>
     </nav>
 
-    <div id="flash" class="has-text-centered">
+    <div id="flash" class="columns is-justify-content-center is-align-items-center my-2">
       <% if flash[:notice] %>
-        <p class="notice notification is-success"><%= notice %></p>
+        <p class="notice notification is-success py-3"><%= notice %></p>
       <% elsif flash[:alert] %>
-        <p class="alert notification is-danger"><%= alert %></p>
+        <p class="alert notification is-danger py-3"><%= alert %></p>
       <% end %>
     </div>
 
