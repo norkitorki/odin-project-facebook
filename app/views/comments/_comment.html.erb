@@ -18,8 +18,10 @@
         <nav class="level is-mobile">
           <div class="level-left">
             <% if current_user == comment.user %>
-              <%= link_to 'Edit', edit_comment_path(comment), class: 'is-info' %> ·
-              <%= link_to 'Delete', comment, data: { turbo_method: :delete }, class: 'is-danger' %> ·
+              <%= link_to 'Edit', edit_comment_path(comment), class: 'level-item' %>
+              <%= form_with(model: comment, method: :delete, class: 'level-item') do |f| %>
+                <%= f.submit 'Delete', class: 'comment-submit' %>
+              <% end %>
             <% else %>
               <% if like.new_record? %>
                 <%= form_with(url: likes_path(likeable: { likeable_type: 'Comment', likeable_id: comment.id }, path: request.path)) do |f| %>
