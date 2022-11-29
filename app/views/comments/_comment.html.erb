@@ -24,22 +24,22 @@
               <% end %>
             <% else %>
               <% if like.new_record? %>
-                <%= form_with(url: likes_path(likeable: { likeable_type: 'Comment', likeable_id: comment.id }, path: request.path)) do |f| %>
-                  <%= f.submit 'Like', class: 'button is-small' %>
+                <%= form_with(url: likes_path(likeable: { likeable_type: 'Comment', likeable_id: comment.id }, path: request.path), class: 'level-item') do |f| %>
+                  <%= f.submit 'Like', class: 'comment-submit' %>
                 <% end %>
               <% else %>
-                <%= form_with(url: like_path(like, path: request.path), method: :delete) do |f| %>
-                  <%= f.submit 'Unlike', class: 'button is-small' %>
-                <% end %> ·
+                <%= form_with(url: like_path(like, path: request.path), method: :delete, class: 'level-item') do |f| %>
+                  <%= f.submit 'Unlike', class: 'comment-submit' %>
+                <% end %>
               <% end %>
             <% end %>
             <%= link_to 'Reply', @post, class: 'level-item' %>
-            · <time>
-                <%= distance_of_time_in_words(Time.now, comment.created_at) %> ago
-                <% if comment.edited? %>
-                  <span class="is-size-7">(edited <%= distance_of_time_in_words(Time.now, comment.updated_at) %> ago)</span>
-                <% end %>
-              </time>
+            <time class="level-item has-text-weight-light">
+              <%= distance_of_time_in_words(Time.now, comment.created_at) %> ago
+              <% if comment.edited? %>
+                <span class="is-size-7">(edited <%= distance_of_time_in_words(Time.now, comment.updated_at) %> ago)</span>
+              <% end %>
+            </time>
           </div>
         </nav>
       <% end %>

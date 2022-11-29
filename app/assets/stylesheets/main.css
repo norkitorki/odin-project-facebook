@@ -11,3 +11,15 @@
   color: hsl(0, 0%, 4%);
   background-color: hsl(0, 0%, 96%);
 }
+
+.comment-submit {
+  font-size: 1rem;
+  background-color: inherit;
+  border: none;
+  color: #485fc7;
+  cursor: pointer;
+}
+
+.comment-submit:hover {
+  color: #2b2828;
+}
