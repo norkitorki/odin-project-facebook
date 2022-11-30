@@ -14,7 +14,7 @@
         <% end %>
       </li>
       <hr class="dropdown-divider notifications-start">
-      <% current_user.notifications.unread.each do |notification| %>
+      <% @notifications.each do |notification| %>
         <%= render 'notifications/notification', notification: notification %>
         <hr class="dropdown-divider">
       <% end %>
