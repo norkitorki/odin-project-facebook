@@ -37,7 +37,7 @@
             <time class="level-item has-text-weight-light">
               <%= distance_of_time_in_words(Time.now, comment.created_at) %> ago
               <% if comment.edited? %>
-                <span class="is-size-7">(edited <%= distance_of_time_in_words(Time.now, comment.updated_at) %> ago)</span>
+                (edited <%= distance_of_time_in_words(Time.now, comment.updated_at) %> ago)
               <% end %>
             </time>
           </div>
