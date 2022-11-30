@@ -16,3 +16,4 @@ document.addEventListener("turbo:load", () => {
     })
   }
 })
+import "channels"
