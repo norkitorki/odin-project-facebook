@@ -56,6 +56,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_27_074011) do
 
   create_table "notifications", force: :cascade do |t|
     t.string "body"
+    t.string "path"
     t.bigint "user_id", null: false
     t.string "notifiable_type", null: false
     t.bigint "notifiable_id", null: false
