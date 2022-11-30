@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   resources :posts, except: :index
   resources :comments, except: %i[ index show new ]
   resources :likes, only: %i[ create destroy ]
+  resources :notifications, only: %i[ index show ] do
+    delete '/', to: 'notifications#destroy', on: :collection
+  end
 
   devise_for :users, controllers: {
     registrations: 'users/registrations',

@@ -1,0 +1,13 @@
+<% if @notifications.empty? %>
+  <i class="is-size-5 mt-2">No new notifications</i>
+<% else %>
+  <h2 class="title">Notifications</h2>
+  <div class="columns is-flex-direction-column">
+    <% @notifications.each do |notification| %>
+      <div class="column is-one-quarter-tablet is-half-desktop notification is-link is-light">
+        <%= notification.body %> <span class="is-size-7 has-text-dark"><%= notification.created_at.localtime.strftime('%c') %></span>
+        <%= link_to 'Show', notification, class: 'button is-info is-rounded is-small has-text-weight-bold' %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
