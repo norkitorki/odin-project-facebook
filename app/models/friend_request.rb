@@ -21,7 +21,7 @@ class FriendRequest < ApplicationRecord
   end
 
   def request_exists?
-    self.class.exists?(id)
+    self.class.exists?(user: user, candidate: candidate)
   end
 
   def inverse_request_exists?
