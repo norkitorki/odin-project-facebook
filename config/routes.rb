@@ -3,13 +3,13 @@ Rails.application.routes.draw do
 
   get 'static_pages/home'
 
+  resources :friend_requests, except: %i[ edit update ]
   resources :posts, except: :index
   resources :comments, except: %i[ index show new ]
   resources :likes, only: %i[ create destroy ]
   resources :notifications, only: %i[ index show ] do
     delete '/', to: 'notifications#destroy', on: :collection
   end
-  resources :friend_requests, only: %i[ index create destroy ]
 
   devise_for :users, controllers: {
     registrations: 'users/registrations',
