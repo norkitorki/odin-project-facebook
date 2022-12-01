@@ -27,4 +27,12 @@ class User < ApplicationRecord
 
   has_many :notifications,
     dependent: :destroy
+
+  def friend?(user)
+    friendships.exists?(friend: user)
+  end
+
+  def friend_request?(user)
+    friend_requests.exists?(candidate: user)
+  end
 end
