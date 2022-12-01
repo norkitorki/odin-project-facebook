@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :notifications, only: %i[ index show ] do
     delete '/', to: 'notifications#destroy', on: :collection
   end
+  resources :friend_requests, only: %i[ index create destroy ]
 
   devise_for :users, controllers: {
     registrations: 'users/registrations',
