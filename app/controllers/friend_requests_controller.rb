@@ -12,9 +12,10 @@ class FriendRequestsController < ApplicationController
     @friend_request = current_user.friend_requests.new(friend_request_params)
     
     if @friend_request.save
-      flash.now[:notice] = 'Friend request has been send'
+      redirect_to root_path, notice: 'Friend Request has been send.'
     else
-      flash.now[:alert] = 'Friend request has not been send'
+      flash.now[:alert] = 'Friend request has not been send.'
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -30,6 +31,6 @@ class FriendRequestsController < ApplicationController
   private
 
   def friend_request_params
-    params.require(:friend_request).permit(:candidate_id)
+    params.require(:friend_request).permit(:message, :candidate_id)
   end
 end
