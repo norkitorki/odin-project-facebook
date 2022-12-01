@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-include LikesHelper
+  include LikesHelper
 
   belongs_to :user
 
@@ -9,7 +9,7 @@ include LikesHelper
     dependent: :destroy
 
   has_many :likes, as: :likeable,
-  dependent: :destroy
+    dependent: :destroy
 
   def edited?
     created_at < updated_at
