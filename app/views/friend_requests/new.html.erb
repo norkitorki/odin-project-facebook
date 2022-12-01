@@ -1,0 +1,12 @@
+<h2 class="title is-size-4 has-text-weight-light">New Friend Request for <span class="has-text-weight-bold"><%= @candidate.first_name %> <%= @candidate.last_name %></span></h2>
+
+<%= form_with(model: @friend_request) do |f| %>
+  <%= f.hidden_field :candidate_id, value: @candidate.id %>
+  <div class="field">
+    <%= f.label :message, 'Message(optional)', class: 'is-size-5 has-text-weight-bold' %>
+    <%= f.text_area :message, class: 'textarea is-info' %>
+  </div>
+  <div class="action">
+    <%= f.submit 'Send', class: 'button is-primary' %>
+  </div>
+<% end %>
