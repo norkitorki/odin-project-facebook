@@ -7,9 +7,18 @@
         </figure>
       </div>
       <div class="media-content">
-        <p class="title is-4 mb-0"><%= post.user.first_name %> <%= post.user.last_name %></p>
+        <p class="title is-4 mb-0">
+          <%= post.user.first_name %> <%= post.user.last_name %>
+          <% if current_user != post.user && !current_user.friend?(post.user) && !current_user.friend_request?(post.user) %>
+            <%= link_to new_friend_request_path(candidate: post.user.id), class: 'has-text-primary', title: 'Send Friend Request' do |f| %>
+              <svg style="width:20px;height:20px" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M19 17V19H7V17S7 13 13 13 19 17 19 17M16 8A3 3 0 1 0 13 11A3 3 0 0 0 16 8M19.2 13.06A5.6 5.6 0 0 1 21 17V19H24V17S24 13.55 19.2 13.06M18 5A2.91 2.91 0 0 0 17.11 5.14A5 5 0 0 1 17.11 10.86A2.91 2.91 0 0 0 18 11A3 3 0 0 0 18 5M8 10H5V7H3V10H0V12H3V15H5V12H8Z" />
+              </svg>
+            <% end %>
+          <% end %>
+        </p>
         <time class="subtitle is-7">
-          <%= distance_of_time_in_words(Time.now, post.created_at) %> ago 
+          <%= distance_of_time_in_words(Time.now, post.created_at) %> ago
           <% if post.edited? %>
             <span class="is-danger">(edited <%= distance_of_time_in_words(Time.now, post.updated_at) %> ago)</span>
           <% end %>
