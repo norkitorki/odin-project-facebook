@@ -3,6 +3,11 @@ class FriendRequestsController < ApplicationController
     @friend_requests = current_user.pending_friend_requests.includes(:user)
   end
 
+  def new
+    @friend_request = current_user.friend_requests.new
+    @candidate = User.find(params[:candidate])
+  end
+
   def create
     @friend_request = current_user.friend_requests.new(friend_request_params)
     
