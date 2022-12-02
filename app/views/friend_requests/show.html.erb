@@ -1,0 +1,18 @@
+<h2 class="title is-size-4 has-text-weight-light"><span class="has-text-weight-bold"><%= @friend_request.user.full_name %></span> would like to become your friend!</h2>
+
+<% if !@friend_request.message.empty? %>
+  <article class="message is-link">
+    <div class="message-header">
+      <p>With the following message</p>
+    </div>
+    <div class="message-body">
+      <%= @friend_request.message %>
+    </div>
+</article>
+<% end %>
+
+<%= form_with(model: @friend_request, method: :delete) do |f| %>
+  <%= f.submit 'Accept', class: 'button is-success' %>
+  <%= f.submit 'Decline', class: 'button is-danger' %>
+<% end %>
+
