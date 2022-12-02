@@ -28,6 +28,10 @@ class User < ApplicationRecord
   has_many :notifications,
     dependent: :destroy
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
   def friend?(user)
     friendships.exists?(friend: user)
   end
