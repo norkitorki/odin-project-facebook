@@ -1,5 +1,7 @@
 class FriendRequestsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_friend_request, only: %i[ show destroy ]
+
   def index
     @friend_requests = current_user.pending_friend_requests.includes(:user)
   end
@@ -36,5 +38,9 @@ class FriendRequestsController < ApplicationController
 
   def friend_request_params
     params.require(:friend_request).permit(:message, :candidate_id)
+  end
+
+  def set_friend_request
+    @friend_request = FriendRequest.find(params[:id])
   end
 end
