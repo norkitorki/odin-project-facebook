@@ -1,4 +1,4 @@
-<h2 class="title is-size-4 has-text-weight-light">New Friend Request for <span class="has-text-weight-bold"><%= @candidate.first_name %> <%= @candidate.last_name %></span></h2>
+<h2 class="title is-size-4 has-text-weight-light">New Friend Request for <span class="has-text-weight-bold"><%= @candidate.full_name %></span></h2>
 
 <%= form_with(model: @friend_request) do |f| %>
   <%= f.hidden_field :candidate_id, value: @candidate.id %>
