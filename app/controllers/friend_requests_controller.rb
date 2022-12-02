@@ -26,12 +26,15 @@ class FriendRequestsController < ApplicationController
   end
 
   def destroy
-    @friend_request = current_user.pending_friend_requests.find_by(friend_request_params)
+    @friend_request.destroy
 
     if params[:commit] == 'Accept'
       current_user.friendships.create(friend: @friend_request.user)
+      notice = 'You have accepted the friend request.'
+    else
+      notice = 'You have declined the friend request.'
     end
-    @friend_request.destroy
+    redirect_to root_path, notice: notice
   end
 
   private
