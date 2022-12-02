@@ -1,4 +1,5 @@
 class FriendRequestsController < ApplicationController
+  before_action :authenticate_user!
   def index
     @friend_requests = current_user.pending_friend_requests.includes(:user)
   end
