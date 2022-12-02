@@ -6,6 +6,9 @@ class FriendRequest < ApplicationRecord
   belongs_to :user
   belongs_to :candidate, class_name: 'User'
 
+  has_many :notifications, as: :notifiable,
+    dependent: :destroy
+
   private
 
   def destroy_inverse_requests
