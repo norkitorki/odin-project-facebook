@@ -1,0 +1,17 @@
+<article class="message is-link">
+  <div class="message-header">
+    <p>
+      <%= link_to friend_request.user.full_name, '#' %> 
+      would like to be your friend!
+    </p>
+  </div>
+  <div class="message-body">
+    <% if !friend_request.message.empty? %>
+      <p class="mb-4"><%= friend_request.message %></p>
+    <% end %>
+    <%= form_with(model: friend_request, method: :delete) do |f| %>
+      <%= f.submit 'Accept', class: 'button is-success is-small' %>
+      <%= f.submit 'Decline', class: 'button is-danger is-small' %>
+    <% end %>
+  </div>
+</article>
