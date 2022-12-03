@@ -11,7 +11,7 @@ class FriendRequestsController < ApplicationController
 
   def new
     if @friend_request = FriendRequest.find_by(candidate: current_user)
-      redirect_to @friend_request, alert: 'User already wants to be your friend.'
+      redirect_to @friend_request, alert: 'User already wants to be your friend.', status: :see_other
     else
       @friend_request = current_user.friend_requests.new
       @candidate = User.find(params[:candidate])
