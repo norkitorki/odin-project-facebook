@@ -8,6 +8,8 @@
 
 <div class="columns is-centered is-flex-direction-column is-align-items-center">
   <% @comments.each do |comment| %>
-    <%= render comment, like: comment.find_or_initialize_like(current_user) %>
+    <div class="column is-one-third">
+      <%= render comment, like: comment.find_or_initialize_like(current_user) %>
+    </div>
   <% end %>
 </div>

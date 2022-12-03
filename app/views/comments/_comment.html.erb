@@ -1,48 +1,46 @@
-<div class="column is-one-third">
-  <article class="media">
-    <figure class="media-left">
-      <p class="image is-48x48">
-        <img src="https://bulma.io/images/placeholders/128x128.png">
-      </p>
-    </figure>
-    <div class="media-content">
-      <%= turbo_frame_tag comment do %>
-        <div class="content">
-          <p>
-            <strong><%= comment.user.first_name %> <%= comment.user.last_name %></strong>
-            <span class="is-size-5 has-text-danger">♥</span> <%= comment.likes.count %>
-            <br>
-            <%= comment.body %>
-          </p>
-        </div>
-        <nav class="level is-mobile">
-          <div class="level-left">
-            <% if current_user == comment.user %>
-              <%= link_to 'Edit', edit_comment_path(comment), class: 'level-item' %>
-              <%= form_with(model: comment, method: :delete, class: 'level-item') do |f| %>
-                <%= f.submit 'Delete', class: 'comment-submit' %>
+<article class="media">
+  <figure class="media-left">
+    <p class="image is-48x48">
+      <img src="https://bulma.io/images/placeholders/128x128.png">
+    </p>
+  </figure>
+  <div class="media-content">
+    <%= turbo_frame_tag comment do %>
+      <div class="content">
+        <p>
+          <strong><%= comment.user.first_name %> <%= comment.user.last_name %></strong>
+          <span class="is-size-5 has-text-danger">♥</span> <%= comment.likes.count %>
+          <br>
+          <%= comment.body %>
+        </p>
+      </div>
+      <nav class="level is-mobile">
+        <div class="level-left">
+          <% if current_user == comment.user %>
+            <%= link_to 'Edit', edit_comment_path(comment), class: 'level-item' %>
+            <%= form_with(model: comment, method: :delete, class: 'level-item') do |f| %>
+              <%= f.submit 'Delete', class: 'comment-submit' %>
+            <% end %>
+          <% else %>
+            <% if like.new_record? %>
+              <%= form_with(url: likes_path(likeable: { likeable_type: 'Comment', likeable_id: comment.id }, path: request.path), class: 'level-item') do |f| %>
+                <%= f.submit 'Like', class: 'comment-submit' %>
               <% end %>
             <% else %>
-              <% if like.new_record? %>
-                <%= form_with(url: likes_path(likeable: { likeable_type: 'Comment', likeable_id: comment.id }, path: request.path), class: 'level-item') do |f| %>
-                  <%= f.submit 'Like', class: 'comment-submit' %>
-                <% end %>
-              <% else %>
-                <%= form_with(url: like_path(like, path: request.path), method: :delete, class: 'level-item') do |f| %>
-                  <%= f.submit 'Unlike', class: 'comment-submit' %>
-                <% end %>
+              <%= form_with(url: like_path(like, path: request.path), method: :delete, class: 'level-item') do |f| %>
+                <%= f.submit 'Unlike', class: 'comment-submit' %>
               <% end %>
             <% end %>
-            <%= link_to 'Reply', @post, class: 'level-item' %>
-            <time class="level-item has-text-weight-light">
-              <%= distance_of_time_in_words(Time.now, comment.created_at) %> ago
-              <% if comment.edited? %>
-                (edited <%= distance_of_time_in_words(Time.now, comment.updated_at) %> ago)
-              <% end %>
-            </time>
-          </div>
-        </nav>
-      <% end %>
-    </div>
-  </article>
-</div>
+          <% end %>
+          <%= link_to 'Reply', @post, class: 'level-item' %>
+          <time class="level-item has-text-weight-light">
+            <%= distance_of_time_in_words(Time.now, comment.created_at) %> ago
+            <% if comment.edited? %>
+              (edited <%= distance_of_time_in_words(Time.now, comment.updated_at) %> ago)
+            <% end %>
+          </time>
+        </div>
+      </nav>
+    <% end %>
+  </div>
+</article>
