@@ -4,8 +4,8 @@
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 
-    <div class="field py-2">
-      <%= f.label :email, class: "is-size-5 has-text-weight-bold" %>
+    <div class="field">
+      <%= f.label :email, class: "label is-size-5" %>
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>
     </div>
 
@@ -13,8 +13,8 @@
       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
     <% end %>
 
-    <div class="field py-2">
-      <%= f.label :password, class: "is-size-5 has-text-weight-bold" %> <i>(leave blank if you don't want to change it)</i>
+    <div class="field">
+      <%= f.label :password, class: "label is-size-5" %> <i>(leave blank if you don't want to change it)</i>
       <%= f.password_field :password, autocomplete: "new-password", class: "input" %>
       <% if @minimum_password_length %>
         <br />
@@ -22,13 +22,13 @@
       <% end %>
     </div>
 
-    <div class="field py-2">
-      <%= f.label :password_confirmation, class: "is-size-5 has-text-weight-bold" %>
+    <div class="field">
+      <%= f.label :password_confirmation, class: "label is-size-5" %>
       <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input" %>
     </div>
 
-    <div class="field py-2">
-      <%= f.label :current_password, class: "is-size-5 has-text-weight-bold" %> <i>(we need your current password to confirm your changes)</i>
+    <div class="field">
+      <%= f.label :current_password, class: "label is-size-5" %> <i>(we need your current password to confirm your changes)</i>
       <%= f.password_field :current_password, autocomplete: "current-password", class: "input" %>
     </div>
 
@@ -37,7 +37,7 @@
     </div>
   <% end %>
 
-  <p class="is-size-4 py-2">Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "button is-danger" %></p>
+  <p class="is-size-5 py-2">Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "button is-danger" %></p>
 
   <%= link_to "Back", :back, class: "is-link is-size-5" %>
 </div>

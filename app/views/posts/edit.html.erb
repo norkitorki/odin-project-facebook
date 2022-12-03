@@ -3,7 +3,7 @@
 <%= turbo_frame_tag @post do %>
   <%= form_with(model: @post) do |f| %>
     <div class="field">
-      <%= f.label :content, class: 'is-size-5 has-text-weight-bold' %>
+      <%= f.label :content, class: 'label is-size-5' %>
       <%= f.text_area :content, class: 'textarea' %>
     </div>
 
