@@ -1,34 +1,45 @@
 <article class="media">
   <figure class="media-left">
     <p class="image is-48x48">
-      <img src="https://bulma.io/images/placeholders/128x128.png">
+      <%= image_tag 'placeholder.png', alt: 'Placeholder image' %>
     </p>
   </figure>
   <div class="media-content">
     <%= turbo_frame_tag comment do %>
       <div class="content">
         <p>
-          <strong><%= comment.user.first_name %> <%= comment.user.last_name %></strong>
-          <span class="is-size-5 has-text-danger">♥</span> <%= comment.likes.count %>
+          <strong><%= link_to comment.user.full_name, comment.user %></strong>
+          <% if current_user != comment.user && !current_user.friend?(comment.user) && !current_user.friend_request?(comment.user) %>
+            <%= link_to new_friend_request_path(candidate: comment.user), class: 'has-text-primary', title: 'Send Friend Request' do |f| %>
+              <svg style="width:20px;height:20px" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M19 17V19H7V17S7 13 13 13 19 17 19 17M16 8A3 3 0 1 0 13 11A3 3 0 0 0 16 8M19.2 13.06A5.6 5.6 0 0 1 21 17V19H24V17S24 13.55 19.2 13.06M18 5A2.91 2.91 0 0 0 17.11 5.14A5 5 0 0 1 17.11 10.86A2.91 2.91 0 0 0 18 11A3 3 0 0 0 18 5M8 10H5V7H3V10H0V12H3V15H5V12H8Z" />
+              </svg>
+            <% end %>
+          <% end %>
+          <span class="is-size-5 has-text-danger">♥</span> <%= comment.likes.length %>
           <br>
           <%= comment.body %>
         </p>
       </div>
       <nav class="level is-mobile">
         <div class="level-left">
-          <% if current_user == comment.user %>
-            <%= link_to 'Edit', edit_comment_path(comment), class: 'level-item' %>
-            <%= form_with(model: comment, method: :delete, class: 'level-item') do |f| %>
-              <%= f.submit 'Delete', class: 'comment-submit' %>
-            <% end %>
+          <% if controller_name == 'registrations' %>
+            <%= link_to "Show #{comment.commentable.class}", comment.commentable, class: 'button is-success' %>
           <% else %>
-            <% if like.new_record? %>
-              <%= form_with(url: likes_path(likeable: { likeable_type: 'Comment', likeable_id: comment.id }, path: request.path), class: 'level-item') do |f| %>
-                <%= f.submit 'Like', class: 'comment-submit' %>
+            <% if current_user == comment.user %>
+              <%= link_to 'Edit', edit_comment_path(comment), class: 'level-item' %>
+              <%= form_with(model: comment, method: :delete, class: 'level-item') do |f| %>
+                <%= f.submit 'Delete', class: 'comment-submit' %>
               <% end %>
             <% else %>
-              <%= form_with(url: like_path(like, path: request.path), method: :delete, class: 'level-item') do |f| %>
-                <%= f.submit 'Unlike', class: 'comment-submit' %>
+              <% if like.new_record? %>
+                <%= form_with(url: likes_path(likeable: { likeable_type: 'Comment', likeable_id: comment.id }, path: request.path), class: 'level-item') do |f| %>
+                  <%= f.submit 'Like', class: 'comment-submit' %>
+                <% end %>
+              <% else %>
+                <%= form_with(url: like_path(like, path: request.path), method: :delete, class: 'level-item') do |f| %>
+                  <%= f.submit 'Unlike', class: 'comment-submit' %>
+                <% end %>
               <% end %>
             <% end %>
           <% end %>
