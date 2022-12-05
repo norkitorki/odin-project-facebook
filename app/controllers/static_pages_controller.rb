@@ -4,7 +4,8 @@ include PostsHelper
   before_action :authenticate_user!
 
   def home
-    ids = current_user.friends.ids << current_user.id
-    @posts = Post.where(user_id: ids).includes(:comments, :likes, :user).order(updated_at: :desc)
+    @friend_requests = current_user.pending_friend_requests
+    @posts = timeline_posts
+    @timeline = (@friend_requests + @posts).sort { |a, b| b.updated_at <=> a.updated_at }
   end
 end
