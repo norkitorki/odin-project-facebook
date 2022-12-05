@@ -1,4 +1,6 @@
 class StaticPagesController < ApplicationController
+include PostsHelper
+
   before_action :authenticate_user!
 
   def home
