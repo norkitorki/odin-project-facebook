@@ -8,7 +8,7 @@
       </div>
       <div class="media-content">
         <p class="title is-4 mb-0">
-          <%= post.user.first_name %> <%= post.user.last_name %>
+          <%= link_to post.user.full_name, post.user %>
           <% if current_user != post.user && !current_user.friend?(post.user) && !current_user.friend_request?(post.user) %>
             <%= link_to new_friend_request_path(candidate: post.user.id), class: 'has-text-primary', title: 'Send Friend Request' do |f| %>
               <svg style="width:20px;height:20px" viewBox="0 0 24 24">
@@ -69,15 +69,15 @@
       <% end %>
         <div class="columns is-justify-content-space-between is-align-items-center mt-2">
           <div class="column pb-0">
-            <%= link_to "#{post.comments.count} Comments", post %>
+            <%= link_to "#{post.comments.length} Comments", post %>
           </div>
           <div class="column pb-0 has-text-right">
-            <i><%= pluralize(post.likes.count, 'person') %> <span class="is-size-4 has-text-danger">♥</span> this post</i>
+            <i><%= pluralize(post.likes.length, 'person') %> <span class="is-size-4 has-text-danger">♥</span> this post</i>
           </div>
         </div>
       </div>
       <footer class="card-footer">
-        <% if controller_name == 'static_pages' %>
+        <% if controller_name != 'posts' %>
           <%= link_to 'Show', post, class: 'card-footer-item button is-success' %>
         <% end %>
       </footer>
