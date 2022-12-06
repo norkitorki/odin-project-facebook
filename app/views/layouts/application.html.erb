@@ -32,13 +32,15 @@
         </div>
       </div>
     </nav>
-    <div id="flash" class="columns is-justify-content-center is-align-items-center my-2">
-      <% if flash[:notice] %>
-        <p class="notice notification is-success py-3"><%= notice %></p>
-      <% elsif flash[:alert] %>
-        <p class="alert notification is-danger py-3"><%= alert %></p>
-      <% end %>
-    </div>
+    <% if flash.any? %>
+      <div id="flash" class="columns is-justify-content-center is-align-items-center my-2">
+        <% if flash[:notice] %>
+          <p class="notice notification is-success py-3"><%= notice %></p>
+        <% else %>
+          <p class="alert notification is-danger py-3"><%= alert %></p>
+        <% end %>
+      </div>
+    <% end %>
     <main class="mx-5">
       <%= yield %>
     </main>
