@@ -13,6 +13,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource
   def show
+    @user = User.find(params[:id])
+    @posts = @user.posts.includes(:comments, :likes, :user)
+    @comments = @user.comments.includes(:likes, :user)
+    @activity = (@posts + @comments).sort { |a, b| b.updated_at <=> a.updated_at }.last(12)
   end
 
   # POST /resource
