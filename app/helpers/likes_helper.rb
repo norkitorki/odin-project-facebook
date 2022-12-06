@@ -4,6 +4,6 @@ module LikesHelper
   end
 
   def find_or_initialize_like(user)
-    likes.find_or_initialize_by(user_id: user.id)
+    Like.find_by(likeable_type: self.class.to_s, user_id: user.id) || Like.new
   end
 end
