@@ -7,9 +7,13 @@
 <% end %>
 
 <article class="columns is-multiline is-1 is-variable">
-  <% @posts.each do |post| %>
+  <% @timeline.each do |resource| %>
     <div class="column is-one-third-tablet is-one-quarter-desktop">
-      <%= render post, like: post.find_or_initialize_like(current_user) %>
+      <% if resource.respond_to?(:find_or_initialize_like) %>
+        <%= render resource, like: resource.find_or_initialize_like(current_user) %>
+      <% else %>
+        <%= render resource %>
+      <% end %>
     </div>
   <% end %>
 </article>
