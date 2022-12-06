@@ -24,7 +24,7 @@
       <nav class="level is-mobile">
         <div class="level-left">
           <% if controller_name == 'registrations' %>
-            <%= link_to "Show #{comment.commentable.class}", comment.commentable, class: 'button is-success' %>
+            <%= link_to "Show #{comment.commentable.class}", comment.commentable, class: 'button is-success mr-3' %>
           <% else %>
             <% if current_user == comment.user %>
               <%= link_to 'Edit', edit_comment_path(comment), class: 'level-item' %>
