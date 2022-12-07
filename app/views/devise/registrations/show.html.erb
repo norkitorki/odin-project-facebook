@@ -4,14 +4,20 @@
     <p>Gender: <%= @user.gender %></p>
   <% end %>
   <p>Age: <%= (Time.now - @user.birthday).to_i / 31556952 %></p>
-  <h3>Latest Activity</h3>
-  <article class="box columns is-1 is-multiline is-variable">
+  <h3>Recent Activity</h3>
+  <article class="columns is-flex-direction-column">
     <% @activity.each do |resource| %>
-      <div class="column is-one-third-tablet is-one-quarter-desktop">
-        <% if resource.class == Post %>
-          <%= render '/posts/post', post: resource, like: resource.find_or_initialize_like(current_user) %>
-        <% else %>
-          <%= render '/comments/comment', comment: resource %>
+      <div class ="column is-one-third-tablet is-half-desktop">
+        <%= link_to (
+          case resource.class.to_s
+          when 'Comment' then resource.commentable
+          else resource
+          end
+          ) do
+        %>
+          <div class="notification is-link p-3">
+            <%= @user.full_name %> has posted a new <%= resource.class %>! | <time><%= resource.created_at %></time>
+          </div>
         <% end %>
       </div>
     <% end %>
