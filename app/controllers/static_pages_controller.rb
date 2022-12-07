@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-include PostsHelper
+  include PostsHelper
 
   before_action :authenticate_user!
 
