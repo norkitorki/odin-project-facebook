@@ -16,7 +16,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user = User.find(params[:id])
     @posts = @user.posts.includes(:comments, :likes, :user)
     @comments = @user.comments.includes(:likes, :user)
-    @activity = (@posts + @comments).sort { |a, b| b.updated_at <=> a.updated_at }.last(12)
+    @activity = recent_activity(@posts, @comments)
   end
 
   # POST /resource
@@ -69,4 +69,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  def recent_activity(*resources)
+    resources.flatten.sort { |a, b| b.updated_at <=> a.updated_at }.last(12)
+  end
 end
