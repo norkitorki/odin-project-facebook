@@ -1,25 +1,81 @@
-<article class="content">
-  <h2><%= @user.full_name %></h2>
-  <% if @user.gender %>
-    <p>Gender: <%= @user.gender %></p>
-  <% end %>
-  <p>Age: <%= (Time.now - @user.birthday).to_i / 31556952 %></p>
-  <h3>Recent Activity</h3>
-  <article class="columns is-flex-direction-column">
-    <% @activity.each do |resource| %>
-      <div class ="column is-one-third-tablet is-half-desktop">
-        <%= link_to (
-          case resource.class.to_s
-          when 'Comment' then resource.commentable
-          else resource
-          end
-          ) do
-        %>
-          <div class="notification is-link p-3">
-            <%= @user.full_name %> has posted a new <%= resource.class %>! | <time><%= resource.created_at %></time>
+<div class="card">
+  <div class="card-image">
+    <figure class="image is-16by9">
+      <%= image_tag 'placeholder.png', alt: 'Placeholder image' %>
+    </figure>
+  </div>
+  <div class="card-content">
+    <div class="media">
+      <div class="media-left">
+        <figure class="image is-48x48">
+          <%= image_tag 'placeholder.png', alt: 'Placeholder image' %>
+        </figure>
+      </div>
+    <div class="media-content">
+      <p class="title is-4"><%= @user.full_name %></p>
+      <div class="level">
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading">Age</p>
+            <p class="title"><%= (Time.now - @user.birthday).to_i / 31556952 %></p>
+          </div>
+        </div>
+        <% if !@user.gender.empty? %>
+          <div class="level-item has-text-centered">
+            <div>
+              <p class="heading">Gender</p>
+              <p class="title"><%= @user.gender %></p>
+            </div>
           </div>
         <% end %>
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading">Posts</p>
+            <p class="title"><%= @user.posts.length %></p>
+          </div>
+        </div>
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading">Comments</p>
+            <p class="title"><%= @user.comments.length %></p>
+          </div>
+        </div>
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading">Friends</p>
+            <p class="title"><%= @user.friends.length %></p>
+          </div>
+        </div>
       </div>
-    <% end %>
-  </article>
-</article>
+      <div class="columns is-flex-direction-column is-align-items-center mt-6">
+        <% @activity.each do |resource| %>
+          <article class="column is-3 media p-0">
+            <figure class="media-left">
+              <%= image_tag 'placeholder.png', class: 'image is-48x48' %>
+            </figure>
+            <div class="media-content">
+              <div class="content">
+                <p class="is-size-5">
+                <strong><%= @user.full_name %></strong>
+                <% if resource.class == Comment %>
+                  has commented on a <%= resource.commentable.class %>!
+                  <br>
+                  <span class="is-size-6"><%= resource.body %></span>
+                <% elsif resource.class == Post %>
+                    has created a new Post!
+                    <br>
+                    <span class="is-size-6"><%= resource.content %></span>
+                <% end %>
+                </p>
+                <p>
+                  <span class="is-size-7 mr-1"><%= distance_of_time_in_words(Time.now, resource.created_at) %> ago</span>
+                  <%= link_to 'Show', (resource.class == Comment ? resource.commentable : resource), class: '' %>
+                </p>
+              </div>
+            </div>
+          </article>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
