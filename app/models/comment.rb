@@ -18,4 +18,8 @@ class Comment < ApplicationRecord
   def edited?
     created_at < updated_at
   end
+
+  def collect_replies(comments = self.replies)
+    comments.map { |comment| [comment, collect_replies(comment.replies)] }.to_h
+  end
 end
