@@ -1,0 +1,9 @@
+<div class="comment-replies columns is-flex-direction-column ml-6 my-1">
+  <% replies.each do |comment, replies| %>
+    <div class="line"></div>
+    <div class="column is-one-third">
+      <%= render comment, like: comment.find_or_initialize_like(current_user) %>
+    </div>
+    <%= render 'comments/replies', replies: replies %>
+  <% end %>
+</div>

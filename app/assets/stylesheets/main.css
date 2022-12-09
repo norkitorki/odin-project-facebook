@@ -23,3 +23,14 @@
 .comment-submit:hover {
   color: #2b2828;
 }
+
+.comment-replies { position: relative; }
+
+.line {
+  position:absolute;
+  height:100%;
+  width:1px;
+  background-color:#c7c7c7;
+  left:-14px;
+  bottom:15px;
+}
