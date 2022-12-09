@@ -10,6 +10,7 @@
   <% @comments.each do |comment| %>
     <div class="column is-one-third">
       <%= render comment, like: comment.find_or_initialize_like(current_user) %>
+      <%= render 'comments/replies', replies: comment.collect_replies %>
     </div>
   <% end %>
 </div>
