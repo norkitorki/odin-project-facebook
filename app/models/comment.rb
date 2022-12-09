@@ -1,6 +1,8 @@
 class Comment < ApplicationRecord
   include LikesHelper
 
+  scope :parents, -> { where(parent_id: nil) }
+
   validates :body, presence: true
 
   belongs_to :user
