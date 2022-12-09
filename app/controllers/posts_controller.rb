@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
   def show
     @comment  = Comment.new
-    @comments = @post.comments.includes(:user, :likes).order(created_at: :desc)
+    @comments = @post.comments.parents.includes(:user, :likes, :replies).order(created_at: :desc)
     @like     = @post.find_or_initialize_like(current_user)
   end
 
