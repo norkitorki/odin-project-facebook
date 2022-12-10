@@ -26,7 +26,6 @@
           <% if controller_name == 'registrations' %>
             <%= link_to "Show #{comment.commentable.class}", comment.commentable, class: 'button is-success mr-3' %>
           <% elsif controller_name == 'comments' %>
-          
           <% else %>
             <% if current_user == comment.user %>
               <%= link_to 'Edit', edit_comment_path(comment), class: 'level-item' %>
@@ -44,7 +43,9 @@
                 <% end %>
               <% end %>
             <% end %>
-            <%= link_to 'Reply', comment_new_reply_path(comment), class: 'level-item' %>
+            <%= turbo_frame_tag :comment_reply, class: 'level-item' do %>
+              <%= link_to 'Reply', comment_new_reply_path(comment), class: 'level-item' %>
+            <% end %>
           <% end %>
           <time class="level-item has-text-weight-light">
             <%= distance_of_time_in_words(Time.now, comment.created_at) %> ago
