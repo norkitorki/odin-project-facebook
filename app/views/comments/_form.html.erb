@@ -8,7 +8,9 @@
       </figure>
       <div class="media-content">
         <div class="content">
-          <%= form_with(model: comment, url: comments_path(commentable: { commentable_type: commentable.class, commentable_id: commentable.id })) do |f| %>
+          <%= form_with(model: comment) do |f| %>
+            <%= f.hidden_field :commentable_type, value: commentable.class %>
+            <%= f.hidden_field :commentable_id, value: commentable.id %>
             <div class="field">
               <%= f.text_area :body, placeholder: 'Add a comment', rows: 2, class: 'textarea is-info' %>
             </div>
