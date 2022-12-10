@@ -42,7 +42,7 @@
                 <% end %>
               <% end %>
             <% end %>
-            <%= link_to 'Reply', @post, class: 'level-item' %>
+            <%= link_to 'Reply', comment_new_reply_path(comment), class: 'level-item' %>
           <% end %>
           <time class="level-item has-text-weight-light">
             <%= distance_of_time_in_words(Time.now, comment.created_at) %> ago
