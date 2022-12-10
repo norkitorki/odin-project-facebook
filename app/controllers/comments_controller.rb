@@ -1,6 +1,11 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_comment, except: :create
+  before_action :set_comment, except: %i[ new_reply create ]
+
+  def new_reply
+    @comment = Comment.find(params[:comment_id])
+    @reply = @comment.replies.new
+  end
 
   def edit
   end
