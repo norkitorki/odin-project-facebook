@@ -1,0 +1,20 @@
+<h2 class="title">Create Reply</h2>
+<div class="columns">
+  <div class="column is-one-third-desktop">
+    <%= render 'comments/comment', comment: @comment %>
+  </div>
+</div>
+<br>
+<%= turbo_frame_tag :comment_reply do %>
+  <%= form_with(model: @reply, url: comments_path, data: { turbo: false }) do |f| %>
+    <%= f.hidden_field :parent_id, value: @comment.id %>
+    <%= f.hidden_field :commentable_type, value: @comment.commentable_type %>
+    <%= f.hidden_field :commentable_id, value: @comment.commentable.id %>
+    <div class="field">
+      <%= f.text_area :body, class: 'textarea is-info' %>
+    </div>
+    <div class="action">
+      <%= f.submit 'Create Reply', class: 'button is-info' %>
+    </div>
+  <% end %>
+<% end %>
