@@ -25,6 +25,8 @@
         <div class="level-left">
           <% if controller_name == 'registrations' %>
             <%= link_to "Show #{comment.commentable.class}", comment.commentable, class: 'button is-success mr-3' %>
+          <% elsif controller_name == 'comments' %>
+          
           <% else %>
             <% if current_user == comment.user %>
               <%= link_to 'Edit', edit_comment_path(comment), class: 'level-item' %>
