@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = current_user.comments.new(comment_params.merge(commentable_params))
+    @comment = current_user.comments.new(comment_params)
 
     if @comment.save
       redirect_to @comment.commentable, notice: 'Comment has been successfully created.'
@@ -40,10 +40,10 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:body)
+    params.require(:comment).permit(:body, :parent_id, commentable_params)
   end
 
   def commentable_params
-    params.require(:commentable).permit(:commentable_type, :commentable_id)
+    %i[ commentable_type commentable_id ]
   end
 end
