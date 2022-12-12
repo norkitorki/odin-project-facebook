@@ -1,10 +1,10 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_comment, except: %i[ new_reply create ]
+  before_action :set_comment, except: %i[ new create ]
 
-  def new_reply
-    @comment = Comment.find(params[:comment_id])
-    @reply = @comment.replies.new
+  def new
+    @comment = Comment.new(parent_id: params[:parent])
+    @comment.commentable = @comment.parent&.commentable
   end
 
   def edit
@@ -17,6 +17,7 @@ class CommentsController < ApplicationController
       redirect_to @comment.commentable, notice: 'Comment has been successfully created.'
     else
       flash.now[:alert] = 'Comment has not been created.'
+      render :new, status: :unprocessable_entity
     end
   end
 
