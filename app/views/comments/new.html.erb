@@ -6,22 +6,16 @@
     </div>
   </div>
 <% else %>
-  <h2 class="title is-size-2">New Comment</h2>
-  <div >
+  <h2 class="title is-size-2">New Comment for:</h2>
+  <div class="columns">
+    <div class="column is-one-third-desktop">
+      <%= render 'posts/post', post: @comment.commentable %>
+    </div>
+  </div>
 <% end %>
 <%= turbo_frame_tag :comment_reply do %>
-  <div>
-    <%= form_with(model: @comment, url: comments_path(parent: @comment.parent_id), data: { turbo: false }) do |f| %>
-      <%= f.hidden_field :parent_id, value: @comment.parent_id %>
-      <%= f.hidden_field :commentable_type, value: @comment.commentable_type %>
-      <%= f.hidden_field :commentable_id, value: @comment.commentable_id  %>
-      <div class="field">
-        <%= f.text_area :body, class: 'textarea is-info' %>
-      </div>
-      <div class="action">
-        <%= f.submit class: 'button is-primary' %>
-      </div>
-    <% end %>
+  <div data-turbo="false">
+    <%= render 'form', comment: @comment %>
     <%= link_to 'Back', @comment.commentable || root_path, class: 'button is-danger mt-1' %>
   </div>
 <% end %>

@@ -5,13 +5,8 @@
   </div>
 </div>
 <%= turbo_frame_tag @comment do %>
-  <%= form_with(model: @comment) do |f| %>
-    <div class="field">
-      <%= f.label :body, class: 'is-size-5 has-text-weight-bold' %>
-      <%= f.text_area :body, class: 'textarea is-info' %>
-    </div>
-    <div class="action">
-      <%= f.submit 'Save', class: 'button is-primary' %>
-    </div>
-  <% end %>
+  <div data-turbo="false">
+    <%= render 'form', comment: @comment %>
+    <%= link_to 'Back', @comment.commentable || root_path, class: 'button is-danger mt-1' %>
+  </div>
 <% end %>

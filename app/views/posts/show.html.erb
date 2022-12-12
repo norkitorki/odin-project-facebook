@@ -3,9 +3,22 @@
     <%= render @post, like: @like %>
   </div>
 </div>
-
-<%= render 'comments/form', comment: @comment, commentable: @post %>
-
+<div class="columns is-centered">
+  <div class="column is-one-third">
+    <article class="media">
+      <figure class="media-left">
+        <p class="image is-64x64">
+          <%= image_tag 'placeholder.png' %>
+        </p>
+      </figure>
+      <div class="media-content">
+        <div class="content">
+          <%= render 'comments/form', comment: @comment %>
+        </div>
+      </div>
+    </article>
+  </div>
+</div>
 <div class="columns is-centered is-flex-direction-column is-align-items-center">
   <% @comments.each do |comment| %>
     <div class="column is-one-third">
