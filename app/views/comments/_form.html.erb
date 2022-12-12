@@ -1,25 +1,11 @@
-<div class="columns is-centered">
-  <div class="column is-one-third">
-    <article class="media">
-      <figure class="media-left">
-        <p class="image is-64x64">
-          <%= image_tag 'placeholder.png' %>
-        </p>
-      </figure>
-      <div class="media-content">
-        <div class="content">
-          <%= form_with(model: comment) do |f| %>
-            <%= f.hidden_field :commentable_type, value: commentable.class %>
-            <%= f.hidden_field :commentable_id, value: commentable.id %>
-            <div class="field">
-              <%= f.text_area :body, placeholder: 'Add a comment', rows: 2, class: 'textarea is-info' %>
-            </div>
-            <div class="action">
-              <%= f.submit 'Add Comment', class: 'button is-info' %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </article>
+<%= form_with(model: comment) do |f| %>
+  <%= f.hidden_field :parent_id, value: comment.parent_id %>
+  <%= f.hidden_field :commentable_type, value: comment.commentable_type %>
+  <%= f.hidden_field :commentable_id, value: comment.commentable_id %>
+  <div class="field">
+    <%= f.text_area :body, placeholder: 'Add a comment', rows: 2, class: 'textarea is-info' %>
   </div>
-</div>
+  <div class="action">
+    <%= f.submit 'Add Comment', class: 'button is-primary' %>
+  </div>
+<% end %>
