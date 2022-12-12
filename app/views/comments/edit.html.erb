@@ -1,5 +1,9 @@
 <h1 class="title">Edit Comment</h1>
-
+<div class="columns">
+  <div class="column is-one-third-desktop">
+    <%= render 'comments/comment', comment: @comment %>
+  </div>
+</div>
 <%= turbo_frame_tag @comment do %>
   <%= form_with(model: @comment) do |f| %>
     <div class="field">
