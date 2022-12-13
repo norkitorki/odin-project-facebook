@@ -1,5 +1,4 @@
-.field {
-  width: min(600px, 100vw);
+.field { width: min(400px, 100vw); }
 }
 
 .dropdown-submit {
