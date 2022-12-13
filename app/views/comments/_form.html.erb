@@ -3,7 +3,7 @@
   <%= f.hidden_field :commentable_type, value: comment.commentable_type %>
   <%= f.hidden_field :commentable_id, value: comment.commentable_id %>
   <div class="field">
-    <%= f.text_area :body, placeholder: 'Add a comment', rows: 2, class: 'textarea is-info' %>
+    <%= f.text_area :body, placeholder: 'Add a comment', rows: 2, class: 'textarea' %>
     <%= render 'public/input_errors', resource: comment, attribute: :body %>
   </div>
   <div class="action">
