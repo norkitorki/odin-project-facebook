@@ -2,6 +2,7 @@
   <div class="field">
     <%= f.label :content, class: 'label is-size-5' %>
     <%= f.text_area :content, class: 'textarea' %>
+    <%= render 'public/input_errors', resource: post, attribute: :content %>
   </div>
   <div class="action">
     <%= f.submit class: 'button is-primary' %>
