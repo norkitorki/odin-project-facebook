@@ -1,13 +1,4 @@
-<h1 class="title my-4">Create Post</h1>
-
+<h1 class="title">Create Post</h1>
 <%= turbo_frame_tag @post do %>
-  <%= form_with(model: @post) do |f| %>
-    <div class="field">
-      <%= f.label :content, class: 'label is-size-5' %>
-      <%= f.text_area :content, rows: 5, class: 'textarea is-info' %>
-    </div>
-    <div class="action">
-      <%= f.submit 'Create Post', class: 'button is-primary' %>
-    </div>
-  <% end %>
+  <%= render 'form', post: @post %>
 <% end %>

@@ -1,13 +1,7 @@
-<h1 class="title is-size-2">Edit Post</h1>
+<h1 class="title">Edit Post</h1>
 <%= turbo_frame_tag @post do %>
-  <%= form_with(model: @post) do |f| %>
-    <div class="field">
-      <%= f.label :content, class: 'label is-size-5' %>
-      <%= f.text_area :content, class: 'textarea' %>
-    </div>
-    <div class="action">
-      <%= f.submit 'Save', class: 'button is-primary' %>
-    </div>
-  <% end %>
-  <%= link_to 'Back', @post, class: 'button is-danger mt-1' %>
+  <div data-turbo="false">
+    <%= render 'form', post: @post %>
+    <%= link_to 'Back', @post, class: 'button is-danger mt-1' %>
+  </div>
 <% end %>
