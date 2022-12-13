@@ -1,7 +1,7 @@
 <h1 class="title is-size-2 my-4">Timeline</h1>
 
 <% if user_signed_in? %>
-  <%= turbo_frame_tag Post.new do %>
+  <%= turbo_frame_tag @post do %>
     <%= link_to 'Create New Post', new_post_path, class: 'button is-info' %>
   <% end %>
 <% end %>
