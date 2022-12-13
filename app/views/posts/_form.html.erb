@@ -1,0 +1,9 @@
+<%= form_with(model: post) do |f| %>
+  <div class="field">
+    <%= f.label :content, class: 'label is-size-5' %>
+    <%= f.text_area :content, class: 'textarea' %>
+  </div>
+  <div class="action">
+    <%= f.submit class: 'button is-primary' %>
+  </div>
+<% end %>
