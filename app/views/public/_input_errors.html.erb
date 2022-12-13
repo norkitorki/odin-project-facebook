@@ -1,5 +1,5 @@
 <% if resource.errors.any? %>
-  <div class="notification is-danger py-1">
+  <div class="notification is-danger py-1 is-radiusless">
     <% resource.errors.full_messages_for(attribute).each do |message| %>
       <p><%= message %></p>
     <% end %>
