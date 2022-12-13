@@ -2,11 +2,10 @@
   <h2 class="title">Edit <%= resource_name.to_s.humanize %></h2>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
-
     <div class="field">
       <%= f.label :email, class: "label is-size-5" %>
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>
+      <%= render 'public/input_errors', resource: resource, attribute: :email %>
     </div>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -16,6 +15,7 @@
     <div class="field">
       <%= f.label :password, class: "label is-size-5" %> <i>(leave blank if you don't want to change it)</i>
       <%= f.password_field :password, autocomplete: "new-password", class: "input" %>
+      <%= render 'public/input_errors', resource: resource, attribute: :password %>
       <% if @minimum_password_length %>
         <br />
         <em><%= @minimum_password_length %> characters minimum</em>
@@ -25,11 +25,13 @@
     <div class="field">
       <%= f.label :password_confirmation, class: "label is-size-5" %>
       <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input" %>
+      <%= render 'public/input_errors', resource: resource, attribute: :password_confirmation %>
     </div>
 
     <div class="field">
       <%= f.label :current_password, class: "label is-size-5" %> <i>(we need your current password to confirm your changes)</i>
       <%= f.password_field :current_password, autocomplete: "current-password", class: "input" %>
+      <%= render 'public/input_errors', resource: resource, attribute: :current_password %>
     </div>
 
     <div class="actions">
@@ -39,5 +41,5 @@
 
   <p class="is-size-5 py-2">Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "button is-danger" %></p>
 
-  <%= link_to "Back", :back, class: "is-link is-size-5" %>
+  <%= link_to "Back", :back, class: "button is-info mt-2" %>
 </div>
