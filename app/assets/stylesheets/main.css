@@ -1,5 +1,11 @@
 .field { width: min(400px, 100vw); }
+
+.field_with_errors input, .field_with_errors textarea {
+  border: 4px solid #f14668;
+  border-radius: 4px 4px 0 0;
 }
+
+.field_with_errors input, .field_with_errors textarea:hover { border-color: #f14668;}
 
 .dropdown-submit {
   border: none !important;
@@ -19,9 +25,7 @@
   cursor: pointer;
 }
 
-.comment-submit:hover {
-  color: #2b2828;
-}
+.comment-submit:hover { color: #2b2828; }
 
 .comment-replies { position: relative; }
 
