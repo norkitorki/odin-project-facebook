@@ -29,7 +29,6 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to @post, notice: 'Post has been successfully updated.'
     else
-      set_post
       flash.now[:alert] = 'Post has not been updated.'
       render :edit, status: :unprocessable_entity
     end
