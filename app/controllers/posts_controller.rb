@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :set_post, except: %i[ new create ]
 
   def show
-    @comment  = @post.comments.new
+    @comment  = Comment.new
     @comments = @post.comments.parents.includes(:user, :likes, :replies).order(created_at: :desc)
     @like     = @post.find_or_initialize_like(current_user)
   end
