@@ -1,7 +1,7 @@
 <%= form_with(model: comment) do |f| %>
   <%= f.hidden_field :parent_id, value: comment.parent_id %>
-  <%= f.hidden_field :commentable_type, value: comment.commentable_type %>
-  <%= f.hidden_field :commentable_id, value: comment.commentable_id %>
+  <%= f.hidden_field :commentable_type, value: commentable.class %>
+  <%= f.hidden_field :commentable_id, value: commentable.id %>
   <div class="field">
     <%= f.text_area :body, placeholder: 'Add a comment', rows: 2, class: 'textarea' %>
     <%= render 'public/input_errors', resource: comment, attribute: :body %>
