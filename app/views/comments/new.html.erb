@@ -9,7 +9,7 @@
   <h2 class="title is-size-2">New Comment for:</h2>
   <div class="columns">
     <div class="column is-one-third-desktop">
-      <%= render 'posts/post', post: @comment.commentable %>
+      <%= render @comment.commentable, like: @comment.commentable.find_or_initialize_like(current_user) %>
     </div>
   </div>
 <% end %>
