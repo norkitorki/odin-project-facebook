@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get 'static_pages/home'
 
+  resources :users, only: :show
   resources :friend_requests, except: %i[ edit update ]
   resources :posts, except: :index
   resources :comments, except: %i[ index show ]
@@ -18,6 +19,6 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     get 'sign_in', to: 'users/sessions#new'
-    get 'users/:id', to: 'users/registrations#show', as: 'user'
+    # get 'users/:id', to: 'users/registrations#show', as: 'user'
   end
 end

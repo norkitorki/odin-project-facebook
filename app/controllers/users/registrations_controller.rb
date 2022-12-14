@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  include PostsHelper
-
   before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -10,14 +8,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def new
   #   super
   # end
-
-  # GET /resource
-  def show
-    @user = User.find(params[:id])
-    @posts = @user.posts.includes(:comments, :likes, :user)
-    @comments = @user.comments.includes(:likes, :user)
-    @activity = recent_activity(@posts, @comments)
-  end
 
   # POST /resource
   # def create
@@ -69,8 +59,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
-
-  def recent_activity(*resources)
-    resources.flatten.sort { |a, b| b.updated_at <=> a.updated_at }.last(12)
-  end
 end
