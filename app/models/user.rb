@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  extend FriendlyId
+
+  friendly_id :full_name, use: :slugged
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -38,5 +42,9 @@ class User < ApplicationRecord
 
   def friend_request?(user)
     friend_requests.exists?(candidate: user)
+  end
+
+  def normalize_friendly_id(string)
+    super.gsub("-", "_")
   end
 end
