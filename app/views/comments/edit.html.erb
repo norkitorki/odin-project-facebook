@@ -6,7 +6,7 @@
 </div>
 <%= turbo_frame_tag @comment do %>
   <div data-turbo="false">
-    <%= render 'form', comment: @comment %>
+    <%= render 'form', comment: @comment, commentable: @comment.commentable %>
     <%= link_to 'Back', @comment.commentable || root_path, class: 'button is-danger mt-1' %>
   </div>
 <% end %>
