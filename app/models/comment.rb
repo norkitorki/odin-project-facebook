@@ -1,4 +1,5 @@
 class Comment < ApplicationRecord
+  include ApplicationHelper
   include LikesHelper
 
   scope :parents, -> { where(parent_id: nil) }
