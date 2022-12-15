@@ -12,7 +12,11 @@ class Comment < ApplicationRecord
 
   belongs_to :user
   belongs_to :commentable, polymorphic: true
-  belongs_to :parent, class_name: 'Comment', optional: true
+  belongs_to :ancestor, class_name: 'Comment',
+    optional: true,
+    foreign_key: :parent,
+    primary_key: :slug,
+    inverse_of: :replies 
 
   has_many :likes, as: :likeable,
     dependent: :destroy
