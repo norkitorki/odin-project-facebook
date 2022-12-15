@@ -1,6 +1,10 @@
 class Comment < ApplicationRecord
+  extend FriendlyId
+
   include ApplicationHelper
   include LikesHelper
+
+  friendly_id :generate_uuid, use: :slugged
 
   scope :root, -> { where(parent: nil) }
 
