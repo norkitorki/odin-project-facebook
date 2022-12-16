@@ -1,5 +1,5 @@
 <%= form_with(model: comment) do |f| %>
-  <%= f.hidden_field :parent_id, value: comment.parent_id %>
+  <%= f.hidden_field :parent, value: comment.parent %>
   <%= f.hidden_field :commentable_type, value: commentable.class %>
   <%= f.hidden_field :commentable_id, value: commentable.id %>
   <div class="field">
