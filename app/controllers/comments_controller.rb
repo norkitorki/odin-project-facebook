@@ -4,6 +4,7 @@ class CommentsController < ApplicationController
 
   def new
     @comment             = Comment.new(parent: params[:parent])
+    @comment.commentable = @comment.ancestor&.commentable
   end
 
   def edit
