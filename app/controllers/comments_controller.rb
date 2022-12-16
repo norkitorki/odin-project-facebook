@@ -3,8 +3,7 @@ class CommentsController < ApplicationController
   before_action :set_comment, except: %i[ new create ]
 
   def new
-    @comment = Comment.new(parent_id: params[:parent])
-    @comment.commentable = @comment.parent&.commentable
+    @comment             = Comment.new(parent: params[:parent])
   end
 
   def edit
