@@ -5,16 +5,19 @@ class CommentsController < ApplicationController
   def new
     @comment             = Comment.new(parent: params[:parent])
     @comment.commentable = @comment.ancestor&.commentable
+    @commentable         = @comment.commentable
   end
 
   def edit
   end
 
   def create
-    @comment = current_user.comments.new(comment_params)
+    @comment     = current_user.comments.new(comment_params)
+    @commentable = @comment.commentable
 
     if @comment.save
-      redirect_to @comment.commentable, notice: 'Comment has been successfully created.'
+      redirect_to user_post_path(@commentable.user, @commentable),
+        notice: 'Comment has been successfully created.'
     else
       flash.now[:alert] = 'Comment has not been created.'
       render :new, status: :unprocessable_entity
