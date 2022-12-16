@@ -45,7 +45,7 @@
             <% end %>
           <% end %>
           <%= turbo_frame_tag :comment_reply, class: 'level-item' do %>
-            <%= link_to 'Reply', new_comment_path(parent: comment.id), class: 'level-item' %>
+            <%= link_to 'Reply', new_comment_path(parent: comment.slug), class: 'level-item' %>
           <% end %>
         <% end %>
         <time class="level-item has-text-weight-light">
