@@ -6,7 +6,7 @@ class Comment < ApplicationRecord
 
   friendly_id :generate_uuid, use: :slugged
 
-  scope :root, -> { where(parent: nil) }
+  scope :root, -> { where(parent: '') }
 
   validates :body, presence: true
 
