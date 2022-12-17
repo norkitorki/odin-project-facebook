@@ -74,7 +74,7 @@
       </div>
       <footer class="card-footer">
         <% if %w[ posts comments ].none?(controller_name) %>
-          <%= link_to 'Show', user_post_path(post.user, post), class: 'card-footer-item button is-success' %>
+          <%= link_to 'Show', post, class: 'card-footer-item button is-success' %>
         <% end %>
       </footer>
     </div>

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'static_pages/home'
   
   resources :friend_requests, except: %i[ edit update ]
-  resources :posts, except: %i[ index show ]
+  resources :posts, except: %i[ index ]
   resources :comments, except: %i[ index show ]
   resources :likes, only: %i[ create destroy ]
   resources :notifications, only: %i[ index show ] do
@@ -18,8 +18,6 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     get 'sign_in', to: 'users/sessions#new'
-    resources :users, only: :show do
-      resources :posts, only: :show
-    end
+    resources :users, only: :show
   end
 end

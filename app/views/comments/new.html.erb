@@ -16,6 +16,6 @@
 <%= turbo_frame_tag :comment_reply do %>
   <div data-turbo="false">
     <%= render 'form', comment: @comment, commentable: @commentable %>
-    <%= link_to 'Back', polymorphic_path([@commentable.user, @commentable]), class: 'button is-danger mt-1' %>
+    <%= link_to 'Back', @commentable || root_path, class: 'button is-danger mt-1' %>
   </div>
 <% end %>

@@ -16,8 +16,7 @@ class CommentsController < ApplicationController
     @commentable = @comment.commentable
 
     if @comment.save
-      redirect_to commentable_path,
-        notice: 'Comment has been successfully created.'
+      redirect_to @commentable, notice: 'Comment has been successfully created.'
     else
       flash.now[:alert] = 'Comment has not been created.'
       render :new, status: :unprocessable_entity
@@ -26,7 +25,7 @@ class CommentsController < ApplicationController
 
   def update
     if @comment.update(comment_params)
-      redirect_to @comment.commentable
+      redirect_to @comment.commentable, notice: 'Comment has been successfully updated.'
     else
       set_comment
       flash.now[:alert] = 'Comment has not been updated.'
@@ -36,7 +35,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
-    redirect_to commentable_path, alert: 'Comment has been deleted.'
+    redirect_to @comment.commentable, alert: 'Comment has been deleted.'
   end
 
   private
@@ -51,10 +50,5 @@ class CommentsController < ApplicationController
 
   def commentable_params
     %i[ commentable_type commentable_id ]
-  end
-
-  def commentable_path
-    commentable = @comment.commentable
-    polymorphic_path([commentable.user, commentable], anchor: @comment.slug)
   end
 end
