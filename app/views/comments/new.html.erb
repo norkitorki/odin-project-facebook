@@ -1,21 +1,21 @@
-<% if @comment.parent_id %>
+<% if !@comment.parent.empty? %>
   <h2 class="title is-size-2">New Reply</h2>
   <div class="columns">
     <div class="column is-one-third-desktop">
-      <%= render 'comments/comment', comment: @comment.parent %>
+      <%= render 'comments/comment', comment: @comment.ancestor %>
     </div>
   </div>
 <% else %>
-  <h2 class="title is-size-2">New Comment for:</h2>
+  <h2 class="title is-size-2">New Comment</h2>
   <div class="columns">
     <div class="column is-one-third-desktop">
-      <%= render @comment.commentable, like: @comment.commentable.find_or_initialize_like(current_user) %>
+      <%= render @commentable, like: @commentable.find_or_initialize_like(current_user) %>
     </div>
   </div>
 <% end %>
 <%= turbo_frame_tag :comment_reply do %>
   <div data-turbo="false">
-    <%= render 'form', comment: @comment, commentable: @comment.commentable %>
-    <%= link_to 'Back', @comment.commentable || root_path, class: 'button is-danger mt-1' %>
+    <%= render 'form', comment: @comment, commentable: @commentable %>
+    <%= link_to 'Back', polymorphic_path([@commentable.user, @commentable]), class: 'button is-danger mt-1' %>
   </div>
 <% end %>
