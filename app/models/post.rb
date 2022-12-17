@@ -1,5 +1,10 @@
 class Post < ApplicationRecord
+  extend FriendlyId
+
+  include ApplicationHelper
   include LikesHelper
+
+  friendly_id :generate_uuid, use: :slugged
 
   belongs_to :user
 
