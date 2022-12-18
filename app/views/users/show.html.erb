@@ -4,8 +4,8 @@
   <div class="card-content">
     <div class="media">
       <div class="media-left">
-        <figure class="image is-48x48">
-          <%= image_tag 'placeholder.png', alt: 'Placeholder image' %>
+        <figure class="image">
+          <%= image_tag @user.gravatar_url %>
         </figure>
       </div>
     <div class="media-content">
@@ -47,20 +47,19 @@
       <div class="columns is-flex-direction-column is-align-items-center mt-6">
         <% @activity.each do |resource| %>
           <article class="column is-3 media p-0">
-            
             <div class="media-content">
               <div class="content">
                 <p class="is-size-5">
-                <strong><%= @user.full_name %></strong>
-                <% if resource.class == Comment %>
-                  has commented on a <%= resource.commentable.class %>!
-                  <br>
-                  <span class="is-size-6"><%= resource.body %></span>
-                <% elsif resource.class == Post %>
+                  <strong><%= @user.full_name %></strong>
+                  <% if resource.class == Comment %>
+                    has commented on a <%= resource.commentable.class %>!
+                    <br>
+                    <span class="is-size-6"><%= resource.body %></span>
+                  <% elsif resource.class == Post %>
                     has created a new Post!
                     <br>
                     <span class="is-size-6"><%= resource.content %></span>
-                <% end %>
+                  <% end %>
                 </p>
                 <p>
                   <span class="is-size-7 mr-1"><%= distance_of_time_in_words(Time.now, resource.created_at) %> ago</span>
