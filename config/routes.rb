@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'static_pages/home'
   
   resources :friend_requests, except: %i[ edit update ]
-  resources :posts, except: %i[ index ]
+  resources :posts, except: :index
   resources :comments, except: %i[ index show ]
   resources :likes, only: %i[ create destroy ]
   resources :notifications, only: %i[ index show ] do
