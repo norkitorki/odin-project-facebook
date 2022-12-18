@@ -1,7 +1,7 @@
 <article id="<%= comment.slug %>" class="media">
   <figure class="media-left">
     <p class="image is-48x48">
-      <%= image_tag 'placeholder.png', alt: 'Placeholder image' %>
+      <%= image_tag comment.user.gravatar_url %>
     </p>
   </figure>
   <div class="media-content">
