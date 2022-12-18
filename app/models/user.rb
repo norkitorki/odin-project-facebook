@@ -1,6 +1,11 @@
 class User < ApplicationRecord
   extend FriendlyId
 
+  include Gravtastic
+  gravtastic secure: true,
+             filetype: :jpg,
+             size: 150
+
   friendly_id :full_name, use: :slugged
 
   devise :database_authenticatable, :registerable,
