@@ -17,6 +17,7 @@
       </div>
       <div class="navbar-menu">
         <%= link_to 'Home', root_path, class: 'navbar-item is-size-5 has-text-weight-bold' %>
+        <%= link_to 'Discover', discover_path, class: 'navbar-item is-size-5 has-text-weight-bold' %>
         <div class="navbar-end is-align-items-center is-4 is-variable">
           <% if user_signed_in? %>
             <% if !@notifications.empty? %>

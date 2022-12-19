@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   root 'static_pages#home'
 
-  get 'static_pages/home'
+  get 'static_pages/home', as: :home
+  get 'discover', to: 'static_pages#discover'
   
   resources :friend_requests, except: %i[ edit update ]
   resources :posts, except: :index
