@@ -1,4 +1,4 @@
-<div class="ml-5">
+<div class="box">
   <h2 class="title">Sign up</h2>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), class: 'ml-4') do |f| %>
@@ -30,6 +30,17 @@
       <div class="select">
         <%= f.select :gender, ['Male', 'Female', 'Custom', '' ] %>
       </div>
+    </div>
+
+    <div class="field box">
+      <% if resource.photo.attached? %>
+        <p class="is-size-6">Current Photo</p>
+        <figure class="image is-128x128">
+          <%= image_tag resource.photo %>
+        </figure>
+      <% end %>
+      <%= f.label :photo , class: 'label is-size-5' %> <i>(leave blank if you don't want to upload/update a photo)</i><br>
+      <%= f.file_field :photo, class: 'mt-4' %>
     </div>
 
     <div class="field">
