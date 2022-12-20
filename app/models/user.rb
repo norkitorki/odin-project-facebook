@@ -54,4 +54,8 @@ class User < ApplicationRecord
   def normalize_friendly_id(string)
     super.gsub("-", "_")
   end
+
+  def user_photo
+    photo.attached? ? photo : gravatar_url
+  end
 end
