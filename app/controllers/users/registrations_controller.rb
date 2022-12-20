@@ -20,9 +20,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    super
+    if user_photo = params[:user][:photo]
+      resource.photo.attach(user_photo)
+    end
+  end
 
   # DELETE /resource
   # def destroy
