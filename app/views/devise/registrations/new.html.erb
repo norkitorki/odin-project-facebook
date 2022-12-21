@@ -26,22 +26,28 @@
     </div>
 
     <div class="field">
-      <%= f.label :gender, 'Gender (optional)', class: "gender-label label is-size-5" %><br />
+      <%= f.label :gender, "Gender (optional)", class: "gender-label label is-size-5" %>
       <div class="select">
-        <%= f.select :gender, ['Male', 'Female', 'Custom', '' ] %>
+        <%= f.select :gender, ["Male", "Female", "Custom", ""] %>
       </div>
     </div>
 
-    <div class="field box">
-      <%= f.label :photo , class: 'label is-size-5' %> <i>(leave blank if you don't want to upload/update a photo)</i><br>
-      <%= f.file_field :photo, class: 'mt-4' %>
+    <div class="field">
+      <%= f.label :photo do %>
+        <span class="label is-size-5">Photo</span>
+        <i>
+          By default, this site uses <%= link_to "Gravatar", "https://gravatar.com", target: "_blank" %> to automatically link a photo to your account based on your email.
+          If you would like to use a custom photo, please use the form below.
+        </i>
+      <% end %>
+      <%= f.file_field :photo, class: "mt-4" %>
     </div>
 
     <div class="field">
       <%= f.label :password, class: "label is-size-5" %>
       <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %><br />
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %>
       <%= f.password_field :password, autocomplete: "new-password", class: "input" %>
     </div>
 
