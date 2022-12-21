@@ -1,5 +1,7 @@
 .field { width: min(400px, 100vw); }
 
+.field label { width: max-content; }
+
 .field_with_errors input, .field_with_errors textarea {
   border: 4px solid #f14668;
   border-radius: 4px 4px 0 0;
