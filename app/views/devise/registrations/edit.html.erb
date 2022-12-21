@@ -13,8 +13,8 @@
     <% end %>
 
     <div class="field box">
+      <%= f.label :photo, class: 'label is-size-5' %>
       <% if resource.photo.attached? %>
-        <%= f.label :photo , class: 'label is-size-5' %>
         <figure class="image is-128x128">
           <%= image_tag resource.user_photo %>
         </figure>
