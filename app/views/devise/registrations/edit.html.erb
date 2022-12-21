@@ -16,7 +16,7 @@
       <% if resource.photo.attached? %>
         <%= f.label :photo , class: 'label is-size-5' %>
         <figure class="image is-128x128">
-          <%= image_tag resource.photo %>
+          <%= image_tag resource.user_photo %>
         </figure>
       <% end %>
       <i>(leave blank if you don't want to upload/update a photo)</i><br>
