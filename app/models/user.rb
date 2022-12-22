@@ -14,7 +14,7 @@ class User < ApplicationRecord
   validates :email, :first_name, :last_name, :birthday, presence: true
   validates :email, uniqueness: true
 
-  has_one_attached :photo
+  # has_one_attached :photo
 
   has_many :friendships
   has_many :friends, through: :friendships,
