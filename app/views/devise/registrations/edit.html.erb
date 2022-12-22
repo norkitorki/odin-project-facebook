@@ -13,10 +13,16 @@
     <% end %>
 
     <div class="field">
+      <%= f.label :photo, class: "label is-size-5" %>
+      <figure class="image is-128x128 mb-3">
+        <%= image_tag resource.user_photo, alt: "user photo preview" %>
+      </figure>
+      <i>(leave blank if you don't want to update a photo)</i>
+      <%= f.file_field :photo, class: "mt-4" %>
     </div>
 
     <div class="field">
-      <%= f.label :password, class: "label is-size-5" %> <i>(leave blank if you don't want to change it)</i>
+      <%= f.label :password, class: "label is-size-5 mb-0" %> <i>(leave blank if you don't want to change it)</i>
       <%= f.password_field :password, autocomplete: "new-password", class: "input" %>
       <%= render 'public/input_errors', resource: resource, attribute: :password %>
       <% if @minimum_password_length %>
@@ -32,7 +38,7 @@
     </div>
 
     <div class="field">
-      <%= f.label :current_password, class: "label is-size-5" %> <i>(we need your current password to confirm your changes)</i>
+      <%= f.label :current_password, class: "label is-size-5 mb-0" %> <i>(we need your current password to confirm your changes)</i>
       <%= f.password_field :current_password, autocomplete: "current-password", class: "input" %>
       <%= render 'public/input_errors', resource: resource, attribute: :current_password %>
     </div>
