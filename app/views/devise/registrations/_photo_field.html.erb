@@ -1,5 +1,5 @@
 <div class="field">
-  <%= f.label :photo, class: "label is-size-5" %>
+  <%= form.label :photo, class: "label is-size-5" %>
   <p class="mb-4">
     <i>
       By default, this site uses <%= link_to "Gravatar", "https://gravatar.com", target: "_blank" %> to automatically link a photo to your account based on your email.
@@ -8,16 +8,18 @@
   </p>
   <% if action_name == 'edit' %>
     <figure class="image is-128x128 mb-3">
-      <%= image_tag resource.photo.url, alt: "user photo preview" %>
+      <%= image_tag user.photo.url, alt: "user photo preview" %>
     </figure>
-    <%= f.label :remove_photo, class: "checkbox" do %>
-      <%= f.check_box :remove_photo %>
-      Remove photo
+    <% if user.photo.file %>
+      <%= form.label :remove_photo, class: "checkbox" do %>
+        <%= form.check_box :remove_photo %>
+        Remove photo
+      <% end %>
     <% end %>
     <p>
-      <i>(leave blank if you don't want to update a photo)</i>
+      <i>(leave blank if you don't want to upload/update a photo)</i>
     </p>
   <% end %>
-  <%= f.file_field :photo, class: "mt-2" %>
-  <%= render 'public/input_errors', resource: resource, attribute: :photo %>
+  <%= form.file_field :photo, class: "mt-2" %>
+  <%= render 'public/input_errors', resource: user, attribute: :photo %>
 </div>
