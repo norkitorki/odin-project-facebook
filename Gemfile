@@ -82,3 +82,5 @@ gem "friendly_id", "~> 5.5"
 gem "gravtastic", "~> 3.2"
 
 gem 'carrierwave', '>= 3.0.0.beta', '< 4.0'
+
+gem "omniauth-facebook", "~> 9.0"
