@@ -1,0 +1,23 @@
+<div class="field">
+  <%= f.label :photo, class: "label is-size-5" %>
+  <p class="mb-4">
+    <i>
+      By default, this site uses <%= link_to "Gravatar", "https://gravatar.com", target: "_blank" %> to automatically link a photo to your account based on your email.
+      If you would like to use a custom photo, please use the form below.
+    </i>
+  </p>
+  <% if action_name == 'edit' %>
+    <figure class="image is-128x128 mb-3">
+      <%= image_tag resource.photo.url, alt: "user photo preview" %>
+    </figure>
+    <%= f.label :remove_photo, class: "checkbox" do %>
+      <%= f.check_box :remove_photo %>
+      Remove photo
+    <% end %>
+    <p>
+      <i>(leave blank if you don't want to update a photo)</i>
+    </p>
+  <% end %>
+  <%= f.file_field :photo, class: "mt-2" %>
+  <%= render 'public/input_errors', resource: resource, attribute: :photo %>
+</div>

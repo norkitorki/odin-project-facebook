@@ -12,14 +12,7 @@
       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
     <% end %>
 
-    <div class="field">
-      <%= f.label :photo, class: "label is-size-5" %>
-      <figure class="image is-128x128 mb-3">
-        <%= image_tag resource.user_photo, alt: "user photo preview" %>
-      </figure>
-      <i>(leave blank if you don't want to update a photo)</i>
-      <%= f.file_field :photo, class: "mt-4" %>
-    </div>
+    <%= render 'photo_field', f: f %>
 
     <div class="field">
       <%= f.label :password, class: "label is-size-5 mb-0" %> <i>(leave blank if you don't want to change it)</i>

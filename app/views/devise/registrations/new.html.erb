@@ -32,16 +32,7 @@
       </div>
     </div>
 
-    <div class="field">
-      <%= f.label :photo do %>
-        <span class="label is-size-5">Photo</span>
-        <i>
-          By default, this site uses <%= link_to "Gravatar", "https://gravatar.com", target: "_blank" %> to automatically link a photo to your account based on your email.
-          If you would like to use a custom photo, please use the form below.
-        </i>
-      <% end %>
-      <%= f.file_field :photo, class: "mt-4" %>
-    </div>
+    <%= render 'photo_field', f: f %>
 
     <div class="field">
       <%= f.label :password, class: "label is-size-5" %>
