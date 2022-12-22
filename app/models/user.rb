@@ -20,8 +20,6 @@ class User < ApplicationRecord
 
   validate :validate_photo_size
 
-  # has_one_attached :photo
-
   has_many :friendships
   has_many :friends, through: :friendships,
     dependent: :destroy
