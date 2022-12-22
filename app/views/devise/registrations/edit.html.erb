@@ -12,15 +12,7 @@
       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
     <% end %>
 
-    <div class="field box">
-      <%= f.label :photo, class: 'label is-size-5' %>
-      <% if resource.photo.attached? %>
-        <figure class="image is-128x128">
-          <%= image_tag resource.user_photo %>
-        </figure>
-      <% end %>
-      <i>(leave blank if you don't want to upload/update a photo)</i><br>
-      <%= f.file_field :photo, class: 'mt-4' %>
+    <div class="field">
     </div>
 
     <div class="field">
