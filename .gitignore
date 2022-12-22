@@ -32,3 +32,6 @@
 
 # Ignore temporary placeholder image
 /app/assets/images/placeholder.png
+
+# Ignore uploaded user images
+/public/uploads

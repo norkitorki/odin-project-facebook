@@ -1,5 +1,9 @@
+require 'carrierwave/orm/activerecord'
+
 class User < ApplicationRecord
   extend FriendlyId
+
+  mount_uploader :photo, PhotoUploader
 
   include Gravtastic
   gravtastic secure: true,
@@ -13,6 +17,8 @@ class User < ApplicationRecord
 
   validates :email, :first_name, :last_name, :birthday, presence: true
   validates :email, uniqueness: true
+
+  validate :validate_photo_size
 
   # has_one_attached :photo
 
@@ -55,7 +61,9 @@ class User < ApplicationRecord
     super.gsub("-", "_")
   end
 
-  def user_photo
-    photo.attached? ? photo : gravatar_url
+  private
+
+  def validate_photo_size
+    errors.add(:photo, 'exceeds the maximum file size of 3MB') if photo.size > 3.megabytes
   end
 end
