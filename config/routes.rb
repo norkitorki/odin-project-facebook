@@ -21,4 +21,8 @@ Rails.application.routes.draw do
     get 'sign_in', to: 'users/sessions#new'
     resources :users, only: :show
   end
+
+  # Omniauth callback route
+  get 'auth/facebook/callback', to: 'users/sessions#create'
+
 end

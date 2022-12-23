@@ -22,6 +22,11 @@
         <%= f.submit "Log in", class: "button is-primary" %>
       </div>
     <% end %>
+    <div class="field">
+      <%= form_with(url: '/auth/facebook', data: { turbo: false }) do |f| %>
+        <%= f.submit 'Sign in with Facebook', class: 'button is-info my-2' %>
+      <% end %>
+    </div>
     <%= render "devise/shared/links" %>
   </div>
 </div>
