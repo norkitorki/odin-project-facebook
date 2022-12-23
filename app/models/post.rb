@@ -1,5 +1,9 @@
+require 'carrierwave/orm/activerecord'
+
 class Post < ApplicationRecord
   extend FriendlyId
+
+  mount_uploader :photo, PhotoUploader
 
   include ApplicationHelper
   include LikesHelper

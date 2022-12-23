@@ -4,6 +4,15 @@
     <%= f.text_area :content, class: 'textarea' %>
     <%= render 'public/input_errors', resource: post, attribute: :content %>
   </div>
+  <div class="field">
+    <%= f.label :photo, class: 'label is-size-5' %>
+    <%= f.file_field :photo %>
+    <%= render 'public/input_errors', resource: post, attribute: :photo %>
+    <%= f.label :remove_photo, class: 'checkbox label is-size-5 my-3' do %>
+      Remove Photo
+      <%= f.check_box :remove_photo %>
+    <% end %>
+  </div>
   <div class="action">
     <%= f.submit class: 'button is-primary' %>
   </div>
