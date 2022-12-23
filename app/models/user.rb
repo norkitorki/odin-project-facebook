@@ -16,7 +16,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :email, :first_name, :last_name, :birthday, presence: true
-  validates :email, uniqueness: true
+  validates :email, uniqueness: true, format: Devise.email_regexp
 
   validate :validate_photo_size
 
