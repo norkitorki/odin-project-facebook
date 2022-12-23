@@ -64,6 +64,8 @@ group :development do
   # gem "spring"
 
   gem "pry", "~> 0.14.1"
+
+  gem "letter_opener"
 end
 
 group :test do
