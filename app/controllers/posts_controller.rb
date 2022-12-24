@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, except: %i[ new create ]
+  before_action :validate_user, only: %i[ edit update destroy ]
 
   def show
     @comment  = Comment.new
@@ -48,5 +49,11 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:content, :photo, :remove_photo)
+  end
+
+  def validate_user
+    if @post.user_id != current_user.id
+      redirect_to @post, notice: 'You do not have permission to perform this operation.', status: :forbidden
+    end
   end
 end
