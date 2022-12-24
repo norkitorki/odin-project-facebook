@@ -39,3 +39,8 @@
   left: -14px;
   bottom: 15px;
 }
+
+.home-post {
+  width: auto;
+  max-height: 250px;
+}
