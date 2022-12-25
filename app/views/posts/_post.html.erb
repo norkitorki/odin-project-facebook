@@ -1,13 +1,11 @@
 <div class="card">
-  <% if post.photo.file %>
-    <div class="card-image">
-      <figure class="image columns is-justify-content-center my-3">
-        <%= link_to (controller_name == 'static_pages' ? post : post.photo.url) do %>
-          <%= image_tag post.photo.url, class: "#{'home-post' if controller_name == 'static_pages'}" %>
-        <% end %>
-      </figure>
-    </div>
-  <% end %>
+  <div class="card-image">
+    <figure class="image columns is-justify-content-center my-3">
+      <%= link_to (controller_name == 'static_pages' ? post : post.photo.url) do %>
+        <%= image_tag post.photo.url, class: "#{'home-post' if controller_name == 'static_pages'}" %>
+      <% end %>
+    </figure>
+  </div>
   <div class="card-content">
     <div class="media">
       <div class="media-left">
