@@ -41,10 +41,10 @@ class PhotoUploader < CarrierWave::Uploader::Base
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
-  # def filename
-  #  if original_filename
-  #    filetype = original_filename.split('.').last
-  #    "#{SecureRandom.hex(20)}.#{filetype}"
-  #  end
-  # end
+  def filename
+    if original_filename
+      filetype = original_filename.split('.').last
+      @string ||= "#{SecureRandom.urlsafe_base64}.#{filetype}"
+    end
+  end
 end
