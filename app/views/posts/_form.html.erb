@@ -4,13 +4,23 @@
     <%= f.text_area :content, class: 'textarea' %>
     <%= render 'public/input_errors', resource: post, attribute: :content %>
   </div>
-  <div class="field">
-    <%= f.label :photo, class: 'label is-size-5' %>
+  <div class="field box">
+    <h3 class="label is-size-4">Photo</h3>
+    <%= f.label :photo, 'Local Photo', class: 'label is-size-5' %>
     <%= f.file_field :photo %>
     <%= render 'public/input_errors', resource: post, attribute: :photo %>
-    <%= f.label :remove_photo, class: 'checkbox label is-size-5 my-3' do %>
-      Remove Photo
-      <%= f.check_box :remove_photo %>
+    <p class="my-2 is-size-7">
+      <i>Max file size: 3MB</i>
+    </p>
+    <% if post.photo.file %>
+      <%= f.label :remove_photo, class: 'checkbox label is-size-5' do %>
+        Remove local photo
+        <%= f.check_box :remove_photo %>
+      <% end %>
+    <% end %>
+    <%= f.label :remote_photo, class: 'label is-size-5' do %>
+      Photo URL
+      <%= f.text_field :remote_photo, class: 'input' %>
     <% end %>
   </div>
   <div class="action">
