@@ -12,7 +12,7 @@ class Post < ApplicationRecord
 
   belongs_to :user
 
-  validates :content, presence: true
+  validates :content, presence: true, unless: :photo_only?
 
   has_many :comments, as: :commentable,
     dependent: :destroy
