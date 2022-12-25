@@ -23,4 +23,10 @@ class Post < ApplicationRecord
   def edited?
     created_at < updated_at
   end
+
+  private
+
+  def photo_only?
+    content.empty? && (photo.file && !remove_photo || !remote_photo.empty?)
+  end
 end
