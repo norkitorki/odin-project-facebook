@@ -2,6 +2,6 @@ module ApplicationHelper
   private
 
   def generate_uuid
-    SecureRandom.hex(16)
+    SecureRandom.urlsafe_base64
   end
 end
