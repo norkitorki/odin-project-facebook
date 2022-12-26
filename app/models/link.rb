@@ -3,7 +3,12 @@ class Link < ApplicationRecord
 
   belongs_to :linkable, polymorphic: true
 
-  validates :body, presence: true
+  validates :body, 
+    presence: true,
+    format: {
+      with: /\A(https?:\/{2})?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b[-a-zA-Z0-9@:%_\+.~#?&\/\/=]*\z/,
+      message: 'must be a valid url'
+    }
 
   private
 
