@@ -1,0 +1,8 @@
+<h2 class="title">Tag</h2>
+
+<article class="columns">
+<% @objects.each do |obj| %>
+  <div class="column is-one-third">
+    <%= render obj, like: find_or_initialize_like(obj), tags: obj.tag_list.to_a %>
+  </div>
+<% end %>

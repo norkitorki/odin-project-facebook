@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get 'static_pages/home', as: :home
   get 'discover', to: 'static_pages#discover'
+  get 'tag', to: 'tags#show'
   
   resources :friend_requests, except: %i[ edit update ]
   resources :posts, except: :index
@@ -24,5 +25,4 @@ Rails.application.routes.draw do
 
   # Omniauth callback route
   get 'auth/facebook/callback', to: 'users/sessions#create'
-
 end
