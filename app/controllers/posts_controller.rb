@@ -11,9 +11,11 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    5.times { @post.links.new }
   end
 
   def edit
+    (5 - @post.links.count).times { @post.links.new }
   end
 
   def create
