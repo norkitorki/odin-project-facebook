@@ -70,6 +70,13 @@
       <%= turbo_frame_tag post do %>
         <p class="post-content"><%= post.content %></p>
       <% end %>
+      <% if post.links.any? %>
+        <div class="columns is-multiline m-0 mt-4">
+          <% post.links.each do |link| %>
+            <%= link_to link.body, link.body, class: 'button is-small is-rounded has-text-link' %>
+          <% end %>
+        </div>
+      <% end %>
       <div class="columns is-justify-content-space-between is-align-items-center mt-2">
         <div class="column pb-0">
           <%= link_to "#{post.comments.length} Comments", post %>
