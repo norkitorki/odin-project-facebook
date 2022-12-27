@@ -20,6 +20,13 @@ class Post < ApplicationRecord
   has_many :likes, as: :likeable,
     dependent: :destroy
 
+  has_many :links, as: :linkable,
+    dependent: :destroy
+
+  accepts_nested_attributes_for :links,
+    allow_destroy: true,
+    reject_if: :all_blank
+
   def edited?
     created_at < updated_at
   end
