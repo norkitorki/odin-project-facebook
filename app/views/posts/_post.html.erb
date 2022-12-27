@@ -70,20 +70,19 @@
       <%= turbo_frame_tag post do %>
         <p class="post-content"><%= post.content %></p>
       <% end %>
-        <div class="columns is-justify-content-space-between is-align-items-center mt-2">
-          <div class="column pb-0">
-            <%= link_to "#{post.comments.length} Comments", post %>
-          </div>
-          <div class="column pb-0 has-text-right">
-            <i><%= pluralize(post.likes.length, 'person') %> <span class="is-size-4 has-text-danger">♥</span> this post</i>
-          </div>
+      <div class="columns is-justify-content-space-between is-align-items-center mt-2">
+        <div class="column pb-0">
+          <%= link_to "#{post.comments.length} Comments", post %>
+        </div>
+        <div class="column pb-0 has-text-right">
+          <i><%= pluralize(post.likes.length, 'person') %> <span class="is-size-4 has-text-danger">♥</span> this post</i>
         </div>
       </div>
-      <footer class="card-footer">
-        <% if %w[ posts comments ].none?(controller_name) %>
+      <% if %w[ posts comments ].none?(controller_name) %>
+        <footer class="card-footer">
           <%= link_to 'Show', post, class: 'card-footer-item button is-success' %>
-        <% end %>
       </footer>
+      <% end %>
     </div>
   </div>
 </div>
