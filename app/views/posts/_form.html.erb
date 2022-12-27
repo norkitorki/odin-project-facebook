@@ -23,6 +23,21 @@
       <%= f.text_field :remote_photo, class: 'input' %>
     <% end %>
   </div>
+  <div class="field">
+    <%= f.label :links, 'Links', class: 'label is-size-5' %>
+    <%= f.fields_for :links do |links_f| %>
+      <div class="field">
+        <%= links_f.text_field :body, placeholder: 'http://example.com', class: 'input' %>
+        <%= render 'public/input_errors', resource: links_f.object, attribute: :body %>
+        <% if !links_f.object.new_record? %>
+          <%= links_f.label :_destroy, class: 'checkbox button is-small is-rounded mt-2' do %>
+            <%= links_f.check_box :_destroy %>
+            Delete
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
   <div class="action">
     <%= f.submit class: 'button is-primary' %>
   </div>
