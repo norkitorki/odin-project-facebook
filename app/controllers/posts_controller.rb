@@ -52,6 +52,11 @@ class PostsController < ApplicationController
     @post = Post.friendly.find(params[:id])
   end
 
+  def initialize_assocations
+    (5 - @post.links.length).times { @post.links.new }
+    @post.build_tag_list unless @post.tag_list
+  end
+
   def post_params
     params.require(:post).permit(:content, :photo, :remove_photo, :remote_photo, 
       links_attributes: %i[ id body _destroy ],
