@@ -7,6 +7,7 @@ class PostsController < ApplicationController
     @comment  = Comment.new
     @comments = @post.comments.root.includes(:user, :likes, :replies).order(created_at: :desc)
     @like     = @post.find_or_initialize_like(current_user)
+    @tags     = @post.tag_list.to_a
   end
 
   def new
