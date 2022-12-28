@@ -1,4 +1,5 @@
-<h1 class="title">Create Post</h1>
+<h2 class="title">Create Post</h2>
 <%= turbo_frame_tag @post do %>
   <%= render 'form', post: @post %>
+  <%= link_to 'Back', :back, class: 'button is-info mt-2' %>
 <% end %>
