@@ -51,7 +51,10 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:content, :photo, :remove_photo, :remote_photo, links_attributes: %i[ id body _destroy ])
+    params.require(:post).permit(:content, :photo, :remove_photo, :remote_photo, 
+      links_attributes: %i[ id body _destroy ],
+      tag_list_attributes: %i[ id list _destroy ]
+    )
   end
 
   def validate_user
