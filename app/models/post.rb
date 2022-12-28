@@ -23,7 +23,14 @@ class Post < ApplicationRecord
   has_many :links, as: :linkable,
     dependent: :destroy
 
+  has_one :tag_list, as: :tagable,
+    dependent: :destroy
+
   accepts_nested_attributes_for :links,
+    allow_destroy: true,
+    reject_if: :all_blank
+
+  accepts_nested_attributes_for :tag_list,
     allow_destroy: true,
     reject_if: :all_blank
 
