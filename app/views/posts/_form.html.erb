@@ -1,55 +1,61 @@
 <%= form_with(model: post) do |f| %>
-  <div class="field">
-    <%= f.label :content, class: 'label is-size-5' %>
-    <%= f.text_area :content, class: 'textarea' %>
-    <%= render 'public/input_errors', resource: post, attribute: :content %>
-  </div>
-  <div class="field box">
-    <h3 class="label is-size-4">Photo</h3>
-    <%= f.label :photo, 'Local Photo', class: 'label is-size-5' %>
-    <%= f.file_field :photo %>
-    <%= render 'public/input_errors', resource: post, attribute: :photo %>
-    <p class="my-2 is-size-7">
-      <i>Max file size: 3MB</i>
-    </p>
-    <% if post.photo.file %>
-      <%= f.label :remove_photo, class: 'checkbox label is-size-5' do %>
-        Remove local photo
-        <%= f.check_box :remove_photo %>
-      <% end %>
-    <% end %>
-    <%= f.label :remote_photo, class: 'label is-size-5' do %>
-      Photo URL
-      <%= f.text_field :remote_photo, class: 'input' %>
-    <% end %>
-  </div>
-  <div class="field">
-    <%= f.label :links, 'Links', class: 'label is-size-5' %>
-    <%= f.fields_for :links do |links_f| %>
+  <div class="columns is-multiline is-variable is-4">
+    <div class="column is-flex-grow-0">
       <div class="field">
-        <%= links_f.text_field :body, placeholder: 'http://example.com', class: 'input' %>
-        <%= render 'public/input_errors', resource: links_f.object, attribute: :body %>
-        <% if !links_f.object.new_record? %>
-          <%= links_f.label :_destroy, class: 'checkbox button is-small is-rounded mt-2' do %>
-            <%= links_f.check_box :_destroy %>
-            Delete
+        <%= f.label :content, class: 'label is-size-5' %>
+        <%= f.text_area :content, class: 'textarea' %>
+        <%= render 'public/input_errors', resource: post, attribute: :content %>
+      </div>
+      <div class="field">
+        <h3 class="label is-size-4">Photo</h3>
+        <%= f.label :photo, 'Local Photo', class: 'label is-size-5' %>
+        <%= f.file_field :photo %>
+        <%= render 'public/input_errors', resource: post, attribute: :photo %>
+        <p class="my-2 is-size-7">
+          <i>Max file size: 3MB</i>
+        </p>
+        <% if post.photo.file %>
+          <%= f.label :remove_photo, class: 'checkbox label is-size-5' do %>
+            Remove local photo
+            <%= f.check_box :remove_photo %>
           <% end %>
         <% end %>
+        <%= f.label :remote_photo, class: 'label is-size-5' do %>
+          Photo URL
+          <%= f.text_field :remote_photo, class: 'input' %>
+        <% end %>
       </div>
-    <% end %>
-  </div>
-  <div class="field">
-    <%= f.fields_for :tag_list do |tags_f| %>
-      <%= tags_f.label :list, class: 'label is-size-5' do %>
-        Tags
-        <p class="my-2 is-size-7">
-          Comma seperated list of tags
-          <i>(Max tag count 10)</i>
-        </p>
-      <% end %>
-      <%= tags_f.text_area :list, class: 'textarea', rows: 2 %>
-      <%= render 'public/input_errors', resource: tags_f.object, attribute: :list %>
-    <% end %>
+    </div>
+    <div class="column is-flex-grow-0">
+      <div class="field">
+        <h3 class="label is-size-5">Links</h3>
+        <%= f.fields_for :links do |links_f| %>
+          <div class="field">
+            <%= links_f.text_field :body, placeholder: 'http://example.com', class: 'input' %>
+            <%= render 'public/input_errors', resource: links_f.object, attribute: :body %>
+            <% if !links_f.object.new_record? %>
+              <%= links_f.label :_destroy, class: 'checkbox button is-small is-rounded mt-2' do %>
+                <%= links_f.check_box :_destroy %>
+                Delete
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <div class="field">
+        <%= f.fields_for :tag_list do |tags_f| %>
+          <%= tags_f.label :list, class: 'label is-size-5' do %>
+            Tags
+            <p class="my-2 is-size-7">
+              Comma seperated list of tags
+              <i>(Max tag count 10)</i>
+            </p>
+          <% end %>
+          <%= tags_f.text_area :list, class: 'textarea', rows: 2 %>
+          <%= render 'public/input_errors', resource: tags_f.object, attribute: :list %>
+        <% end %>
+      </div>
+    </div>
   </div>
   <div class="action">
     <%= f.submit class: 'button is-primary' %>
