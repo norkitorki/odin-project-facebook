@@ -13,10 +13,12 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
     5.times { @post.links.new }
+    @post.build_tag_list
   end
 
   def edit
     (5 - @post.links.count).times { @post.links.new }
+    @post.build_tag_list unless @post.tag_list
   end
 
   def create
