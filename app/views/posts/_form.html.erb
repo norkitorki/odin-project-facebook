@@ -38,6 +38,19 @@
       </div>
     <% end %>
   </div>
+  <div class="field">
+    <%= f.fields_for :tag_list do |tags_f| %>
+      <%= tags_f.label :list, class: 'label is-size-5' do %>
+        Tags
+        <p class="my-2 is-size-7">
+          Comma seperated list of tags
+          <i>(Max tag count 10)</i>
+        </p>
+      <% end %>
+      <%= tags_f.text_area :list, class: 'textarea', rows: 2 %>
+      <%= render 'public/input_errors', resource: tags_f.object, attribute: :list %>
+    <% end %>
+  </div>
   <div class="action">
     <%= f.submit class: 'button is-primary' %>
   </div>
