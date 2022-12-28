@@ -4,6 +4,7 @@ class Post < ApplicationRecord
   extend FriendlyId
 
   mount_uploader :photo, PhotoUploader
+  mount_uploader :video, VideoUploader
 
   include ApplicationHelper
   include LikesHelper
