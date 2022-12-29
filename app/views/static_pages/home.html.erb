@@ -8,7 +8,7 @@
 
 <article class="columns is-multiline is-1 is-variable my-3">
   <% @timeline.each do |resource| %>
-    <div class="column is-one-third-tablet is-one-quarter-desktop">
+    <div class="column is-half-tablet is-one-quarter-desktop">
       <% if resource.respond_to?(:find_or_initialize_like) %>
         <%= render resource, like: resource.find_or_initialize_like(current_user), tags: resource.tag_list.to_a %>
       <% else %>
