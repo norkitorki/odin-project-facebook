@@ -13,4 +13,8 @@ class PhotoUploader < CarrierWave::Uploader::Base
   def extension_allowlist
     %w[ jpg jpeg gif png ]
   end
+
+  def size_range
+    1.byte..3.megabytes
+  end
 end
