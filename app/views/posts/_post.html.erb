@@ -1,8 +1,12 @@
 <div class="card">
   <div class="card-image">
-    <figure class="image columns is-justify-content-center my-3">
-      <%= link_to (controller_name == 'posts' ? post.photo.url : post) do %>
-        <%= image_tag post.photo.url, class: "#{'home-post' if controller_name == 'static_pages'}" %>
+    <figure class="image columns is-justify-content-center mt-3 <%= 'home-post' if controller_name == 'static_pages' %>">
+      <% if post.video_url %>
+        <%= video_tag(post.video_url, controls: true, preload: 'none') %>
+      <% else %>
+        <%= link_to (controller_name == 'posts' ? post.photo.url : post) do %>
+          <%= image_tag post.photo.url %>
+        <% end %>
       <% end %>
     </figure>
   </div>
@@ -68,7 +72,7 @@
     </div>
     <div class="content">
       <%= turbo_frame_tag post do %>
-        <p class="post-content"><%= post.content %></p>
+        <p class="post-content my-1"><%= post.content %></p>
       <% end %>
       <% if post.links.any? %>
         <div class="columns is-align-items-center is-multiline m-0 mt-4">
