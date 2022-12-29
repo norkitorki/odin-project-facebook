@@ -24,6 +24,18 @@
           Photo URL
           <%= f.text_field :remote_photo, class: 'input' %>
         <% end %>
+        <%= f.label :video, class: 'label is-size-6' %>
+        <%= f.file_field :video %>
+        <%= render 'public/input_errors', resource: post, attribute: :video %>
+        <p class="my-2 is-size-7">
+          <i>Max file size: 10MB</i>
+        </p>
+        <% if post.video.file %>
+          <%= f.label :remove_video, class: 'checkbox label is-size-6' do %>
+            Remove local video
+            <%= f.check_box :remove_video %>
+          <% end %>
+        <% end %>
       </div>
     </div>
     <div class="column is-flex-grow-0">
