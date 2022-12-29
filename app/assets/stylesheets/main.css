@@ -40,7 +40,13 @@
   bottom: 15px;
 }
 
-.home-post {
+.home-post { 
+  overflow: hidden;
+  padding: 0 10px 0 10px; 
+}
+
+.home-post img,
+.home-post video {
   width: auto;
-  max-height: 250px;
+  max-height: 230px;
 }
