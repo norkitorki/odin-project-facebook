@@ -38,6 +38,11 @@
             <%= f.check_box :remove_video %>
           <% end %>
         <% end %>
+        <%= f.label :remote_video, class: 'label is-size-6' do %>
+          Video URL
+          <%= f.text_field :remote_video, class: 'input' %>
+          <%= render 'public/input_errors', resource: post, attribute: :remote_video %>
+        <% end %>
       </div>
     </div>
     <div class="column is-flex-grow-0">
