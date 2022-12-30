@@ -25,8 +25,9 @@
         <%= f.label :remote_photo, class: 'label is-size-6' do %>
           Photo URL
           <%= f.text_field :remote_photo, class: 'input' %>
+          <%= render 'public/input_errors', resource: post, attribute: :remote_photo %>
         <% end %>
-        <%= f.label :video, class: 'label is-size-6' %>
+        <%= f.label :video, 'Local Video', class: 'label is-size-6' %>
         <%= f.file_field :video %>
         <%= render 'public/input_errors', resource: post, attribute: :video %>
         <p class="my-2 is-size-7">
