@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  post: one
+  photo: MyString
+  remote_photo: MyString
+  video: MyString
+  remote_video: MyString
+
+two:
+  post: two
+  photo: MyString
+  remote_photo: MyString
+  video: MyString
+  remote_video: MyString

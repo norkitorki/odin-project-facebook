@@ -1,11 +1,11 @@
 <div class="card">
   <div class="card-image">
     <figure class="image columns is-justify-content-center mt-3 <%= 'home-post' if controller_name == 'static_pages' %>">
-      <% if post.video_url %>
-        <%= video_tag(post.video_url, controls: true, preload: 'none') %>
+      <% if post.attachment.video_url %>
+        <%= video_tag(post.attachment.video_url, controls: true, preload: 'none') %>
       <% else %>
-        <%= link_to (controller_name == 'posts' ? post.photo.url : post) do %>
-          <%= image_tag post.photo.url %>
+        <%= link_to (controller_name == 'posts' ? post.attachment.photo.url : post) do %>
+          <%= image_tag post.attachment.photo_url %>
         <% end %>
       <% end %>
     </figure>

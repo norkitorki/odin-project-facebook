@@ -5,7 +5,7 @@ class PhotoUploader < CarrierWave::Uploader::Base
 
   def default_url(*args)
     case model.class.to_s
-    when 'Post' then model.remote_photo || ''
+    when 'Attachment' then model.remote_photo || ''
     when 'User' then model.gravatar_url
     end
   end

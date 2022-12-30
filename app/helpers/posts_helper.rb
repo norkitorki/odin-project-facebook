@@ -3,6 +3,6 @@ module PostsHelper
 
   def timeline_posts
     user_ids = current_user.friends.ids << current_user.id
-    Post.where(user_id: user_ids).includes(:comments, :likes, :user)
+    Post.where(user_id: user_ids).includes(:attachment, :comments, :likes, :links, :user)
   end
 end

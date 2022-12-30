@@ -3,9 +3,6 @@ require 'carrierwave/orm/activerecord'
 class Post < ApplicationRecord
   extend FriendlyId
 
-  mount_uploader :photo, PhotoUploader
-  mount_uploader :video, VideoUploader
-
   include ApplicationHelper
   include LikesHelper
 
@@ -13,7 +10,7 @@ class Post < ApplicationRecord
 
   belongs_to :user
 
-  validates :content, presence: true, unless: :photo_only?
+  validates :content, presence: true, unless: :attachment_only?
 
   has_many :comments, as: :commentable,
     dependent: :destroy
@@ -27,6 +24,9 @@ class Post < ApplicationRecord
   has_one :tag_list, as: :tagable,
     dependent: :destroy
 
+  has_one :attachment, as: :attachable,
+    dependent: :destroy
+
   accepts_nested_attributes_for :links,
     allow_destroy: true,
     reject_if: :all_blank
@@ -35,13 +35,15 @@ class Post < ApplicationRecord
     allow_destroy: true,
     reject_if: :all_blank
 
+  accepts_nested_attributes_for :attachment
+
   def edited?
     created_at < updated_at
   end
 
   private
 
-  def photo_only?
-    content.empty? && (photo.file && !remove_photo || !remote_photo.empty?)
+  def attachment_only?
+    content.empty? && (attachment.photo? || attachment.video?)
   end
 end

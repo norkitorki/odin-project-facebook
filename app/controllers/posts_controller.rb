@@ -55,12 +55,14 @@ class PostsController < ApplicationController
   def initialize_assocations
     (5 - @post.links.length).times { @post.links.new }
     @post.build_tag_list unless @post.tag_list
+    @post.build_attachment unless @post.attachment
   end
 
   def post_params
     params.require(:post).permit(:content, :photo, :remove_photo, :remote_photo, :video, :remove_video, :remote_video,
       links_attributes: %i[ id body _destroy ],
-      tag_list_attributes: %i[ id list _destroy ]
+      tag_list_attributes: %i[ id list _destroy ],
+      attachment_attributes: %i[ id photo remote_photo remove_photo video remote_video remove_video ]
     )
   end
 
