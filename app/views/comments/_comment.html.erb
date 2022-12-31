@@ -1,7 +1,7 @@
 <article id="<%= comment.slug %>" class="media">
   <figure class="media-left">
     <p class="image is-48x48">
-      <%= image_tag comment.user.photo.url %>
+      <%= image_tag comment.user.attachment.photo_url, class: 'image-48x48' %>
     </p>
   </figure>
   <div class="media-content">

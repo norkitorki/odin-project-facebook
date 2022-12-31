@@ -50,3 +50,18 @@
   width: auto;
   max-height: 230px;
 }
+
+.image-48x48 {
+  max-width: 48px;
+  max-height: 48px; 
+}
+
+.image-64x64 {
+  max-width: 64px;
+  max-height: 64px;
+}
+
+.image-128x128 {
+  max-width: 128px;
+  max-height: 128px;
+}
