@@ -4,9 +4,11 @@ class PhotoUploader < CarrierWave::Uploader::Base
   storage :file
 
   def default_url(*args)
-    case model.class.to_s
-    when 'Attachment' then model.remote_photo || ''
-    when 'User' then model.gravatar_url
+    remote_photo = model.remote_photo
+    case model.attachable_type
+    when 'Post' then remote_photo || ''
+    when 'User' then user_photo(remote_photo)
+    else ''
     end
   end
 
@@ -16,5 +18,11 @@ class PhotoUploader < CarrierWave::Uploader::Base
 
   def size_range
     1.byte..3.megabytes
+  end
+
+  private
+
+  def user_photo(remote_photo)
+    [nil, ''].none?(remote_photo) ? remote_photo : model.attachable.gravatar_url
   end
 end

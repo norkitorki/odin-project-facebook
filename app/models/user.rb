@@ -3,9 +3,8 @@ require 'carrierwave/orm/activerecord'
 class User < ApplicationRecord
   extend FriendlyId
 
-  mount_uploader :photo, PhotoUploader
-
   include Gravtastic
+
   gravtastic secure: true,
              filetype: :jpg,
              size: 150
@@ -17,8 +16,6 @@ class User < ApplicationRecord
 
   validates :email, :first_name, :last_name, :birthday, presence: true
   validates :email, uniqueness: true, format: Devise.email_regexp
-
-  validate :validate_photo_size
 
   has_many :friendships
   has_many :friends, through: :friendships,
@@ -43,6 +40,11 @@ class User < ApplicationRecord
   has_many :notifications,
     dependent: :destroy
 
+  has_one :attachment, as: :attachable,
+    dependent: :destroy
+
+  accepts_nested_attributes_for :attachment
+
   def full_name
     "#{first_name} #{last_name}"
   end
@@ -57,11 +59,5 @@ class User < ApplicationRecord
 
   def normalize_friendly_id(string)
     super.gsub("-", "_")
-  end
-
-  private
-
-  def validate_photo_size
-    errors.add(:photo, 'exceeds the maximum file size of 3MB') if photo.size > 3.megabytes
   end
 end
