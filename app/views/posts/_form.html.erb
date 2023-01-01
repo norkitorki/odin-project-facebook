@@ -10,6 +10,11 @@
     <div class="column is-flex-grow-0">
       <div class="field">
         <h3 class="label is-size-5">Attachments</h3>
+        <% if [nil, ''].none?(post.attachment.photo_url) %>
+          <figure class="image is-128x128">
+            <%= image_tag post.attachment.photo_url, class: 'image-128x128' %>
+          </figure>
+        <% end %>
         <%= f.fields_for :attachment do |attachment_f| %>
           <%= attachment_f.label :photo, class: 'label is-size-6' %>
           <%= attachment_f.file_field :photo %>
