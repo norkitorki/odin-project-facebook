@@ -1,5 +1,3 @@
-require 'carrierwave/orm/activerecord'
-
 class Post < ApplicationRecord
   extend FriendlyId
 
@@ -27,6 +25,9 @@ class Post < ApplicationRecord
   has_one :attachment, as: :attachable,
     dependent: :destroy
 
+  has_many :images, as: :imageable,
+    dependent: :destroy
+
   accepts_nested_attributes_for :links,
     allow_destroy: true,
     reject_if: :all_blank
@@ -36,6 +37,10 @@ class Post < ApplicationRecord
     reject_if: :all_blank
 
   accepts_nested_attributes_for :attachment
+
+  accepts_nested_attributes_for :images,
+    allow_destroy: true,
+    reject_if: :all_blank
 
   def edited?
     created_at < updated_at

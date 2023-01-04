@@ -6,7 +6,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
-    super { |user| user.build_attachment }
+    super { |user| user.build_image }
   end
 
   # POST /resource
@@ -16,14 +16,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
-
-  # PUT /resource
-  def update
+  def edit
+    resource.build_image unless resource.image
     super
   end
+
+  # PUT /resource
+  # def update
+  #   super
+  # end
 
   # DELETE /resource
   # def destroy
@@ -43,15 +44,21 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :birthday, :gender, attachment_attributes: attachment_attributes])
+    devise_parameter_sanitizer.permit(:sign_up, 
+      keys: [:first_name, :last_name, :birthday, :gender, attachment_attributes: attachment_attributes, image_attributes: image_attributes])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:photo, :remove_photo, attachment_attributes: attachment_attributes])
+    devise_parameter_sanitizer.permit(:account_update, 
+      keys: [:photo, :remove_photo, attachment_attributes: attachment_attributes, image_attributes: image_attributes])
   end
 
   def attachment_attributes
+    %i[ id photo remote_photo remove_photo ]
+  end
+
+  def image_attributes
     %i[ id photo remote_photo remove_photo ]
   end
 

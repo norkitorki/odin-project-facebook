@@ -1,11 +1,19 @@
 <div class="card">
   <div class="card-image">
-    <figure class="image columns is-justify-content-center mt-3 <%= 'home-post' if controller_name == 'static_pages' %>">
+    <figure class="image columns is-flex-direction-column is-align-items-center mt-3 <%= 'home-post' if controller_name == 'static_pages' %>">
       <% if post.attachment.video_url %>
         <%= video_tag(post.attachment.video_url, controls: true, preload: 'none') %>
       <% else %>
-        <%= link_to (controller_name == 'posts' ? post.attachment.photo.url : post) do %>
-          <%= image_tag post.attachment.photo_url %>
+        <% if action_name == 'show' %>
+          <% post.images.each do |image| %>
+            <%= link_to image do %>
+              <%= image_tag image %>
+            <% end %>
+          <% end %>
+        <% else %>
+          <%= link_to post do %>
+            <%= image_tag post.images.first.to_s %>
+          <% end %>
         <% end %>
       <% end %>
     </figure>
@@ -14,7 +22,7 @@
     <div class="media">
       <div class="media-left">
         <figure class="image is-64x64">
-          <%= image_tag post.user.attachment.photo_url, class: 'image-64x64' %>
+          <%= image_tag post.user.photo, class: 'image-64x64' %>
         </figure>
       </div>
       <div class="media-content">
