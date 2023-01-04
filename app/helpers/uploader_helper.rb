@@ -10,6 +10,6 @@ module UploaderHelper
 
   def store_dir
     model_id = model.respond_to?(:slug) ? model.slug : model.id
-    "uploads/#{model.class.to_s.downcase}/#{model_id}"
+    "uploads/#{model.class.to_s.downcase}/"
   end
 end
