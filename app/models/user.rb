@@ -1,5 +1,3 @@
-require 'carrierwave/orm/activerecord'
-
 class User < ApplicationRecord
   extend FriendlyId
 
@@ -16,6 +14,9 @@ class User < ApplicationRecord
 
   validates :email, :first_name, :last_name, :birthday, presence: true
   validates :email, uniqueness: true, format: Devise.email_regexp
+
+  has_one :image, as: :imageable,
+    dependent: :destroy
 
   has_many :friendships
   has_many :friends, through: :friendships,
@@ -40,10 +41,7 @@ class User < ApplicationRecord
   has_many :notifications,
     dependent: :destroy
 
-  has_one :attachment, as: :attachable,
-    dependent: :destroy
-
-  accepts_nested_attributes_for :attachment
+  accepts_nested_attributes_for :image
 
   def full_name
     "#{first_name} #{last_name}"
@@ -59,5 +57,9 @@ class User < ApplicationRecord
 
   def normalize_friendly_id(string)
     super.gsub("-", "_")
+  end
+
+  def photo
+    image.image_present? ? image : gravatar_url
   end
 end

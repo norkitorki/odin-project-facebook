@@ -1,33 +1,34 @@
 <div class="field">
   <h3 class="label is-size-5">Photo</h3>
-  <%= form.fields_for :attachment do |attachment_f| %>
-    <p class="mb-4">
-      <i>
-        By default, this site uses <%= link_to "Gravatar", "https://gravatar.com", target: "_blank" %> to automatically link a photo to your account based on your email.
-        If you would like to use a custom photo, please use the form below.
-      </i>
-    </p>
-    <% if action_name == 'edit' %>
+  <%= form.fields_for :image do |image_f| %>
+    <% if !image_f.object.new_record? %>
       <figure class="image is-128x128 mb-3">
-        <%= image_tag attachment_f.object.photo_url, alt: "user photo preview", class: 'image-128x128' %>
+        <%= image_tag resource.photo, alt: "user photo preview", class: 'image-128x128' %>
       </figure>
-      <% if attachment_f.object.photo.file %>
-        <%= attachment_f.label :remove_photo, class: "checkbox" do %>
-          <%= attachment_f.check_box :remove_photo %>
-          Remove photo
-        <% end %>
-      <% end %>
-      <p>
+    <% end %>
+    <% if image_f.object.photo.file.nil? %>
+      <p class="mb-4">
+        <i>
+          By default, this site uses <%= link_to "Gravatar", "https://gravatar.com", target: "_blank" %> to automatically link a photo to your account based on your email.
+          If you would like to use a custom photo, please use the form below.
+        </i>
+      </p>
+      <%= image_f.label :photo, 'Local Photo', class: 'label is-size-6 mt-3' %>
+      <%= image_f.file_field :photo, class: "mt-2" %>
+      <%= render 'public/input_errors', resource: image_f.object, attribute: :photo %>
+      <p class="my-2 is-size-7">
+        <i>Max file size: 3MB</i>
+      </p>
+      <%= image_f.label :remote_photo, 'Photo Url', class: 'label is-size-6' %>
+      <%= image_f.text_field :remote_photo, class: 'input' %>
+      <p class="is-size-7 mt-3">
         <i>(leave blank if you don't want to upload/update a photo)</i>
       </p>
+    <% else %>
+      <%= image_f.label :remove_photo, class: 'checkbox button is-small is-rounded my-1' do %>
+        <%= image_f.check_box :remove_photo %>
+        Delete
+      <% end %>
     <% end %>
-    <%= attachment_f.label :photo, 'Local Photo', class: "label is-size-6 mt-3" %>
-    <%= attachment_f.file_field :photo, class: "mt-2" %>
-    <%= render 'public/input_errors', resource: attachment_f.object, attribute: :photo %>
-    <p class="my-2 is-size-7">
-      <i>Max file size: 3MB</i>
-    </p>
-    <%= attachment_f.label :remote_photo, 'Photo Url', class: 'label is-size-6' %>
-    <%= attachment_f.text_field :remote_photo, class: 'input' %>
   <% end %>
 </div>
