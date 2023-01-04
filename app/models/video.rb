@@ -16,6 +16,6 @@ class Video < ApplicationRecord
   end
 
   def video_present?
-    video.file || [nil, ''].none?(remote_video)
+    (video.file || [nil, ''].none?(remote_video)) && !_destroy
   end
 end
