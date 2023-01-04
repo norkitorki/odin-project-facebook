@@ -8,7 +8,13 @@ class Post < ApplicationRecord
 
   belongs_to :user
 
-  validates :content, presence: true, unless: :attachment_only?
+  validates :content, presence: true, unless: :media_only?
+
+  has_one :tag_list, as: :tagable,
+    dependent: :destroy
+
+  has_one :video, as: :videoable,
+    dependent: :destroy
 
   has_many :comments, as: :commentable,
     dependent: :destroy
@@ -17,12 +23,6 @@ class Post < ApplicationRecord
     dependent: :destroy
 
   has_many :links, as: :linkable,
-    dependent: :destroy
-
-  has_one :tag_list, as: :tagable,
-    dependent: :destroy
-
-  has_one :attachment, as: :attachable,
     dependent: :destroy
 
   has_many :images, as: :imageable,
@@ -36,7 +36,9 @@ class Post < ApplicationRecord
     allow_destroy: true,
     reject_if: :all_blank
 
-  accepts_nested_attributes_for :attachment
+  accepts_nested_attributes_for :video,
+    allow_destroy: true,
+    reject_if: :all_blank
 
   accepts_nested_attributes_for :images,
     allow_destroy: true,
@@ -46,9 +48,13 @@ class Post < ApplicationRecord
     created_at < updated_at
   end
 
+  def all_images_destroyed?
+    images.all?(&:_destroy)
+  end
+
   private
 
-  def attachment_only?
-    content.empty? && (attachment.photo? || attachment.video?)
+  def media_only?
+    content.empty? && (!all_images_destroyed? || video && video.video_present?)
   end
 end

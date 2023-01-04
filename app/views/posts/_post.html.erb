@@ -1,8 +1,8 @@
 <div class="card">
   <div class="card-image">
     <figure class="image columns is-flex-direction-column is-align-items-center mt-3 <%= 'home-post' if controller_name == 'static_pages' %>">
-      <% if post.attachment.video_url %>
-        <%= video_tag(post.attachment.video_url, controls: true, preload: 'none') %>
+      <% if post.video && post.video.video_present? %>
+        <%= video_tag(post.video, controls: true, preload: 'none') %>
       <% else %>
         <% if action_name == 'show' %>
           <% post.images.each do |image| %>

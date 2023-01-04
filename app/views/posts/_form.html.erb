@@ -28,6 +28,25 @@
             <br>
           <% end %>
         <% end %>
+
+        <h3 class="label is-size-5">Video</h3>
+        <p class="is-size-7 mb-2">
+          <i>Max file size: 10MB</i>
+        </p>
+        <%= f.fields_for :video do |video_f| %>
+          <% if video_f.object.new_record? %>
+            <%= video_f.file_field :video %>
+            <%= video_f.text_field :remote_video, class: 'input my-2', placeholder: 'https://example.com/videos/video.mp4' %>
+          <% else %>
+            <figure class="image">
+              <%= video_tag video_f.object %>
+            </figure>
+            <%= video_f.label :_destroy, class: 'checkbox button is-small is-rounded my-2' do %>
+              <%= video_f.check_box :_destroy %>
+              Delete
+            <% end %>
+          <% end %>
+        <% end %>
       </div>
     </div>
     <div class="column is-flex-grow-0">
