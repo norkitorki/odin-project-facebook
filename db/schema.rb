@@ -10,23 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_04_064720) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_04_122253) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "attachments", force: :cascade do |t|
-    t.string "photo"
-    t.string "remote_photo"
-    t.string "video"
-    t.string "remote_video"
-    t.string "slug"
-    t.string "attachable_type", null: false
-    t.bigint "attachable_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["attachable_type", "attachable_id"], name: "index_attachments_on_attachable"
-    t.index ["slug"], name: "index_attachments_on_slug", unique: true
-  end
 
   create_table "comments", force: :cascade do |t|
     t.string "body"
