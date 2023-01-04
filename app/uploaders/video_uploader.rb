@@ -4,7 +4,7 @@ class VideoUploader < CarrierWave::Uploader::Base
   storage :file
 
   def default_url(*args)
-    model.remote_video == '' ? nil : model.remote_video
+    model.respond_to?(:remote_video) ? model.remote_video.to_s : ''
   end
 
   def extension_allowlist
