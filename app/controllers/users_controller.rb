@@ -8,6 +8,18 @@ class UsersController < ApplicationController
     @activity = user_activity(@posts, @comments)
   end
 
+  def posts
+    @posts = @user.posts.includes(:comments, :likes, :user)
+  end
+
+  def comments
+    @comments = Comment.where(user_id: @user.id).includes(:likes)
+  end
+
+  def friends
+    @friends = @user.friends.includes(:image)
+  end
+
   private
 
   def user_activity(*resources)
