@@ -20,7 +20,13 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     get 'sign_in', to: 'users/sessions#new'
-    resources :users, only: :show
+    resources :users, only: :show do
+      member do
+        get 'posts'
+        get 'comments'
+        get 'friends'
+      end
+    end
   end
 
   # Omniauth callback route
