@@ -1,0 +1,14 @@
+<div class="my-4 has-text-centered">
+  <h2 class="title"><%= @user.full_name %>'s Comments(<%= @comments.length %>)</h2>
+  <%= link_to 'Back to Profile', @user, class: 'button is-primary' %>
+</div>
+<%= turbo_frame_tag @user do %>
+  <article class="columns is-flex-direction-column is-align-items-center is-4 is-variable my-3">
+    <% @comments.each do |comment| %>
+      <div class="column is-full-tablet is-half-desktop box is-clipped">
+        <%= render comment, like: comment.find_or_initialize_like(current_user) %>
+        <%= link_to "Show", polymorphic_url(comment.commentable, anchor: comment.slug), class: 'button is-primary mt-2 ml-6' %>
+      </div>
+    <% end %>
+  </article>
+<% end %>
