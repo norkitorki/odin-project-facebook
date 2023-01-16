@@ -3,9 +3,9 @@ class UsersController < ApplicationController
   before_action :set_user
 
   def show
-    @user     = User.friendly.find(params[:id])
     @posts    = @user.posts.includes(:comments, :likes, :user)
     @comments = @user.comments.includes(:likes, :user)
+    @friends  = @user.friends
     @activity = user_activity(@posts, @comments)
   end
 
