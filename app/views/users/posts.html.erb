@@ -1,0 +1,13 @@
+<div class="my-4 has-text-centered">
+  <h2 class="title"><%= @user.full_name %>'s Posts(<%= @posts.length %>)</h2>
+  <%= link_to 'Back to Profile', @user, class: 'button is-primary' %>
+</div>
+<%= turbo_frame_tag @user do %>
+  <article class="columns is-flex-direction-column is-align-items-center is-4 is-variable my-3">
+    <% @posts.each do |post| %>
+      <div class="column is-full-tablet is-half-desktop">
+        <%= render post, like: post.find_or_initialize_like(current_user), tags: post.tag_list.to_a %>
+      </div>
+    <% end %>
+  </article>
+<% end %>
