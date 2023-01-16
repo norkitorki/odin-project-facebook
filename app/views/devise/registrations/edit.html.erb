@@ -2,40 +2,46 @@
   <h2 class="title">Edit <%= resource_name.to_s.humanize %></h2>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-    <div class="field">
-      <%= f.label :email, class: "label is-size-5" %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>
-      <%= render 'public/input_errors', resource: resource, attribute: :email %>
-    </div>
+    <div class="columns is-multiline is-variable is-4">
+      <div class="column is-flex-grow-0 field">
+        <%= f.label :email, class: "label is-size-5" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>
+        <%= render 'public/input_errors', resource: resource, attribute: :email %>
+      </div>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-    <% end %>
-
-    <%= render 'photo_field', form: f %>
-
-    <div class="field">
-      <%= f.label :password, class: "label is-size-5 mb-0" %> <i>(leave blank if you don't want to change it)</i>
-      <%= f.password_field :password, autocomplete: "new-password", class: "input" %>
-      <%= render 'public/input_errors', resource: resource, attribute: :password %>
-      <% if @minimum_password_length %>
-        <br />
-        <em><%= @minimum_password_length %> characters minimum</em>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
       <% end %>
-    </div>
 
-    <div class="field">
-      <%= f.label :password_confirmation, class: "label is-size-5" %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input" %>
-      <%= render 'public/input_errors', resource: resource, attribute: :password_confirmation %>
-    </div>
+      <div class="column is-flex-grow-0">
+        <%= render 'photo_field', form: f %>
+      </div>
 
-    <div class="field">
-      <%= f.label :current_password, class: "label is-size-5 mb-0" %> <i>(we need your current password to confirm your changes)</i>
-      <%= f.password_field :current_password, autocomplete: "current-password", class: "input" %>
-      <%= render 'public/input_errors', resource: resource, attribute: :current_password %>
-    </div>
+      <div class="column is-flex-grow-0">
+        <div class="field">
+          <h3 class="label is-size-5">Password</h3>
+          <%= f.label :password, 'New Password', class: "label is-size-6 mb-0" %> <i class="is-size-7">(leave blank if you don't want to change it)</i>
+          <%= f.password_field :password, autocomplete: "new-password", class: "input" %>
+          <%= render 'public/input_errors', resource: resource, attribute: :password %>
+          <% if @minimum_password_length %>
+            <br />
+            <em class="is-size-7"><%= @minimum_password_length %> characters minimum</em>
+          <% end %>
+        </div>
 
+        <div class="field">
+          <%= f.label :password_confirmation, 'New Password Confirmation', class: "label is-size-6" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input" %>
+          <%= render 'public/input_errors', resource: resource, attribute: :password_confirmation %>
+        </div>
+
+        <div class="field">
+          <%= f.label :current_password, 'Current Password', class: "label is-size-6 mb-0" %> <i class="is-size-7">(we need your current password to confirm your changes)</i>
+          <%= f.password_field :current_password, autocomplete: "current-password", class: "input" %>
+          <%= render 'public/input_errors', resource: resource, attribute: :current_password %>
+        </div>
+      </div>
+    </div>
     <div class="actions">
       <%= f.submit "Update", class: "button is-primary" %>
     </div>
