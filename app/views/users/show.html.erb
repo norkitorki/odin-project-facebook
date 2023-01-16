@@ -7,6 +7,26 @@
         <figure class="image is-128x128">
           <%= image_tag @user.photo, class: 'image-128x128' %>
         </figure>
+        <aside class="menu mt-2">
+          <ul class="menu-list has-text-weight-bold" data-turbo-frame="user_<%= @user.id %>">
+            <li>
+              <%= link_to 'Posts', posts_user_path(@user), data: { turbo_frame: "user_#{@user.id}" } %>
+            </li>
+            <li>
+              <%= link_to 'Comments', comments_user_path(@user), data: { turbo_frame: "user_#{@user.id}" } %>
+            </li>
+            <li>
+              <%= link_to 'Friends', friends_user_path(@user), data: { turbo_frame: "user_#{@user.id}" } %>
+            </li>
+            <li>
+              <% if current_user != @user && !current_user.friend?(@user) && !current_user.friend_request?(@user) %>
+                <li>
+                  <%= link_to 'Send Friend Request', new_friend_request_path(candidate: @user.id) %>
+                </li>
+              <% end %>
+            </li>
+          </ul>
+        </aside>
       </div>
     <div class="media-content">
       <p class="title is-4"><%= @user.full_name %></p>
