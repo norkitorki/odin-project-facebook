@@ -4,13 +4,13 @@
 </div>
 <%= turbo_frame_tag @user do %>
   <article class="columns is-variable is-multiline is-8">
-    <% 20.times.each do |_| %>
+    <% @friends.each do |friend| %>
       <div class="column is-flex-grow-0 box has-text-centered">
-        <%= link_to @friends.first do %>
+        <%= link_to friend do %>
           <figure class="image is-128x128">
-            <%= image_tag @friends.first.photo, class: 'image-128x128  is-rounded' %>
+            <%= image_tag friend.photo, class: 'image-128x128  is-rounded' %>
           </figure>
-          <p class="title is-4 mt-2"><%= @friends.first.full_name %></p>
+          <p class="title is-4 mt-2"><%= friend.full_name %></p>
         <% end %>
       </div>
     <% end %>
