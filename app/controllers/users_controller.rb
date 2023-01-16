@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_user
 
   def show
     @user     = User.friendly.find(params[:id])
@@ -21,6 +22,10 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def set_user
+    @user = User.friendly.find(params[:id])
+  end
 
   def user_activity(*resources)
     resources.flatten.sort { |a, b| b.updated_at <=> a.updated_at }.last(12)
