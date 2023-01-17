@@ -3,6 +3,6 @@
 <article class="columns">
 <% @objects.each do |obj| %>
   <div class="column is-one-third">
-    <%= render obj, like: find_or_initialize_like(obj), tags: obj.tag_list.to_a %>
+    <%= render obj, like: find_or_initialize_like(obj), tags: obj.tag_list.to_a, compact?: true %>
   </div>
 <% end %>
