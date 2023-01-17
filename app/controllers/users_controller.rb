@@ -6,7 +6,10 @@ class UsersController < ApplicationController
     @posts    = @user.posts.includes(:comments, :likes, :user)
     @comments = @user.comments.includes(:likes, :user)
     @friends  = @user.friends
-    @activity = user_activity(@posts, @comments)
+  end
+
+  def activity
+    @activity = user_activity(@user.posts, @user.comments)
   end
 
   def posts
