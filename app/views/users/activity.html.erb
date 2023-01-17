@@ -1,0 +1,25 @@
+<% if action_name == 'activity' %>
+  <div class="my-4 has-text-centered">
+    <h2 class="title"><%= @user.full_name %>'s Activity</h2>
+    <%= link_to 'Back to Profile', @user, class: 'button is-primary' %>
+  </div>
+<% end %>
+<%= turbo_frame_tag @user do %>
+  <div class="columns is-flex-direction-column is-align-items-center box is-2">
+    <% @activity.each do |resource| %>
+      <article class="column is-half media p-0 has-text-centered">
+        <div class="media-content">
+          <div class="content">
+            <p class="is-size-5">
+              <strong><%= @user.full_name %></strong> has created a <%= resource.class %>!
+            </p>
+            <p>
+              <span class="is-size-7 mr-1"><%= distance_of_time_in_words(Time.now, resource.created_at) %> ago</span>
+              <%= link_to 'Show', resource, data: { turbo: false }, class: 'button is-small' %>
+            </p>
+          </div>
+        </div>
+      </article>
+    <% end %>
+  </div>
+<% end %>
