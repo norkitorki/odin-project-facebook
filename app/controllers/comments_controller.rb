@@ -2,6 +2,10 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_comment, except: %i[ new create ]
 
+  def show
+    redirect_to [@comment.commentable, anchor: @comment.friendly_id], status: :see_other
+  end
+
   def new
     @comment             = Comment.new(parent: params[:parent])
     @comment.commentable = @comment.ancestor&.commentable
