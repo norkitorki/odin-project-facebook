@@ -3,7 +3,7 @@
   <%= link_to 'Back to Profile', @user, class: 'button is-primary' %>
 </div>
 <%= turbo_frame_tag @user do %>
-  <article class="columns is-variable is-multiline is-8">
+  <article class="columns is-variable is-multiline is-8 m-2">
     <% @friends.each do |friend| %>
       <div class="column is-flex-grow-0 box has-text-centered">
         <%= link_to friend do %>
