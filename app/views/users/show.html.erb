@@ -8,7 +8,10 @@
           <%= image_tag @user.photo, class: 'image-128x128' %>
         </figure>
         <aside class="menu mt-2">
-          <ul class="menu-list has-text-weight-bold" data-turbo-frame="user_<%= @user.id %>">
+          <ul class="menu-list has-text-weight-bold">
+            <li>
+              <%= link_to 'Activity', activity_user_path(@user), data: { turbo_frame: "user_#{@user.id}" } %>
+            </li>
             <li>
               <%= link_to 'Posts', posts_user_path(@user), data: { turbo_frame: "user_#{@user.id}" } %>
             </li>
@@ -65,33 +68,10 @@
           </div>
         </div>
         <div class="mt-5">
-          <%= turbo_frame_tag @user do %>
-            <div class="columns is-flex-direction-column is-align-items-center box is-2">
-              <% @activity.each do |resource| %>
-                <article class="column is-half media p-0">
-                  <div class="media-content">
-                    <div class="content">
-                      <p class="is-size-5">
-                        <strong><%= @user.full_name %></strong>
-                        <% if resource.class == Comment %>
-                          has commented on a <%= resource.commentable.class %>!
-                          <br>
-                          <span class="is-size-6"><%= resource.body %></span>
-                        <% elsif resource.class == Post %>
-                          has created a new Post!
-                          <br>
-                          <span class="is-size-6"><%= resource.content %></span>
-                        <% end %>
-                      </p>
-                      <p>
-                        <span class="is-size-7 mr-1"><%= distance_of_time_in_words(Time.now, resource.created_at) %> ago</span>
-                        <%= link_to 'Show', (resource.class == Comment ? resource.commentable : resource), class: 'button is-small' %>
-                      </p>
-                    </div>
-                  </div>
-                </article>
-              <% end %>
-            </div>
+          <%= turbo_frame_tag @user, src: activity_user_path(@user) do %>
+            <% if action_name == 'activity' %>
+              
+            <% end %>
           <% end %>
         </div>
       </div>
