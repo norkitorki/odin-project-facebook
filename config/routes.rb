@@ -4,11 +4,12 @@ Rails.application.routes.draw do
   get 'static_pages/home', as: :home
   get 'discover', to: 'static_pages#discover'
   get 'tag', to: 'tags#show'
-  
+
   resources :friend_requests, except: %i[ edit update ]
   resources :posts, except: :index
   resources :comments, except: :index
   resources :likes, only: %i[ create destroy ]
+  resources :tags, only: :index
   resources :notifications, only: %i[ index show ] do
     delete '/', to: 'notifications#destroy', on: :collection
   end
