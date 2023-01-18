@@ -1,0 +1,10 @@
+<h2 class="title mb-0">Tags</h2>
+
+<% @tags.each do |letter, tags| %>
+  <p>
+    <p class="is-size-1 has-text-weight-bold"><%= letter %></p>
+    <% tags.each do |tag| %>
+      <%= link_to tag, tag_path(s: tag), class: 'mx-1 has-text-link' %>
+    <% end %>
+  </p>
+<% end %>
