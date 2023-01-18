@@ -1,8 +1,9 @@
 <h2 class="title mb-0">Posts tagged with <span class="is-underlined"><%= @tag %></span>:</h2>
 
 <article class="columns">
-<% @objects.each do |obj| %>
-  <div class="column is-one-third">
-    <%= render obj, like: find_or_initialize_like(obj), tags: obj.tag_list.to_a, compact?: true %>
-  </div>
-<% end %>
+  <% @posts.each do |obj| %>
+    <div class="column is-full-tablet is-one-third-desktop">
+      <%= render obj, like: find_or_initialize_like(obj), tags: obj.tag_list.to_a, compact?: true %>
+    </div>
+  <% end %>
+</article>
