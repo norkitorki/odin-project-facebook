@@ -1,6 +1,11 @@
 class TagsController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    unique_tags = TagList.all.map(&:to_a).flatten.uniq
+    @tags       = tags_by_first_letter(unique_tags)
+  end
+
   def show
     @tag   = params[:s]
     @posts = TagList.find_by_tag(@tag)
