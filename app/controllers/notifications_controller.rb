@@ -19,7 +19,7 @@ class NotificationsController < ApplicationController
   private
 
   def set_notification
-    @notification = Notification.find(params[:id])
+    @notification = Notification.friendly.find(params[:id])
   end
 
   def notification_params
