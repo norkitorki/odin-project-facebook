@@ -7,7 +7,7 @@ class NotificationsController < ApplicationController
   end
 
   def show
-    @notification.destroy
+    @notification.update(read: true)
     redirect_to (@notification.path || @notification.notifiable), status: :moved_permanently
   end
 
