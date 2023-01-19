@@ -38,7 +38,7 @@ class FriendRequestsController < ApplicationController
     else
       notice = 'You have declined the friend request.'
     end
-    redirect_to root_path, notice: notice
+    redirect_to friend_requests_path, notice: notice
   end
 
   private
