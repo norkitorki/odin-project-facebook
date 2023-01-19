@@ -1,6 +1,6 @@
 class NotificationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_notification, only: :show
+  before_action :set_notification, except: :index
 
   def index
     @notifications = current_user.notifications.order(created_at: :desc)
@@ -12,8 +12,8 @@ class NotificationsController < ApplicationController
   end
 
   def destroy
-    current_user.notifications.destroy_all
-    redirect_to notifications_path, alert: 'Notifications have been cleared.'
+    @notification.destroy
+    redirect_to notifications_path, alert: 'Notification has been deleted.'
   end
 
   private
