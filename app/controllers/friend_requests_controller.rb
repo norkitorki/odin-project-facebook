@@ -22,7 +22,7 @@ class FriendRequestsController < ApplicationController
     @friend_request = current_user.friend_requests.new(friend_request_params)
     
     if @friend_request.save
-      redirect_to root_path, notice: 'Friend Request has been sent.'
+      redirect_to root_path, notice: 'Friend request has been sent.'
     else
       flash.now[:alert] = 'Friend request has not been sent.'
       render :new, status: :unprocessable_entity
