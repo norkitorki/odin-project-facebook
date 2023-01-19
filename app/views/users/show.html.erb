@@ -21,13 +21,11 @@
             <li>
               <%= link_to 'Friends', friends_user_path(@user), data: { turbo_frame: "user_#{@user.id}" } %>
             </li>
-            <li>
-              <% if current_user != @user && !current_user.friend?(@user) && !current_user.friend_request?(@user) %>
-                <li>
-                  <%= link_to 'Send Friend Request', new_friend_request_path(candidate: @user.id) %>
-                </li>
-              <% end %>
-            </li>
+            <% if current_user != @user && !current_user.friend?(@user) && !current_user.friend_request?(@user) %>
+              <li>
+                <%= link_to 'Send Friend Request', new_friend_request_path(candidate: @user.id) %>
+              </li>
+            <% end %>
           </ul>
         </aside>
       </div>
