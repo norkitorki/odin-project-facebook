@@ -31,6 +31,6 @@ class UsersController < ApplicationController
   end
 
   def user_activity(*resources)
-    resources.flatten.sort { |a, b| b.updated_at <=> a.updated_at }.last(12)
+    resources.flatten.sort { |a, b| b.created_at <=> a.created_at }.last(12)
   end
 end
