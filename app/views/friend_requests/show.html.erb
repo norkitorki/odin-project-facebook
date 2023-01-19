@@ -1,14 +1,17 @@
-<h2 class="title is-size-4 has-text-weight-light"><span class="has-text-weight-bold"><%= @friend_request.user.full_name %></span> would like to become your friend!</h2>
+<h2 class="title is-size-4 has-text-weight-light">
+  <%= link_to @friend_request.user.full_name, @friend_request.user, class: 'has-text-weight-bold' %>
+  would like to become your friend!
+</h2>
 
 <% if !@friend_request.message.empty? %>
   <article class="message is-link">
     <div class="message-header">
-      <p>With the following message</p>
+      <p>With the following message:</p>
     </div>
     <div class="message-body">
-      <%= @friend_request.message %>
+      <p><%= @friend_request.message %></p>
     </div>
-</article>
+  </article>
 <% end %>
 
 <%= form_with(model: @friend_request, method: :delete) do |f| %>
