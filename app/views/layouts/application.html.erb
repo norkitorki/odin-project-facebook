@@ -24,10 +24,36 @@
             <% if !@notifications.empty? %>
               <%= render 'layouts/notification_menu' %>
             <% end %>
-            <%= link_to 'Edit User', edit_user_registration_path, class: 'button is-info navbar-item mr-2' %>
-            <%= form_with(url: destroy_user_session_path, method: :delete) do |f| %>
-              <%= f.submit 'Sign Out', class: 'button is-danger navbar-item' %>
-            <% end %>
+            <div class="dropdown is-hoverable is-right mr-2">
+            <div class="dropdown-trigger">
+              <%= link_to current_user do %>
+                <figure class="image is-48x48">
+                  <%= image_tag current_user.photo, class: 'is-rounded' %>
+                </figure>
+              <% end %>
+            </div>
+            <div class="dropdown-menu" id="dropdown-menu" role="menu">
+              <ul class="dropdown-content">
+                <li class="dropdown-item has-text-weight-semibold">
+                  Welcome, <%= current_user.full_name %>
+                </li>
+                <li class="dropdown-item">
+                  <%= link_to "Notifications(#{@notifications.length})", notifications_path, class: 'button is-link navbar-item' %>
+                </li>
+                <li class="dropdown-item">
+                  <%= link_to 'Friend Requests', friend_requests_path, class: 'button is-link navbar-item' %>
+                </li>
+                <li class="dropdown-item">
+                  <%= link_to 'Edit User', edit_user_registration_path, class: 'button is-info navbar-item' %>
+                </li>
+                <li class="dropdown-item">
+                  <%= form_with(url: destroy_user_session_path, method: :delete) do |f| %>
+                    <%= f.submit 'Sign Out', class: 'dropdown-submit button is-danger navbar-item' %>
+                  <% end %>
+                </li>
+              </ul>
+            </div>
+          </div>
           <% else %>
             <%= link_to 'Sign Up', new_user_registration_path, class: 'button is-link navbar-item is-rounded' %>
           <% end %>
