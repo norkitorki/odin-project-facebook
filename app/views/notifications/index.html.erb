@@ -1,13 +1,21 @@
-<% if @notifications.empty? %>
+<% if @notifications_by_date.empty? %>
   <i class="is-size-5 mt-2">No new notifications</i>
 <% else %>
   <h2 class="title">Notifications</h2>
-  <div class="columns is-flex-direction-column">
-    <% @notifications.each do |notification| %>
-      <div class="column is-one-quarter-tablet is-half-desktop notification is-link is-light">
-        <%= notification.body %> <span class="is-size-7 has-text-dark"><%= notification.created_at.localtime.strftime('%c') %></span>
-        <%= link_to 'Show', notification, class: 'button is-info is-rounded is-small has-text-weight-bold' %>
+  <% @notifications_by_date.each do |date, notifications| %>
+    <div class="columns is-flex-direction-column">
+      <div class="column columns is-flex-direction-column">
+        <h3 class="column is-size-6 has-text-weight-bold"><%= date %></h3>
+        <% notifications.each do |notification| %>
+          <div class="column notification is-link has-text-weight-bold <%= 'read-notification' if notification.read %>" style="width:max-content;">
+            <%= button_to '', notification, method: :delete, class: 'delete', 'aria-label': 'delete', title: 'Delete notification', form_class: 'delete' %>
+            <p class="is-size-7"><%= notification.created_at.localtime.strftime('%R') %></p>
+            <%= link_to notification do %>
+              <p class="my-2"><%= notification.body %></p>
+            <% end %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 <% end %>
