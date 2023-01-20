@@ -13,9 +13,9 @@
     </div>
   </article>
 <% end %>
-
-<%= form_with(model: @friend_request, method: :delete) do |f| %>
-  <%= f.submit 'Accept', class: 'button is-success' %>
-  <%= f.submit 'Decline', class: 'button is-danger' %>
-<% end %>
-
+<div class="has-text-centered">
+  <%= form_with(model: @friend_request, method: :delete) do |f| %>
+    <%= f.submit 'Accept', class: 'button is-success mr-1' %>
+    <%= f.submit 'Decline', class: 'button is-danger' %>
+  <% end %>
+</div>
