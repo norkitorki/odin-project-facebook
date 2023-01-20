@@ -10,7 +10,7 @@
         <strong><%= link_to comment.user.full_name, comment.user %></strong>
         <span class="is-size-6 has-text-danger">♥</span> <%= comment.likes.length %>
       </p>
-      <p><%= comment.body %></p>
+      <p class="word-wrapped"><%= comment.body %></p>
     </div>
     <nav class="level is-mobile">
       <div class="level-left">

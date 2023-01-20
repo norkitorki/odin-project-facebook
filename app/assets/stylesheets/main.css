@@ -46,7 +46,7 @@
   bottom: 15px;
 }
 
-.post-content {
+.word-wrapped {
   word-wrap: break-word;
   white-space: pre-wrap;
 }

@@ -2,14 +2,13 @@
   <%= link_to @friend_request.user.full_name, @friend_request.user, class: 'has-text-weight-bold' %>
   would like to become your friend!
 </h2>
-
 <% if !@friend_request.message.empty? %>
   <article class="message is-link">
     <div class="message-header">
       <p>With the following message:</p>
     </div>
     <div class="message-body">
-      <p><%= @friend_request.message %></p>
+      <p class="word-wrapped"><%= @friend_request.message %></p>
     </div>
   </article>
 <% end %>

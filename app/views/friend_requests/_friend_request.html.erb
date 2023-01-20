@@ -7,7 +7,7 @@
   </div>
   <div class="message-body">
     <% if !friend_request.message.empty? %>
-      <p class="mb-4"><%= friend_request.message %></p>
+      <p class="word-wrapped mb-4"><%= friend_request.message %></p>
     <% end %>
     <%= form_with(model: friend_request, method: :delete) do |f| %>
       <%= f.submit 'Accept', class: 'button is-success is-small' %>
