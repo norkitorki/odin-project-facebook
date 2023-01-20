@@ -3,7 +3,8 @@ class NotificationsController < ApplicationController
   before_action :set_notification, except: :index
 
   def index
-    @notifications = current_user.notifications.order(created_at: :desc)
+    user_notifications = current_user.notifications.order(created_at: :desc)
+    @notifications_by_date = notifications_by_date(user_notifications)
   end
 
   def show
@@ -24,5 +25,13 @@ class NotificationsController < ApplicationController
 
   def notification_params
     params.require(:notification).permit(:body)
+  end
+
+  def notifications_by_date(notifications)
+    notifications.each_with_object({}) do |notification, hash|
+      date = notification.created_at.strftime('%F')
+      hash[date] ||= []
+      hash[date] << notification
+    end
   end
 end
