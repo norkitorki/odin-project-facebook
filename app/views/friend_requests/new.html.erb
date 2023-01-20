@@ -1,7 +1,7 @@
-<h2 class="title is-size-4 has-text-weight-light">New Friend Request for <span class="has-text-weight-bold"><%= @candidate.full_name %></span></h2>
+<h2 class="title is-size-4 has-text-weight-light">New Friend Request for <span class="has-text-weight-bold"><%= @friend_request.candidate.full_name %></span></h2>
 
 <%= form_with(model: @friend_request) do |f| %>
-  <%= f.hidden_field :candidate_id, value: @candidate.id %>
+  <%= f.hidden_field :candidate_id, value: @friend_request.candidate_id %>
   <div class="field">
     <%= f.label :message, 'Message(optional)', class: 'label is-size-5' %>
     <%= f.text_area :message, class: 'textarea is-info' %>
