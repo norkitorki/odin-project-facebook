@@ -21,6 +21,10 @@
   background-color: hsl(0, 0%, 96%);
 }
 
+.read-notification { filter: blur(3px); }
+
+.read-notification:hover { filter: blur(0); }
+
 .comment-submit {
   font-size: 1rem;
   background-color: inherit;
