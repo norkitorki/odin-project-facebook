@@ -1,0 +1,12 @@
+<% if @friend_requests.empty? %>
+  <i class="is-size-5 mt-2">No new Friend requests.</i>
+<% else %>
+  <h2 class="title">Friend Requests(<%= @friend_requests.length %>)</h2>
+  <div class="columns is-flex-direction-column">
+    <% @friend_requests.each do |friend_request| %>
+      <div class="column is-full-tablet is-one-third-desktop notification is-link is-light mt-2">
+        <%= render 'friend_request', friend_request: friend_request %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
