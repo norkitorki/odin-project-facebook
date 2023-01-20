@@ -1,6 +1,6 @@
 class FriendRequest < ApplicationRecord
+  after_save :notify_candidate
   after_destroy :destroy_inverse_requests, if: :inverse_request_exists?
-  after_create :create_notification
 
   validate :user_is_not_candidate, :pending_requests
 
@@ -32,7 +32,7 @@ class FriendRequest < ApplicationRecord
     self.class.exists?(user: candidate, candidate: user)
   end
 
-  def create_notification
+  def notify_candidate
     notifications.create(user: candidate, body: "#{user.full_name} would like to be your Friend.")
   end
 end
