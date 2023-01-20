@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :likes, only: %i[ create destroy ]
   resources :tags, only: :index
   resources :notifications, only: %i[ index show destroy ]
+  resources :friendships, only: :destroy
 
   devise_for :users, controllers: {
     registrations: 'users/registrations',
