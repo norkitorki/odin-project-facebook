@@ -23,7 +23,7 @@
             </li>
             <% if current_user != @user && !current_user.friend?(@user) && !current_user.friend_request?(@user) %>
               <li>
-                <%= link_to 'Send Friend Request', new_friend_request_path(candidate: @user.id) %>
+                <%= link_to 'Send Friend Request', new_friend_request_path(candidate_id: @user.slug) %>
               </li>
             <% end %>
           </ul>
