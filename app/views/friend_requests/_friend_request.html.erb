@@ -9,6 +9,8 @@
     <% if !friend_request.message.empty? %>
       <p class="word-wrapped mb-4"><%= friend_request.message %></p>
     <% end %>
+  </div>
+  <div class="has-text-centered my-2">
     <%= form_with(model: friend_request, method: :delete) do |f| %>
       <%= f.submit 'Accept', class: 'button is-success is-small' %>
       <%= f.submit 'Decline', class: 'button is-danger is-small' %>
