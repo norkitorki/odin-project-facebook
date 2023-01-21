@@ -1,13 +1,13 @@
-<article class="message is-link">
+<article class="message is-link pb-3">
   <div class="message-header">
     <p><%= link_to friend_request.user.full_name, friend_request.user %> would like to be your friend!</p>
   </div>
-  <div class="message-body <%= 'home-friend-request' if local_assigns[:compact?] %>">
-    <% if !friend_request.message.empty? %>
+  <% if !friend_request.message.empty? %>
+    <div class="message-body pb-0 <%= 'home-friend-request' if local_assigns[:compact?] %>">
       <p class="word-wrapped mb-4"><%= friend_request.message %></p>
-    <% end %>
-  </div>
-  <div class="has-text-centered my-2">
+    </div>
+  <% end %>
+  <div class="has-text-centered mt-3">
     <%= form_with(model: friend_request, method: :delete) do |f| %>
       <%= f.submit 'Accept', class: 'button is-success is-small' %>
       <%= f.submit 'Decline', class: 'button is-danger is-small' %>
