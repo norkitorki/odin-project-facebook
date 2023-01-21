@@ -1,23 +1,4 @@
 <div class="card">
-  <div class="card-image">
-    <figure class="image columns is-flex-direction-column is-align-items-center mt-3 <%= 'home-post' if controller_name == 'static_pages' %>">
-      <% if post.video && post.video.video_present? %>
-        <%= video_tag(post.video, controls: true, preload: 'none') %>
-      <% else %>
-        <% if local_assigns[:compact?] %>
-          <%= link_to post do %>
-            <%= image_tag post.images.first.to_s %>
-          <% end %>
-        <% else %>
-          <% post.images.each do |image| %>
-            <%= link_to image do %>
-              <%= image_tag image %>
-            <% end %>
-          <% end %>
-        <% end %>
-      <% end %>
-    </figure>
-  </div>
   <div class="card-content">
     <div class="media">
       <div class="media-left">
@@ -78,9 +59,28 @@
         </div>
       </div>
     </div>
+    <div class="card-image pb-2">
+      <figure class="image columns is-flex-direction-column is-align-items-center <%= 'home-post' if controller_name == 'static_pages' %>">
+        <% if post.video && post.video.video_present? %>
+          <%= video_tag(post.video, controls: true, preload: 'none') %>
+        <% else %>
+          <% if local_assigns[:compact?] %>
+            <%= link_to post do %>
+              <%= image_tag post.images.first.to_s %>
+            <% end %>
+          <% else %>
+            <% post.images.each do |image| %>
+              <%= link_to image do %>
+                <%= image_tag image %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </figure>
+    </div>
     <div class="content">
       <%= turbo_frame_tag post do %>
-        <p class="word-wrapped my-1"><%= local_assigns[:compact?] && post.content.length > 500 ? "#{post.content[0..500]}\n..." : post.content %></p>
+        <p class="word-wrapped mt-4"><%= local_assigns[:compact?] && post.content.length > 500 ? "#{post.content[0..500]}\n..." : post.content %></p>
       <% end %>
       <% if post.links.any? %>
         <div class="columns is-align-items-center m-0 mt-4">
