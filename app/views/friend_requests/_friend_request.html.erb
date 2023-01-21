@@ -1,11 +1,8 @@
 <article class="message is-link">
   <div class="message-header">
-    <p>
-      <%= link_to friend_request.user.full_name, friend_request.user %> 
-      would like to be your friend!
-    </p>
+    <p><%= link_to friend_request.user.full_name, friend_request.user %> would like to be your friend!</p>
   </div>
-  <div class="message-body">
+  <div class="message-body <%= 'home-friend-request' if local_assigns[:compact?] %>">
     <% if !friend_request.message.empty? %>
       <p class="word-wrapped mb-4"><%= friend_request.message %></p>
     <% end %>
