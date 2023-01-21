@@ -51,6 +51,11 @@
   white-space: pre-wrap;
 }
 
+.home-friend-request {
+  max-height: 400px;
+  overflow-y: scroll;
+}
+
 .home-post { 
   overflow: hidden;
   padding: 0 10px 0 10px; 
