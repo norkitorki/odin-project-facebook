@@ -75,6 +75,10 @@ group :test do
   gem "webdrivers"
 end
 
+group :development, :test do
+  gem 'rspec-rails', '~> 6.0.0'
+end
+
 gem "devise", "~> 4.8"
 
 gem "bulma-rails", "~> 0.9.4"
