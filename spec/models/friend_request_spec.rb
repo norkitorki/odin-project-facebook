@@ -4,7 +4,22 @@ RSpec.describe FriendRequest, type: :model do
   fixtures :users
 
   before do
-    @friend_request = FriendRequest.new(user: users(:one), candidate: users(:two), message: 'test')
+    @friend_request = subject.class.new(user: users(:one), candidate: users(:two), message: 'test')
+  end
+
+  it "should be valid without a message" do
+    @friend_request.message = nil
+    expect(@friend_request).to be_valid
+  end
+
+  it "should be invalid without a user" do
+    @friend_request.user = nil
+    expect(@friend_request).to_not be_valid
+  end
+
+  it "should be invalid without a candidate" do
+    @friend_request.candidate = nil
+    expect(@friend_request).to_not be_valid
   end
 
   it "should create notification after save" do
@@ -12,18 +27,19 @@ RSpec.describe FriendRequest, type: :model do
   end
 
   it "should delete inverse requests after deletion" do
-    inverse_friend_request = FriendRequest.new(user: @friend_request.candidate, candidate: @friend_request.user, message: 'testing deletion of inverse requests')
+    inverse_friend_request = subject.class.new(user: @friend_request.candidate, candidate: @friend_request.user, message: 'testing deletion of inverse requests')
     @friend_request.save! && inverse_friend_request.save!
-    expect { inverse_friend_request.destroy! }.to change { FriendRequest.count }.by(-2)
+    expect { inverse_friend_request.destroy! }.to change { subject.class.count }.by(-2)
   end
 
   it "should not save when user and candidate are equal" do
     @friend_request.candidate = @friend_request.user
-    expect { @friend_request.save! }.to raise_exception(ActiveRecord::RecordInvalid)
+    expect(@friend_request).to_not be_valid
   end
 
   it "should not save when record already exists" do
     @friend_request.save!
-    expect { @friend_request.dup.save! }.to raise_exception(ActiveRecord::RecordInvalid)
+    friend_request_copy = @friend_request.dup
+    expect(friend_request_copy).to_not be_valid
   end
 end
