@@ -1,13 +1,20 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  body: MyString
+  body: First comment
   user: one
-  commentable: one
-  commentable_type: Commentable
+  commentable: one (Post)
+  slug: 434n535j35_dff
 
-two:
-  body: MyString
+reply:
+  body: Reply of first comment
   user: two
-  commentable: two
-  commentable_type: Commentable
+  commentable: one (Post)
+  slug: 29xpkndf56_op4
+  parent: 434n535j35_dff
+
+reply_of_reply:
+  body: Reply of reply
+  user: one
+  commentable: one (Post)
+  parent: 29xpkndf56_op4
