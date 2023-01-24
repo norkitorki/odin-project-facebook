@@ -14,17 +14,17 @@ RSpec.describe Comment, type: :model do
 
   it "should not save comment without user" do
     @comment.user = nil
-    expect(@comment.save).to be false
+    expect { @comment.save! }.to raise_exception(ActiveRecord::RecordInvalid)
   end
 
   it "should not save comment without commentable" do
     @comment.commentable = nil
-    expect(@comment.save).to be false
+    expect { @comment.save! }.to raise_exception(ActiveRecord::RecordInvalid)
   end
 
   it "should not save comment without body" do
     @comment.body = nil
-    expect(@comment.save).to be false
+    expect { @comment.save! }.to raise_exception(ActiveRecord::RecordInvalid)
   end
 
   it "should have replies one-to-many association" do
