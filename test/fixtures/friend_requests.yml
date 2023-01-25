@@ -1,7 +1,6 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  body: User would like to become your friend!
-  path: /home
+  message: Hello! Want to become friends?
   user: one
-  notifiable: one (FriendRequest)
+  candidate: two
