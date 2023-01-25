@@ -8,7 +8,7 @@ class Like < ApplicationRecord
 
   def user_validity
     case
-    when user && likeable.user == user
+    when user && likeable && likeable.user == user
       errors.add(:user_id, "cannot like their own #{likeable.class}")
     when Like.exists?(user: user, likeable: likeable)
       errors.add(:user_id, "has already liked this #{likeable.class}")
