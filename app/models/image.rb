@@ -16,6 +16,6 @@ class Image < ApplicationRecord
   end
 
   def image_present?
-    photo.file || [nil, ''].none?(remote_photo)
+    !photo.file.nil? || [nil, ''].none?(remote_photo)
   end
 end
