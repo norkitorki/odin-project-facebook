@@ -1,9 +1,9 @@
 class Link < ApplicationRecord
-  before_save :prepend_protocol
+  before_save :prepend_scheme
 
   belongs_to :linkable, polymorphic: true
 
-  validates :body, 
+  validates :body,
     presence: true,
     format: {
       with: /\A(https?:\/{2})?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b[-a-zA-Z0-9@:%_\+.~#?&\/\/=]*\z/,
@@ -12,7 +12,7 @@ class Link < ApplicationRecord
 
   private
 
-  def prepend_protocol
+  def prepend_scheme
     body.insert(0, 'http://') unless body.start_with?(/https?:\/\//)
   end
 end
