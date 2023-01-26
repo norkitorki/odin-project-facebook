@@ -6,7 +6,7 @@ class TagList < ApplicationRecord
   validates :list, format: {
     with: /\A[a-zA-Z0-9, ]+\z/,
     message: 'of tags must be comma seperated and consist only of alphabetic letters(a-z) and numbers(0-9)'
-    }
+    }, unless: Proc.new { list.empty? }
 
   validate :validate_tag_count
 
