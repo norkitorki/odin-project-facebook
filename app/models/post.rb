@@ -55,6 +55,6 @@ class Post < ApplicationRecord
   private
 
   def media_only?
-    content.empty? && (!all_images_destroyed? || video && video.video_present?)
+    (content.nil? || content.empty?) && (!all_images_destroyed? || video && video.video_present?)
   end
 end
