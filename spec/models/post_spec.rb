@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  fixtures 'posts'
-  fixtures 'images'
-  fixtures 'videos'
+  fixtures :posts, :images, :videos
 
   before do
     @post = posts(:one)

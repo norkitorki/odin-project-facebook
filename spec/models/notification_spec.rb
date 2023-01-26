@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Notification, type: :model do
-  fixtures 'notifications'
+  fixtures :notifications, :friend_requests
 
   before do
    @notification = notifications(:one)

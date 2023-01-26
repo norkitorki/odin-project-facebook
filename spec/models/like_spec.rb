@@ -1,8 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Like, type: :model do
-  fixtures 'users'
-  fixtures 'posts'
+  fixtures :users, :posts
 
   before do
     @like = Like.new(user: users(:one), likeable: posts(:two))

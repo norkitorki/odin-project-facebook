@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Friendship, type: :model do
-  fixtures 'users'
+  fixtures :users
 
   before do
     @friendship = subject.class.new(user: users(:one), friend: users(:two))

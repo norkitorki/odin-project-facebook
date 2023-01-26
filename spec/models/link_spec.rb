@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Link, type: :model do
-  fixtures 'links'
+  fixtures :links
 
   before do
     @link = links(:one)

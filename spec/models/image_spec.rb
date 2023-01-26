@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Image, type: :model do
-  fixtures 'images'
+  fixtures :images
 
   before do
     @image_1 = images(:one)
