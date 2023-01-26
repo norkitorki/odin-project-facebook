@@ -4,7 +4,7 @@ RSpec.describe FriendRequest, type: :model do
   fixtures :users
 
   before do
-    @friend_request = subject.class.new(user: users(:one), candidate: users(:two), message: 'test')
+    @friend_request = subject.class.new(user: users(:three), candidate: users(:four), message: 'test')
   end
 
   it "should be valid without a message" do
