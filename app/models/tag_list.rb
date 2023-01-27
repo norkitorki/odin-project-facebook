@@ -21,7 +21,7 @@ class TagList < ApplicationRecord
   private
 
   def format_list
-    list.downcase.gsub(' ', '').split(',').uniq.sort
+    list.to_s.downcase.gsub(' ', '').split(',').uniq.sort
   end
 
   def validate_tag_count(max = 10)
