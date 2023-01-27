@@ -60,6 +60,6 @@ class User < ApplicationRecord
   end
 
   def photo
-    image.image_present? ? image : gravatar_url
+    image&.image_present? ? image : gravatar_url
   end
 end
