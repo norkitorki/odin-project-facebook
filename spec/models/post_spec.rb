@@ -29,7 +29,7 @@ RSpec.describe Post, type: :model do
     expect(@post.edited?).to be true
   end
 
-  context '#all_images_destroyed?' do
+  describe '#all_images_destroyed?' do
     it "should return true if images are empty" do
       expect(@post.all_images_destroyed?).to be true
     end

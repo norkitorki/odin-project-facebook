@@ -27,13 +27,13 @@ RSpec.describe Image, type: :model do
     expect(@image_1).to_not be_valid
   end
 
-  context "#to_s" do
+  describe "#to_s" do
     it "should return photo_url" do
       expect(@image_1.to_s).to eq(@image_1.photo_url)
     end
   end
 
-  context "#image_present?" do
+  describe "#image_present?" do
     it "should return true with photo" do
       expect(@image_1.image_present?).to be true
     end
