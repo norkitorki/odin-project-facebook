@@ -1,15 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  video: MyString
-  remote_video: MyString
-  slug: MyString
-  videoable: one
-  videoable_type: Videoable
+  video: 'my_video.mp4'
+  videoable: one (Post)
 
 two:
-  video: MyString
-  remote_video: MyString
-  slug: MyString
-  videoable: two
-  videoable_type: Videoable
+  remote_video: 'https://example.com/v/video.webm'
+  videoable: two (Post)
