@@ -3,3 +3,7 @@
 one:
   content: This is the first Post!
   user: one
+
+two:
+  content: This is the second Post!
+  user: two
