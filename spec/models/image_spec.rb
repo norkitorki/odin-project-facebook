@@ -8,7 +8,7 @@ RSpec.describe Image, type: :model do
     @image_2 = images(:two)
   end
 
-  it "should be valid with photo and remote_photo" do
+  it "should be valid with photo,remote_photo and imageable" do
     @image_1.remote_photo = 'https://example.com/some_image.png'
     expect(@image_1).to be_valid
   end
@@ -49,6 +49,11 @@ RSpec.describe Image, type: :model do
 
     it "should return false without photo and remote_photo" do
       @image_2.remote_photo = nil
+      expect(@image_2.image_present?).to be false
+    end
+
+    it "should return false when remote_photo is empty" do
+      @image_2.remote_photo = ''
       expect(@image_2.image_present?).to be false
     end
   end
