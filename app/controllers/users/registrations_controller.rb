@@ -45,17 +45,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, 
-      keys: [:first_name, :last_name, :birthday, :gender, attachment_attributes: attachment_attributes, image_attributes: image_attributes])
+      keys: [:first_name, :last_name, :birthday, :gender, image_attributes: image_attributes])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
     devise_parameter_sanitizer.permit(:account_update, 
-      keys: [:photo, :remove_photo, attachment_attributes: attachment_attributes, image_attributes: image_attributes])
-  end
-
-  def attachment_attributes
-    %i[ id photo remote_photo remove_photo ]
+      keys: [:photo, :remove_photo, image_attributes: image_attributes])
   end
 
   def image_attributes
