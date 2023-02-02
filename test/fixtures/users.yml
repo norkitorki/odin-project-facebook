@@ -6,6 +6,7 @@ one:
   last_name: Doe
   birthday: 1993-05-07 00:00:00 +0000
   gender: Male
+  slug: john_doe
 
 two:
   email: jane.doe@outlook.com
@@ -13,13 +14,20 @@ two:
   last_name: Doe
   birthday: 1990-12-07 00:00:00 +0000
   gender: Female
+  slug: jane_doe
 
 three:
   email: alex.h@gmail.com
   first_name: Alex
   last_name: Hitchens
+  birthday: 1981-11-01 00:00:00 +0000
+  gender: Male
+  slug: alex_hitchens
 
 four:
   email: marie.boe@yahoo.com
   first_name: Marie
   last_name: Boe
+  birthday: 2001-02-23 00:00:00 +0000
+  gender: Female
+  slug: marie_boe
