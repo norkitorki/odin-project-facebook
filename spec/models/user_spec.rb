@@ -47,6 +47,31 @@ RSpec.describe User, type: :model do
     expect(@user).to_not be_valid
   end
 
+  describe "slug" do
+    before do
+      @user_copy = users(:two).dup
+      @user_copy.email = 'test@testing.com'
+      @user_copy.password = '********'
+    end
+
+    context "when name is unique" do
+      it "should generate slug from name when saved" do
+        @user_copy.first_name = 'Miss'
+        expect { @user_copy.save! }.to change { @user_copy.slug }.to eq('miss_doe')
+      end
+    end
+
+    context "when name is not unique" do
+      it "should generate slug from name appended by a uuid" do
+        user = @user_copy.dup
+        user.email = 'testing@testing.com'
+        user.password = '***********'
+        [@user_copy, user].each(&:save!)
+        expect(user.slug).to match(/jane_doe-[a-f0-9-]{36}/)
+      end
+    end
+  end
+
   describe '#full_name' do
     it "should return the full name" do
       expect(@user.full_name).to eq('John Doe')
