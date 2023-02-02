@@ -1,4 +1,4 @@
-<% if !@comment.parent.empty? %>
+<% if @comment.parent && !@comment.parent.empty? %>
   <h2 class="title is-size-2">New Reply</h2>
   <div class="columns">
     <div class="column is-one-third-desktop">
@@ -9,7 +9,7 @@
   <h2 class="title is-size-2">New Comment</h2>
   <div class="columns">
     <div class="column is-one-third-desktop">
-      <%= render @commentable, like: @commentable.find_or_initialize_like(current_user), tags: @commentable.tag_list.to_a %>
+      <%= render @commentable, like: @commentable.find_or_initialize_like(current_user), tags: @commentable.tag_list.to_a, compact?: true %>
     </div>
   </div>
 <% end %>
