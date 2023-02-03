@@ -7,3 +7,7 @@ one:
 two:
   remote_photo: https://example.com/i/236.jpg
   imageable: two (User)
+
+three:
+  remote_photo: https://funnypictures.com/image243.png
+  imageable: one (Post)
