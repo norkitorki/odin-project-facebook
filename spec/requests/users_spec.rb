@@ -42,12 +42,24 @@ RSpec.describe "Users", type: :request do
       expect(controller.action_name).to eq('show')
     end
 
-    it "should return http status code 200" do
-      expect(response.status).to eq(200)
+    it "should assign posts" do
+      expect(assigns(:posts)).to eq(@user.posts)
+    end
+
+    it "should assign comments" do
+      expect(assigns(:comments)).to eq(@user.comments)
+    end
+
+    it "should assign friends" do
+      expect(assigns(:friends)).to eq(@user.friends)
     end
 
     it "should render show view" do
-      expect(response).to render_template('show')
+      expect(response).to render_template(:show)
+    end
+
+    it "should return http status code 200" do
+      expect(response.status).to eq(200)
     end
   end
 
@@ -56,16 +68,20 @@ RSpec.describe "Users", type: :request do
       get activity_user_path(@user)
     end
 
-    it "should return http status code 200" do
-      expect(response.status).to eq(200)
-    end
-
     it "should call activity action" do
       expect(controller.action_name).to eq('activity')
     end
 
+    it "should assign activity" do
+      expect(assigns(:activity)).to be_present
+    end
+
     it "should render activity view" do
-      expect(response).to render_template('activity')
+      expect(response).to render_template(:activity)
+    end
+
+    it "should return http status code 200" do
+      expect(response.status).to eq(200)
     end
   end
 
@@ -74,16 +90,20 @@ RSpec.describe "Users", type: :request do
       get posts_user_path(@user)
     end
 
-    it "should return http status code 200" do
-      expect(response.status).to eq(200)
-    end
-
     it "should call posts action" do
       expect(controller.action_name).to eq('posts')
     end
 
+    it "should assign posts" do
+      expect(assigns(:posts)).to eq(@user.posts)
+    end
+
     it "should render posts view" do
       expect(response).to render_template('posts')
+    end
+
+    it "should return http status code 200" do
+      expect(response.status).to eq(200)
     end
   end
 
@@ -92,16 +112,20 @@ RSpec.describe "Users", type: :request do
       get comments_user_path(@user)
     end
 
-    it "should return http status code 200" do
-      expect(response.status).to eq(200)
-    end
-
     it "should call comments action" do
       expect(controller.action_name).to eq('comments')
     end
 
+    it "should assign comments" do
+      expect(assigns(:comments)).to eq(@user.comments)
+    end
+
     it "should render comments view" do
       expect(response).to render_template('comments')
+    end
+
+    it "should return http status code 200" do
+      expect(response.status).to eq(200)
     end
   end
 
@@ -110,16 +134,20 @@ RSpec.describe "Users", type: :request do
       get friends_user_path(@user)
     end
 
-    it "should return http status code 200" do
-      expect(response.status).to eq(200)
-    end
-
     it "should call friends action" do
       expect(controller.action_name).to eq('friends')
     end
 
+    it "should assign friends" do
+      expect(assigns(:friends)).to eq(@user.friends)
+    end
+
     it "should render friends view" do
       expect(response).to render_template('friends')
+    end
+
+    it "should return http status code 200" do
+      expect(response.status).to eq(200)
     end
   end
 end
