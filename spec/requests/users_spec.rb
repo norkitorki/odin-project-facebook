@@ -6,8 +6,31 @@ RSpec.describe "Users", type: :request do
   fixtures :users
 
   before do
-    @user = users(:one)
-    sign_in @user
+    sign_in @user = users(:one)
+  end
+
+  context "when user is not signed in" do
+    before do
+      sign_out @user
+    end
+
+    it "should redirect to user sign in page" do
+      # /home
+      get user_path(@user)
+      expect(response).to redirect_to(new_user_session_path)
+      # /activity
+      get activity_user_path(@user)
+      expect(response).to redirect_to(new_user_session_path)
+      # /posts
+      get posts_user_path(@user)
+      expect(response).to redirect_to(new_user_session_path)
+      # /comments
+      get comments_user_path(@user)
+      expect(response).to redirect_to(new_user_session_path)
+      # /friends
+      get friends_user_path(@user)
+      expect(response).to redirect_to(new_user_session_path)
+    end
   end
 
   describe "GET /show" do
