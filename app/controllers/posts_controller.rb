@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, except: %i[ new create ]
-  before_action :validate_user, only: %i[ edit update destroy ]
+  before_action :authorize_user, only: %i[ edit update destroy ]
 
   def show
     @comment  = Comment.new
@@ -16,7 +16,6 @@ class PostsController < ApplicationController
   end
 
   def edit
-    (5 - @post.links.count).times { @post.links.new }
     initialize_assocations
   end
 
@@ -68,7 +67,7 @@ class PostsController < ApplicationController
     )
   end
 
-  def validate_user
+  def authorize_user
     if @post.user_id != current_user.id
       redirect_to @post, notice: 'You do not have permission to perform this operation.', status: :forbidden
     end
