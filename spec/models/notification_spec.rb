@@ -39,6 +39,7 @@ RSpec.describe Notification, type: :model do
   it "should return unread notifications" do
     expect(Notification.unread).to include(@notification)
     @notification.update(read: true)
+    notifications(:two).update(read: true)
     expect(Notification.unread).to be_empty
   end
 end
