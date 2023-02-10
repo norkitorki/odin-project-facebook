@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'static_pages/home', as: :home
   get 'discover', to: 'static_pages#discover'
   get 'tag', to: 'tags#show'
+  delete 'notifications', to: 'notifications#clear'
 
   resources :friend_requests, except: %i[ edit update ]
   resources :posts, except: :index
