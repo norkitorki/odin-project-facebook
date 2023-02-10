@@ -5,3 +5,10 @@ one:
   path: /home
   user: one
   notifiable: one (FriendRequest)
+  slug: 26xIs73RlTQiNOzvHci-ag
+
+two:
+  body: Some other notification
+  user: one
+  notifiable: one (Post)
+  slug: FBvSnLw5VkZyfMqw3r2Sig
