@@ -7,7 +7,7 @@ class FriendRequest < ApplicationRecord
   belongs_to :user
   belongs_to :candidate, class_name: 'User'
 
-  has_many :notifications, as: :notifiable,
+  has_one :notification, as: :notifiable,
     dependent: :destroy
 
   private
@@ -33,6 +33,6 @@ class FriendRequest < ApplicationRecord
   end
 
   def notify_candidate
-    notifications.create(user: candidate, body: "#{user.full_name} would like to be your Friend.")
+    create_notification(user: candidate, body: "#{user.full_name} would like to be your Friend.")
   end
 end
