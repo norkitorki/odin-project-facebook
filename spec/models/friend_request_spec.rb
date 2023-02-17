@@ -24,6 +24,7 @@ RSpec.describe FriendRequest, type: :model do
 
   it "should create notification after save" do
     expect { @friend_request.save! }.to change { Notification.count }.by(1)
+    expect(Notification.find_by(user: @friend_request.candidate, body: 'Alex Hitchens would like to be your Friend.')).to be_present
   end
 
   it "should delete inverse requests after deletion" do
