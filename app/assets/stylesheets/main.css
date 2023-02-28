@@ -2,6 +2,8 @@
 
 .field label { width: max-content; }
 
+.is-width-max-content { width: max-content; }
+
 .input { min-width: max-content; }
 
 .field_with_errors input, .field_with_errors textarea {
