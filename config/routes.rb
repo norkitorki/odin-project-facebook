@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :tags, only: :index
   resources :notifications, only: %i[ index show destroy ]
   resources :friendships, only: :destroy
+  resources :shares, except: %i[ edit update ]
 
   devise_for :users, controllers: {
     registrations: 'users/registrations',
