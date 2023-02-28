@@ -31,7 +31,17 @@
           </div>
           <div class="dropdown-menu">
             <div class="dropdown-content">
+              <% if current_user == post.user %>
                 <%= link_to 'Share', new_share_path(shareable: { shareable_type: post.class, shareable_id: post.id }), class: 'dropdown-item' %>
+                <hr class="dropdown-divider">
+                <%= link_to 'Edit', edit_post_path(post), class: 'dropdown-item', data: { turbo_frame: "post_#{post.id}" } %>
+                <div>
+                  <%= form_with(model: post, method: :delete) do |f| %>
+                    <%= f.submit 'Delete', class: 'dropdown-submit button dropdown-item has-text-left' %>
+                  <% end %>
+                </div>
+              <% else %>
+                 <div>
                   <% if like.new_record? %>
                     <%= form_with(url: likes_path(likeable: { likeable_type: 'Post', likeable_id: post.id }, path: request.path)) do |f| %>
                       <%= f.submit 'Like', class: 'dropdown-submit button dropdown-item has-text-left' %>
@@ -43,16 +53,6 @@
                   <% end %>
                 </div>
               <% end %>
-              <%= link_to 'Share', '#', class: 'dropdown-item' %>
-              <% if current_user == post.user %>
-                <hr class="dropdown-divider">
-                <%= link_to 'Edit', edit_post_path(post), class: 'dropdown-item', data: { turbo_frame: "post_#{post.id}" } %>
-                <div>
-                  <%= form_with(model: post, method: :delete) do |f| %>
-                    <%= f.submit 'Delete', class: 'dropdown-submit button dropdown-item has-text-left' %>
-                  <% end %>
-                </div>
-              <% end %> 
             </div>
           </div>
         </div>
