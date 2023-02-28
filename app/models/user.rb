@@ -41,6 +41,9 @@ class User < ApplicationRecord
   has_many :notifications,
     dependent: :destroy
 
+  has_many :shares,
+    dependent: :destroy
+
   accepts_nested_attributes_for :image
 
   def full_name
