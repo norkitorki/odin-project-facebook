@@ -1,0 +1,17 @@
+<% if @shares.empty? %>
+  <i class="is-size-5 mt-2">Nothing shared with you yet :)</i>
+<% else %>
+  <h2 class="title">Shares</h2>
+  <% @shares.each do |share| %>
+    <div class="columns is-flex-direction-column box">
+      <div class="column columns is-flex-direction-column">
+        <div class="column notification is-info has-text-weight-bold is-width-max-content" id="share_<%= share.slug %>">
+          <%= button_to '', share, method: :delete, class: 'delete', 'aria-label': 'delete', title: 'Delete share', form_class: 'delete', id: 'share-delete' %>
+          <p class="is-size-7"><%= share.created_at.localtime.strftime('%c') %></p>
+          <p class="my-3"><%= link_to share.shareable.user.full_name, share.shareable.user %> has shared a <%= share.shareable.class %> with you!</p>
+          <%= link_to 'Show', share, class: 'button is-small' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
