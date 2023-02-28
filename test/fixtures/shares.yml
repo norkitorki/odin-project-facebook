@@ -1,0 +1,6 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  shareable: two (Post)
+  slug: CqMOYjHc9oIeLOgZcZG-1Q
