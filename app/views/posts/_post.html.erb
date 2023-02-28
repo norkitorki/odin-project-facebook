@@ -31,8 +31,7 @@
           </div>
           <div class="dropdown-menu">
             <div class="dropdown-content">
-              <% if current_user != post.user %>
-                <div>
+                <%= link_to 'Share', new_share_path(shareable: { shareable_type: post.class, shareable_id: post.id }), class: 'dropdown-item' %>
                   <% if like.new_record? %>
                     <%= form_with(url: likes_path(likeable: { likeable_type: 'Post', likeable_id: post.id }, path: request.path)) do |f| %>
                       <%= f.submit 'Like', class: 'dropdown-submit button dropdown-item has-text-left' %>
