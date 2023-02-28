@@ -3,11 +3,11 @@
 <% else %>
   <h2 class="title">Notifications</h2>
   <% @notifications_by_date.each do |date, notifications| %>
-    <div class="columns is-flex-direction-column">
+    <div class="columns is-flex-direction-column box">
       <div class="column columns is-flex-direction-column">
         <h3 class="column is-size-6 has-text-weight-bold"><%= date %></h3>
         <% notifications.each do |notification| %>
-          <div class="column notification is-link has-text-weight-bold <%= 'read-notification' if notification.read %>" style="width:max-content;" id="notification_<%= notification.slug %>">
+          <div class="column notification is-link has-text-weight-bold is-width-max-content <%= 'read-notification' if notification.read %>" id="notification_<%= notification.slug %>">
             <%= button_to '', notification, method: :delete, class: 'delete', 'aria-label': 'delete', title: 'Delete notification', form_class: 'delete', id: 'notification-delete' %>
             <p class="is-size-7"><%= notification.created_at.localtime.strftime('%R') %></p>
             <%= link_to notification do %>
