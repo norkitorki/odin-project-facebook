@@ -14,16 +14,4 @@
   <% end %>
 </article>
 
-<nav class="pagination" role="navigation" aria-label="pagination">
-  <% if @page > 1 %>
-    <%= link_to 'Previous', root_path(page: @page - 1), class: 'pagination-previous' %>
-  <% end %>
-  <% if @timeline.any? %>
-    <%= link_to 'Next', root_path(page: @page + 1), class: 'pagination-next' %>
-  <% end %>
-  <ul class="pagination-list">
-    <li>
-      <%= link_to 'First Page', root_path(page: 1), class: 'pagination-link', 'aria-label' => 'Go to first page' %>
-    </li>
-  </ul>
-</nav>
+<%= render 'public/resource_pagination', resources: @timeline, page: @page, max_resource_count: 16, resource_path: root_path %>
