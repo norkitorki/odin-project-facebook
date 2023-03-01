@@ -15,7 +15,7 @@ class TagsController < ApplicationController
 
   def tags_by_first_letter(tags)
     tags.each_with_object({}) do |tag, hash|
-      first_letter = tag[0].upcase
+      first_letter = tag[0].downcase
       hash[first_letter] ||= []
       hash[first_letter] << tag.downcase
     end.sort
