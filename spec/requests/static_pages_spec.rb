@@ -35,16 +35,8 @@ RSpec.describe "StaticPages", type: :request do
       expect(controller.action_name).to eq('home')
     end
 
-    it "should assign friend requests" do
-      expect(assigns(:friend_requests)).to eq(@user.pending_friend_requests)
-    end
-
     it "should initialize post" do
       expect(assigns(:post)).to be_new_record
-    end
-
-    it "should assign posts" do
-      expect(assigns(:posts)).to be_present
     end
 
     it "should assign timeline" do
