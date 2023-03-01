@@ -5,8 +5,8 @@ class StaticPagesController < ApplicationController
 
   def home
     @post = Post.new
-    @page = (params[:page] || 1).to_i
-    @timeline = timeline_posts.order(updated_at: :desc).offset((@page - 1) * 16).limit(16)
+    @page = (params[:p] || 1).to_i
+    @posts = resource_pagination(timeline_posts, @page, 16)
   end
 
   def discover
