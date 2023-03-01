@@ -9,14 +9,21 @@
 <article class="columns is-multiline is-1 is-variable my-3">
   <% @timeline.each do |resource| %>
     <div class="column is-half-tablet is-one-quarter-desktop">
-      <% case resource.class.to_s %>
-      <% when 'Post' %>
-        <%= render resource, like: resource.find_or_initialize_like(current_user), tags: resource.tag_list.to_a, compact?: true %>
-      <% when 'FriendRequest' %>
-        <%= render resource, compact?: true %>
-      <% else %>
-        <%= render resource %>
-      <% end %>
+      <%= render resource, like: resource.find_or_initialize_like(current_user), tags: resource.tag_list.to_a, compact?: true %>
     </div>
   <% end %>
 </article>
+
+<nav class="pagination" role="navigation" aria-label="pagination">
+  <% if @page > 1 %>
+    <%= link_to 'Previous', root_path(page: @page - 1), class: 'pagination-previous' %>
+  <% end %>
+  <% if @timeline.any? %>
+    <%= link_to 'Next', root_path(page: @page + 1), class: 'pagination-next' %>
+  <% end %>
+  <ul class="pagination-list">
+    <li>
+      <%= link_to 'First Page', root_path(page: 1), class: 'pagination-link', 'aria-label' => 'Go to first page' %>
+    </li>
+  </ul>
+</nav>
