@@ -5,7 +5,7 @@
 <%= turbo_frame_tag @user do %>
   <article class="columns is-variable is-multiline is-8 m-2">
     <% @friends.each do |friend| %>
-      <div class="column is-flex-grow-0 box has-text-centered">
+      <div class="column is-flex-grow-0 box m-1 has-text-centered">
         <%= link_to friend do %>
           <figure class="image is-128x128">
             <%= image_tag friend.photo, class: 'image-128x128 is-rounded' %>
