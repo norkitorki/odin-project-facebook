@@ -4,7 +4,6 @@ class StaticPagesController < ApplicationController
   before_action :authenticate_user!
 
   def home
-    @friend_requests = current_user.pending_friend_requests
     @post = Post.new
     @page = (params[:page] || 1).to_i
     @timeline = timeline_posts.order(updated_at: :desc).offset((@page - 1) * 16).limit(16)
