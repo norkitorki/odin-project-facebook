@@ -6,8 +6,8 @@ class StaticPagesController < ApplicationController
   def home
     @friend_requests = current_user.pending_friend_requests
     @post = Post.new
-    @posts = timeline_posts
-    @timeline = (@friend_requests + @posts).sort { |a, b| b.updated_at <=> a.updated_at }
+    @page = (params[:page] || 1).to_i
+    @timeline = timeline_posts.order(updated_at: :desc).offset((@page - 1) * 16).limit(16)
   end
 
   def discover
