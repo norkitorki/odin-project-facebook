@@ -7,11 +7,11 @@
 <% end %>
 
 <article class="columns is-multiline is-1 is-variable my-3">
-  <% @timeline.each do |resource| %>
+  <% @posts.each do |post| %>
     <div class="column is-half-tablet is-one-quarter-desktop">
-      <%= render resource, like: resource.find_or_initialize_like(current_user), tags: resource.tag_list.to_a, compact?: true %>
+      <%= render post, like: post.find_or_initialize_like(current_user), tags: post.tag_list.to_a, compact?: true %>
     </div>
   <% end %>
 </article>
 
-<%= render 'public/resource_pagination', resources: @timeline, page: @page, max_resource_count: 16, resource_path: root_path %>
+<%= render 'public/resource_pagination', resources: @posts, page: @page, max_resource_count: 16, resource_path: root_path %>
