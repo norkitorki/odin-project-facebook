@@ -11,6 +11,6 @@ class StaticPagesController < ApplicationController
   end
 
   def discover
-    
+    @users = User.all.includes(:image).shuffle
   end
 end
