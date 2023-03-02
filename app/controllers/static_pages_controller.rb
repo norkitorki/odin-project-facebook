@@ -10,6 +10,8 @@ class StaticPagesController < ApplicationController
   end
 
   def discover
-    @users = User.all.includes(:image).shuffle
+    @page = (params[:p] || 1).to_i
+    users = User.all.includes(:image).order(:first_name)
+    @users = resource_pagination(users, @page, 100)
   end
 end

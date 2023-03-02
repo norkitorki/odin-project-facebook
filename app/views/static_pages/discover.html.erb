@@ -35,3 +35,7 @@
     </div>
   <% end %>
 </article>
+
+<% if @users.length >= 100 || @page > 1 %>
+  <%= render 'public/resource_pagination', resources: @users, page: @page, max_resource_count: 100, resource_path: discover_path %>
+<% end %>
