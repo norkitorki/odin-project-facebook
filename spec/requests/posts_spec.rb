@@ -68,6 +68,10 @@ RSpec.describe "Posts", type: :request do
       expect(assigns(:comment)).to be_new_record
     end
 
+    it "should assign page" do
+      expect(assigns(:page)).to be_present
+    end
+
     it "should assign comments" do
       expect(assigns(:comments)).to be_present
     end

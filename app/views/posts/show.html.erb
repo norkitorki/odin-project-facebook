@@ -23,4 +23,8 @@
       <%= render 'comments/replies', replies: comment.collect_replies %>
     </div>
   <% end %>
+
+  <% if @comments.length >= 20 || @page > 1 %>
+    <%= render 'public/resource_pagination', resources: @comments, page: @page, max_resource_count: 20, resource_path: post_path(@post) %>
+  <% end %>
 </article>

@@ -4,10 +4,12 @@ class PostsController < ApplicationController
   before_action :authorize_user, only: %i[ edit update destroy ]
 
   def show
-    @comment  = Comment.new
-    @comments = @post.comments.root.includes(:user, :likes, :replies).order(created_at: :desc)
-    @like     = @post.find_or_initialize_like(current_user)
-    @tags     = @post.tag_list.to_a
+    @comment      = Comment.new
+    @page         = (params[:p] || 1).to_i
+    post_comments = @post.comments.root.includes(:likes, :replies, :user)
+    @comments     = resource_pagination(post_comments, @page, 20)
+    @like         = @post.find_or_initialize_like(current_user)
+    @tags         = @post.tag_list.to_a
   end
 
   def new
