@@ -1,13 +1,13 @@
 <nav class="pagination" role="navigation" aria-label="pagination">
   <% if page > 1 %>
-    <%= link_to 'Previous', resource_path << "?p=#{page - 1}", class: 'pagination-previous' %>
+    <%= link_to 'Previous', resource_path + "?p=#{page - 1}", class: 'pagination-previous' %>
   <% end %>
   <% if resources.length >= max_resource_count %>
-    <%= link_to 'Next', resource_path << "?p=#{page + 1}", class: 'pagination-next' %>
+    <%= link_to 'Next', resource_path + "?p=#{page + 1}", class: 'pagination-next' %>
   <% end %>
   <ul class="pagination-list">
     <li>
-      <%= link_to 'First Page', resource_path, class: 'pagination-link', 'aria-label' => 'Go to first page' %>
+      <%= link_to 'First Page', resource_path + '?p=1', class: 'pagination-link', 'aria-label' => 'Go to first page' %>
     </li>
   </ul>
 </nav>
