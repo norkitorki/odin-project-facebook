@@ -79,7 +79,7 @@
     </div>
     <div class="content">
       <%= turbo_frame_tag post do %>
-        <p class="word-wrapped mt-4"><%= local_assigns[:compact?] && post.content.length > 500 ? "#{post.content[0..500]}\n..." : post.content %></p>
+        <p class="word-wrapped box"><%= local_assigns[:compact?] && post.content.length > 500 ? "#{post.content[0..500]}\n..." : post.content %></p>
       <% end %>
       <% if post.links.any? %>
         <div class="columns is-align-items-center m-0 mt-4">
