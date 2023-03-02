@@ -19,6 +19,9 @@ RSpec.describe "StaticPages", type: :request do
       # /home
       get home_path
       expect(response).to redirect_to(new_user_session_path)
+      # /discover
+      get discover_path
+      expect(response).to redirect_to(new_user_session_path)
     end
   end
 
@@ -49,6 +52,28 @@ RSpec.describe "StaticPages", type: :request do
 
     it "should render home view" do
       expect(response).to render_template(:home)
+    end
+
+    it "should return http status code 200" do
+      expect(response.status).to eq(200)
+    end
+  end
+
+  describe "GET /discover" do
+    before do
+      get discover_path
+    end
+
+    it "should call discover action" do
+      expect(controller.action_name).to eq('discover')
+    end
+
+    it "should assign users" do
+      expect(assigns(:users)).to be_present
+    end
+
+    it "should render discover view" do
+      expect(response).to render_template(:discover)
     end
 
     it "should return http status code 200" do
