@@ -39,8 +39,12 @@ RSpec.describe "StaticPages", type: :request do
       expect(assigns(:post)).to be_new_record
     end
 
-    it "should assign timeline" do
-      expect(assigns(:timeline)).to be_present
+    it "should assign page" do
+      expect(assigns(:page)).to be_present
+    end
+
+    it "should assign posts" do
+      expect(assigns(:posts)).to be_present
     end
 
     it "should render home view" do
