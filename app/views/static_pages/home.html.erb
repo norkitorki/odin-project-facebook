@@ -6,12 +6,26 @@
   <% end %>
 <% end %>
 
-<article class="columns is-multiline is-1 is-variable my-3">
-  <% @posts.each do |post| %>
-    <div class="column is-half-tablet is-one-quarter-desktop">
-      <%= render post, like: post.find_or_initialize_like(current_user), tags: post.tag_list.to_a, compact?: true %>
+<%= turbo_frame_tag 'posts' do %>
+  <article class="columns is-multiline is-1 is-variable my-3">
+    <% @posts.each do |post| %>
+      <div class="column is-half-tablet is-one-quarter-desktop">
+        <%= render post, like: post.find_or_initialize_like(current_user), tags: post.tag_list.to_a, compact?: true %>
+      </div>
+    <% end %>
+  </article>
+  <% if @posts.length >= 16 %>
+    <div class="pagination-load" hidden>
+      <%= turbo_frame_tag 'posts' do %>
+        <div class="has-text-centered">
+          <%= link_to 'Load more', home_path(p: @page + 1), class: 'button is-link' %>
+        </div>
+      <% end %>
     </div>
   <% end %>
-</article>
-
-<%= render 'public/resource_pagination', resources: @posts, page: @page, max_resource_count: 16, resource_path: root_path %>
+<% end %>
+<% if @posts.length >= 16 || @page > 1 %>
+  <div class="pagination-controls">
+    <%= render 'public/resource_pagination', resources: @posts, page: @page, max_resource_count: 16, resource_path: root_path %>
+  </div>
+<% end %>
