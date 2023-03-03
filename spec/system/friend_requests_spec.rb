@@ -18,11 +18,13 @@ RSpec.describe "FriendRequests", type: :system do
     expect(page).to have_current_path(friend_requests_path)
   end
 
-  it "should send friend request" do
+  it "should send friend request through user profile" do
     FriendRequest.destroy_all
     visit user_path(user_2 = users(:two))
 
-    click_on 'Send Friend Request'
+    within('.menu-list') do
+      click_on 'Send Friend Request'
+    end
 
     expect(page).to have_current_path(new_friend_request_path(candidate_id: user_2.slug))
     expect { click_on 'Send' }.to change { @user.friend_requests.count }.by(1)
