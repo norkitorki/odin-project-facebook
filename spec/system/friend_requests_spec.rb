@@ -28,6 +28,19 @@ RSpec.describe "FriendRequests", type: :system do
     expect { click_on 'Send' }.to change { @user.friend_requests.count }.by(1)
   end
 
+  it "should send friend request through user post" do
+    sign_in user = users(:three)
+
+    visit user_path(@user)
+
+    within "#post_#{@user.posts.first.slug}" do
+      click_on(class: 'post-friend-request')
+    end
+
+    expect(page).to have_current_path(new_friend_request_path(candidate_id: @user.slug))
+    expect { click_on 'Send' }.to change { user.friend_requests.count }.by(1)
+  end
+
   context "when user has recevied friend request" do
     before do
       FriendRequest.destroy_all
