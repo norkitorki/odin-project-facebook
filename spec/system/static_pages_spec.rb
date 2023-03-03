@@ -10,12 +10,12 @@ RSpec.describe "StaticPages", type: :system do
     sign_in @user = users(:one)
   end
 
-  it "should be viewing home" do
+  it "should view home" do
     visit root_path
     expect(page).to have_current_path(root_path)
   end
 
-  it "should be viewing discover" do
+  it "should view discover" do
     visit root_path
 
     click_on 'Discover'
