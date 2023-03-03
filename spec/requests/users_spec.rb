@@ -15,7 +15,7 @@ RSpec.describe "Users", type: :request do
     end
 
     it "should redirect to user sign in page" do
-      # /home
+      # /show
       get user_path(@user)
       expect(response).to redirect_to(new_user_session_path)
       # /comments
@@ -40,6 +40,10 @@ RSpec.describe "Users", type: :request do
       expect(assigns(:posts)).to eq(@user.posts)
     end
 
+    it "should assign page" do
+      expect(assigns(:page)).to be_present
+    end
+
     it "should render show view" do
       expect(response).to render_template(:show)
     end
@@ -62,6 +66,10 @@ RSpec.describe "Users", type: :request do
       expect(assigns(:comments)).to eq(@user.comments)
     end
 
+    it "should assign page" do
+      expect(assigns(:page)).to be_present
+    end
+
     it "should render comments view" do
       expect(response).to render_template('comments')
     end
@@ -82,6 +90,10 @@ RSpec.describe "Users", type: :request do
 
     it "should assign friends" do
       expect(assigns(:friends)).to eq(@user.friends)
+    end
+
+    it "should assign page" do
+      expect(assigns(:page)).to be_present
     end
 
     it "should render friends view" do
