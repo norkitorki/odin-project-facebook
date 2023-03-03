@@ -45,13 +45,9 @@ RSpec.describe "FriendRequests", type: :system do
 
   context "when user has recevied friend request" do
     before do
-      FriendRequest.destroy_all
-      visit user_path(user_2 = users(:two))
+      sign_in users(:two)
+      visit root_path
 
-      click_on 'Send Friend Request'
-      click_on 'Send'
-
-      sign_in user_2
       click_on 'Friend Requests'
 
       expect(page).to have_current_path(friend_requests_path)
