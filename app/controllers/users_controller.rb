@@ -3,17 +3,7 @@ class UsersController < ApplicationController
   before_action :set_user
 
   def show
-    @posts    = @user.posts.includes(:comments, :likes, :user)
-    @comments = @user.comments.includes(:likes, :user)
-    @friends  = @user.friends
-  end
-
-  def activity
-    @activity = user_activity(@user.posts, @user.comments)
-  end
-
-  def posts
-    @posts = @user.posts.includes(:comments, :likes, :user)
+    @posts = resource_pagination(posts, @page, 20)
   end
 
   def comments

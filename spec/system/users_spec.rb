@@ -91,16 +91,6 @@ RSpec.describe "Users", type: :system do
         expect(page).to have_current_path(user_path(@user))
       end
 
-      it "should be viewing activity" do
-        click_on 'Activity'
-        expect(page).to have_current_path(activity_user_path(@user))
-      end
-
-      it "should be viewing posts" do
-        click_on 'Posts'
-        expect(page).to have_current_path(posts_user_path(@user))
-      end
-
       it "should be viewing comments" do
         click_on 'Comments'
         expect(page).to have_current_path(comments_user_path(@user))

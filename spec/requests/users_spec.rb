@@ -18,12 +18,6 @@ RSpec.describe "Users", type: :request do
       # /home
       get user_path(@user)
       expect(response).to redirect_to(new_user_session_path)
-      # /activity
-      get activity_user_path(@user)
-      expect(response).to redirect_to(new_user_session_path)
-      # /posts
-      get posts_user_path(@user)
-      expect(response).to redirect_to(new_user_session_path)
       # /comments
       get comments_user_path(@user)
       expect(response).to redirect_to(new_user_session_path)
@@ -56,50 +50,6 @@ RSpec.describe "Users", type: :request do
 
     it "should render show view" do
       expect(response).to render_template(:show)
-    end
-
-    it "should return http status code 200" do
-      expect(response.status).to eq(200)
-    end
-  end
-
-  describe "GET /activity" do
-    before do
-      get activity_user_path(@user)
-    end
-
-    it "should call activity action" do
-      expect(controller.action_name).to eq('activity')
-    end
-
-    it "should assign activity" do
-      expect(assigns(:activity)).to be_present
-    end
-
-    it "should render activity view" do
-      expect(response).to render_template(:activity)
-    end
-
-    it "should return http status code 200" do
-      expect(response.status).to eq(200)
-    end
-  end
-
-  describe "GET /posts" do
-    before do
-      get posts_user_path(@user)
-    end
-
-    it "should call posts action" do
-      expect(controller.action_name).to eq('posts')
-    end
-
-    it "should assign posts" do
-      expect(assigns(:posts)).to eq(@user.posts)
-    end
-
-    it "should render posts view" do
-      expect(response).to render_template('posts')
     end
 
     it "should return http status code 200" do

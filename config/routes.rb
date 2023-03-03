@@ -24,8 +24,6 @@ Rails.application.routes.draw do
     get 'sign_in', to: 'users/sessions#new'
     resources :users, only: :show do
       member do
-        get 'activity'
-        get 'posts'
         get 'comments'
         get 'friends'
       end
