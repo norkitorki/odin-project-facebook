@@ -72,6 +72,10 @@ RSpec.describe "StaticPages", type: :request do
       expect(assigns(:users)).to be_present
     end
 
+    it "should assign page" do
+      expect(assigns(:page)).to be_present
+    end
+
     it "should render discover view" do
       expect(response).to render_template(:discover)
     end
