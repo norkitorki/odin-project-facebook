@@ -7,7 +7,7 @@
     <% @comments.each do |comment| %>
       <div class="column is-full-tablet is-half-desktop box is-clipped">
         <%= render comment, like: comment.find_or_initialize_like(current_user) %>
-        <%= link_to "Show", polymorphic_url(comment.commentable, anchor: comment.slug), class: 'button is-primary mt-2 ml-6' %>
+        <%= link_to "Show", polymorphic_url(comment.commentable, anchor: comment.slug), class: 'button is-primary mt-2 ml-6', data: { turbo: false } %>
       </div>
     <% end %>
   </article>
