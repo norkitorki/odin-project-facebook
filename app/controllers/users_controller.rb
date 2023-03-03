@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def comments
-    @comments = resource_pagination(@user.comments.includes(:likes), @page, 20)
+    @comments = resource_pagination(@user.comments.includes(:likes, :commentable), @page, 20)
   end
 
   def friends
