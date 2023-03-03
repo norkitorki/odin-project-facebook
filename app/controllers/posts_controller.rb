@@ -1,11 +1,11 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, except: %i[ new create ]
+  before_action :set_page, only: :show
   before_action :authorize_user, only: %i[ edit update destroy ]
 
   def show
     @comment      = Comment.new
-    @page         = (params[:p] || 1).to_i
     post_comments = @post.comments.root.includes(:likes, :replies, :user)
     @comments     = resource_pagination(post_comments, @page, 20)
     @like         = @post.find_or_initialize_like(current_user)
