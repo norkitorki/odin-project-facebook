@@ -1,5 +1,5 @@
 <div class="my-4 has-text-centered">
-  <h2 class="title"><%= @user.full_name %>'s Comments(<%= @comments.length %>)</h2>
+  <h2 class="title"><%= @user.full_name %>'s Comments(<%= @user.comments.length %>)</h2>
   <%= link_to 'Back to Profile', @user, class: 'button is-primary' %>
 </div>
 <%= turbo_frame_tag @user do %>
@@ -11,4 +11,18 @@
       </div>
     <% end %>
   </article>
+  <% if @comments.length >= 20 %>
+    <div class="pagination-load" hidden>
+      <%= turbo_frame_tag @user do %>
+        <div class="has-text-centered">
+          <%= link_to 'Load more', comments_user_path(@user, p: @page + 1), class: 'button is-link' %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
+<% if @comments.length >= 20 || @page > 1 %>
+  <div class="pagination-controls">
+    <%= render 'public/resource_pagination', resources: @comments, page: @page, max_resource_count: 20, resource_path: comments_user_path(@user) %>
+  </div>
 <% end %>

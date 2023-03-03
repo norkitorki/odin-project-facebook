@@ -1,26 +1,22 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_user
+  before_action :authenticate_user!, :set_user, :set_page
 
   def show
+    posts  = @user.posts.includes(:comments, :likes, :user, :video, :images, :tag_list)
     @posts = resource_pagination(posts, @page, 20)
   end
 
   def comments
-    @comments = Comment.where(user_id: @user.id).includes(:likes)
+    @comments = resource_pagination(@user.comments.includes(:likes), @page, 20)
   end
 
   def friends
-    @friends = @user.friends.includes(:image)
+    @friends = resource_pagination(@user.friends.includes(:image), @page, 60)
   end
 
   private
 
   def set_user
     @user = User.friendly.find(params[:id])
-  end
-
-  def user_activity(*resources)
-    resources.flatten.sort { |a, b| b.created_at <=> a.created_at }.last(12)
   end
 end

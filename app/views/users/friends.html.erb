@@ -20,4 +20,18 @@
       </div>
     <% end %>
   </article>
+  <% if @friends.length >= 60 %>
+    <div class="pagination-load" hidden>
+      <%= turbo_frame_tag @user do %>
+        <div class="has-text-centered">
+          <%= link_to 'Load more', friends_user_path(@user, p: @page + 1), class: 'button is-link' %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
+<% if @friends.length >= 60 || @page > 1 %>
+  <div class="pagination-controls">
+    <%= render 'public/resource_pagination', resources: @friends, page: @page, max_resource_count: 60, resource_path: friends_user_path(@user) %>
+  </div>
 <% end %>

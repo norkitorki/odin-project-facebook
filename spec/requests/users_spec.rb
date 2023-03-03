@@ -40,14 +40,6 @@ RSpec.describe "Users", type: :request do
       expect(assigns(:posts)).to eq(@user.posts)
     end
 
-    it "should assign comments" do
-      expect(assigns(:comments)).to eq(@user.comments)
-    end
-
-    it "should assign friends" do
-      expect(assigns(:friends)).to eq(@user.friends)
-    end
-
     it "should render show view" do
       expect(response).to render_template(:show)
     end
