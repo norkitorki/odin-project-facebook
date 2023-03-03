@@ -7,7 +7,7 @@ document.addEventListener("turbo:load", () => {
   const genderInput = document.getElementById("user_gender")
 
   if (genderInput) {
-    genderInput.addEventListener('change', () => {
+    genderInput.addEventListener("change", () => {
       if(genderInput.value === "Custom" ) {
         let customInput = '<input type="text" name="user[gender]" id="user_gender" class="input">'
         genderInput.parentElement.classList.remove("select")
@@ -15,4 +15,20 @@ document.addEventListener("turbo:load", () => {
       }
     })
   }
-})
+
+  // Hide timeline pagination
+  const paginationLoadButtons = document.getElementsByClassName("pagination-load")
+  const paginationControls    = document.querySelector(".pagination-controls")
+
+  if(paginationLoadButtons[0]) {
+    paginationLoadButtons[0].hidden = false
+  }
+
+  if(paginationControls) {
+    paginationControls.hidden = true
+  }
+
+  document.addEventListener("turbo:frame-load", () => {
+    paginationLoadButtons[paginationLoadButtons.length - 1].hidden = false
+  });
+});
