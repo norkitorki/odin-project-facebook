@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
     @commentable = @comment.commentable
 
     if @comment.save
-      redirect_to @commentable, notice: 'Comment has been successfully created.'
+      redirect_to polymorphic_url(@commentable, anchor: @comment.slug), notice: 'Comment has been successfully created.'
     else
       flash.now[:alert] = 'Comment has not been created.'
       render :new, status: :unprocessable_entity
