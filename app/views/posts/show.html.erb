@@ -17,26 +17,28 @@
       </div>
     </article>
   </div>
-  <%= turbo_frame_tag 'comments' do %>
-    <% @comments.each do |comment| %>
-      <div class="column is-full-tablet is-half-desktop">
-        <%= render comment, like: comment.find_or_initialize_like(current_user) %>
-        <%= render 'comments/replies', replies: comment.collect_replies %>
-      </div>
-    <% end %>
-    <% if @comments.length >= 20 %>
-      <div class="pagination-load" hidden>
-        <%= turbo_frame_tag 'comments' do %>
-          <div class="has-text-centered">
-            <%= link_to 'Load more', post_path(@post, p: @page + 1), class: 'button is-link' %>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
-  <% end %>
-  <% if @comments.length >= 20 || @page > 1 %>
-    <div class="pagination-controls">
-      <%= render 'public/resource_pagination', resources: @comments, page: @page, max_resource_count: 20, resource_path: post_path(@post) %>
+</article>
+<%= turbo_frame_tag 'comments' do %>
+  <article class="columns is-centered is-flex-direction-column is-align-items-center">
+      <% @comments.each do |comment| %>
+        <div class="column is-full-tablet is-half-desktop">
+          <%= render comment, like: comment.find_or_initialize_like(current_user) %>
+          <%= render 'comments/replies', replies: comment.collect_replies %>
+        </div>
+      <% end %>
+  </article>
+  <% if @comments.length >= 20 %>
+    <div class="pagination-load" hidden>
+      <%= turbo_frame_tag 'comments' do %>
+        <div class="has-text-centered">
+          <%= link_to 'Load more', post_path(@post, p: @page + 1), class: 'button is-link' %>
+        </div>
+      <% end %>
     </div>
   <% end %>
-</article>
+<% end %>
+<% if @comments.length >= 20 || @page > 1 %>
+  <div class="pagination-controls">
+    <%= render 'public/resource_pagination', resources: @comments, page: @page, max_resource_count: 20, resource_path: post_path(@post) %>
+  </div>
+<% end %>
