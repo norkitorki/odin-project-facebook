@@ -1,24 +1,11 @@
-# README
+# Odin-Project: Building Facebook
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+In this last project of the [Odin Project](https://www.theodinproject.com/) rails curriculum we are building a facebook clone.
 
-Things you may want to cover:
+## Previews
 
-* Ruby version
+![timeline preview](/previews/timeline.png)
 
-* System dependencies
+![timeline preview](/previews/post.png)
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+![timeline preview](/previews/comments.png)
