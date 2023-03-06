@@ -11,12 +11,12 @@
         </div>
 
         <div class="field columns">
-          <div class="column">
+          <div class="column is-6 is-flex-grow-0">
             <%= f.label :first_name, class: "label is-size-5" %>
             <%= f.text_field :first_name, autocomplete: "first_name", class: "input" %>
             <%= render 'public/input_errors', resource: resource, attribute: :first_name %>
           </div>
-          <div class="column">
+          <div class="column is-6 is-flex-grow-0">
             <%= f.label :last_name, class: "label is-size-5" %>
             <%= f.text_field :last_name, autocomplete: "last_name", class: "input" %>
             <%= render 'public/input_errors', resource: resource, attribute: :last_name %>
