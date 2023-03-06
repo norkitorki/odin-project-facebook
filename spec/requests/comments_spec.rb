@@ -97,7 +97,7 @@ RSpec.describe "Comments", type: :request do
       end
 
       it "should redirect to commentable" do
-        expect(response).to redirect_to(@comment.commentable)
+        expect(response).to redirect_to(polymorphic_url(@comment.commentable, anchor: Comment.last.slug))
       end
 
       it "should assign flash message" do
