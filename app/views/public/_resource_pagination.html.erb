@@ -1,13 +1,14 @@
 <nav class="pagination" role="navigation" aria-label="pagination">
+  <% resource_path << (local_assigns[:has_url_params] ? '&p=' : '?p=' ) %>
   <% if page > 1 %>
-    <%= link_to 'Previous', resource_path + "?p=#{page - 1}", class: 'pagination-previous button is-link' %>
+    <%= link_to 'Previous', resource_path + "#{page - 1}", class: 'pagination-previous button is-link' %>
   <% end %>
   <% if resources.length >= max_resource_count %>
-    <%= link_to 'Next', resource_path + "?p=#{page + 1}", class: 'pagination-next button is-link' %>
+    <%= link_to 'Next', resource_path + "#{page + 1}", class: 'pagination-next button is-link' %>
   <% end %>
   <ul class="pagination-list">
     <li>
-      <%= link_to 'First Page', resource_path + '?p=1', class: 'pagination-link button is-link', 'aria-label' => 'Go to first page' %>
+      <%= link_to 'First Page', resource_path + '1', class: 'pagination-link button is-link', 'aria-label' => 'Go to first page' %>
     </li>
   </ul>
 </nav>
