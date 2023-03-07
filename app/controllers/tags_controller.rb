@@ -1,5 +1,6 @@
 class TagsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_page, only: :show
 
   def index
     unique_tags = TagList.all.map(&:to_a).flatten.uniq
@@ -8,7 +9,8 @@ class TagsController < ApplicationController
 
   def show
     @tag   = params[:s]
-    @posts = TagList.find_by_tag(@tag)
+    posts  = Post.find_by_tag(@tag).includes(:comments, :images, :likes, :links, :tag_list, :user, :video)
+    @posts = resource_pagination(posts, @page, 15)
   end
 
   private
