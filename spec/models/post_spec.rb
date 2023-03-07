@@ -67,6 +67,20 @@ RSpec.describe Post, type: :model do
     end
   end
 
+  describe "#self.find_by_tag" do
+    it "should find single post by tag" do
+      expect(subject.class.find_by_tag('programming').to_a).to eq([@post])
+    end
+
+    it "should find multiple posts by tag" do
+      expect(subject.class.find_by_tag('web').to_a).to eq(posts)
+    end
+
+    it "should return an empty array when no post corresponds to tag" do
+      expect(subject.class.find_by_tag('test').to_a).to eq([])
+    end
+  end
+
   it "should respond to edited?" do
     expect(@post).to respond_to(:edited?)
     @post.update(content: 'test')
