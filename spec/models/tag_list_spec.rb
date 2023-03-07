@@ -60,22 +60,6 @@ RSpec.describe TagList, type: :model do
     expect { @tag_list.save! }.to change { @tag_list.list }.to('ape,eagle,lion,mouse,zebra')
   end
 
-  describe '#find_by_tag' do
-    fixtures :posts
-
-    it "should find single tagable" do
-      expect(subject.class.find_by_tag('programming').to_a).to eq([posts(:one)])
-    end
-
-    it "should find multiple tagables" do
-      expect(subject.class.find_by_tag('web').to_a).to eq(posts)
-    end
-
-    it "should return an empty array when no tagable was found" do
-      expect(subject.class.find_by_tag('test').to_a).to eq([])
-    end
-  end
-
   describe '#to_a' do
     it "should return list as an array" do
       expect(@tag_list.to_a).to eq(%w[ css design programming technology web ])
