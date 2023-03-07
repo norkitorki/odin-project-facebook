@@ -10,10 +10,6 @@ class TagList < ApplicationRecord
 
   validate :validate_tag_count
 
-  def self.find_by_tag(tag)
-    where("list LIKE ?", "%#{sanitize_sql_like(tag)}%").map(&:tagable)
-  end
-
   def to_a
     list.split(',')
   end
