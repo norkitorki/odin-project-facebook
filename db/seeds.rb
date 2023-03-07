@@ -46,7 +46,8 @@ Users.each do |user|
       content: Faker::Lorem.paragraph_by_chars(number: rand(128..4096), supplemental: false),
       created_at: creation_time,
       updated_at: creation_time,
-      images_attributes: rand(3).times.map.with_index { |i| [i.to_s, { remote_photo: Faker::LoremFlickr.image(size: "1280x720") << "?random=#{rand(5000)}" }] }.to_h
+      images_attributes: rand(3).times.map.with_index { |i| [i.to_s, { remote_photo: Faker::LoremFlickr.image(size: "1280x720") << "?random=#{rand(5000)}" }] }.to_h,
+      tag_list_attributes: { list: Faker::Lorem.words(number: rand(10)).join(',') }
     )
   end
 end
