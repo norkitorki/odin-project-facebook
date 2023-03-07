@@ -3,7 +3,7 @@
     <h2 class="title">Sign in</h2>
   </div>
   <div class="column p-4">
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |f| %>
       <div class="field">
         <%= f.label :email, class: "label is-size-5" %>
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>
