@@ -18,7 +18,7 @@
     </article>
   </div>
 </article>
-<%= turbo_frame_tag 'comments' do %>
+<%= turbo_frame_tag 'post_comments' do %>
   <article class="columns is-centered is-flex-direction-column is-align-items-center">
       <% @comments.each do |comment| %>
         <div class="column is-full-tablet is-half-desktop">
@@ -29,7 +29,7 @@
   </article>
   <% if @comments.length >= 20 %>
     <div class="pagination-load" hidden>
-      <%= turbo_frame_tag 'comments' do %>
+      <%= turbo_frame_tag 'post_comments' do %>
         <div class="has-text-centered">
           <%= link_to 'Load more', post_path(@post, p: @page + 1), class: 'button is-link' %>
         </div>

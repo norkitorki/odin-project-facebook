@@ -1,6 +1,8 @@
-<h2 class="title mb-0">Posts tagged with <span class="is-underlined"><%= @tag %></span>:</h2>
+<%= turbo_frame_tag 'tag_posts' do %>
+  <% if @page == 1 %>
+    <h2 class="title mb-0">Posts tagged with <span class="is-underlined"><%= @tag %></span>:</h2>
+  <% end %>
 
-<%= turbo_frame_tag 'posts' do %>
   <article class="columns is-variable is-multiline">
     <% @posts.each do |post| %>
       <div class="column is-full-tablet is-one-third-desktop">
@@ -10,7 +12,7 @@
   </article>
   <% if @posts.length >= 15 %>
     <div class="pagination-load" hidden>
-      <%= turbo_frame_tag 'posts' do %>
+      <%= turbo_frame_tag 'tag_posts' do %>
         <div class="has-text-centered">
           <%= link_to 'Load more', tag_path(s: @tag, p: @page + 1), class: 'button is-link' %>
         </div>

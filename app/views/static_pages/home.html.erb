@@ -6,7 +6,7 @@
   <% end %>
 <% end %>
 
-<%= turbo_frame_tag 'posts' do %>
+<%= turbo_frame_tag 'timeline_posts' do %>
   <article class="columns is-multiline is-1 is-variable my-3">
     <% @posts.each do |post| %>
       <div class="column is-half-tablet is-one-quarter-desktop">
@@ -16,7 +16,7 @@
   </article>
   <% if @posts.length >= 16 %>
     <div class="pagination-load" hidden>
-      <%= turbo_frame_tag 'posts' do %>
+      <%= turbo_frame_tag 'timeline_posts' do %>
         <div class="has-text-centered">
           <%= link_to 'Load more', home_path(p: @page + 1), class: 'button is-link' %>
         </div>
