@@ -45,7 +45,9 @@ class Post < ApplicationRecord
     reject_if: :all_blank
 
   def self.find_by_tag(tag)
-    joins(:tag_list).where('tag_lists.list LIKE ?', "%,#{sanitize_sql_like(tag)},%")
+    t = sanitize_sql_like(tag)
+    joins(:tag_list).where(
+      'list LIKE ? OR list LIKE ? OR list LIKE ?', "%,#{t},%", "#{t},#", "%,#{t}")
   end
 
   def edited?
