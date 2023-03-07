@@ -5,7 +5,7 @@ User.destroy_all
 earliest_birthday = (Time.now - 60.years).strftime('%Y-%m-%d')
 latest_birthday = (Time.now - 15.years).strftime('%Y-%m-%d')
 
-100.times do
+100.times do |y|
   i = rand(0..1)
   gendered_names = [Faker::Name.unique.female_first_name, Faker::Name.unique.male_first_name]
   first_name = gendered_names[i]
@@ -18,7 +18,7 @@ latest_birthday = (Time.now - 15.years).strftime('%Y-%m-%d')
     gender: i.zero? ? 'Female' : 'Male',
     birthday: Faker::Date.between(from: earliest_birthday, to: latest_birthday),
     password: SecureRandom.base64(10),
-    image_attributes: { remote_photo: Faker::LoremFlickr.image(size: "128x128") << "?random=#{rand(5000)}" }
+    image_attributes: { remote_photo: Faker::LoremFlickr.image(size: "128x128") << "?random=#{y}" }
   )
 end
 
