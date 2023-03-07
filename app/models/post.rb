@@ -44,6 +44,10 @@ class Post < ApplicationRecord
     allow_destroy: true,
     reject_if: :all_blank
 
+  def self.find_by_tag(tag)
+    joins(:tag_list).where('tag_lists.list LIKE ?', "%,#{sanitize_sql_like(tag)},%")
+  end
+
   def edited?
     created_at < updated_at
   end
