@@ -75,3 +75,11 @@ Comments = Comment.all
   comment_body = Faker::Lorem.paragraph_by_chars(number: rand(128..512))
   comment.replies.create(body: comment_body, user: user, commentable: comment.commentable)
 end
+
+# Seed likes
+
+1000.times do |i|
+  resource = i.even? ? Posts.sample : Comments.sample
+  user = Users.sample
+  resource.likes.create(user: user)
+end
